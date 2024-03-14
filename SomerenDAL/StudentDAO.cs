@@ -1,6 +1,6 @@
 ﻿namespace SomerenDAL
 {
-    public class Class1
+    public class StudentDAO
     {
 
     }
