@@ -3,16 +3,29 @@ using SomerenModel;
 using SomerenService;
 namespace SomerenUI
 {
-    public partial class Form1 : Form
+    public partial class SomerenForm : Form
     {
-        public Form1()
+        public SomerenForm()
         {
             InitializeComponent();
-            List<Lecturer> lecturers = GetAllLecturers();
-            List<Room> rooms = GetAllRooms();
-            DisplayLecturers(lecturers);
-            DisplayRooms(rooms);
+            LecturersPanel.Visible = false;
+            RoomsPanel.Visible = false;
+        }
 
+        private void ShowLecturersPanel()
+        {
+            LecturersPanel.Show();
+
+            List<Lecturer> lecturers = GetAllLecturers();
+            DisplayLecturers(lecturers);
+        }
+
+        private void ShowRoomsPanel()
+        {
+            RoomsPanel.Show();
+
+            List<Room> rooms = GetAllRooms();
+            DisplayRooms(rooms);
         }
         public List<Lecturer> GetAllLecturers()
         {
@@ -23,7 +36,7 @@ namespace SomerenUI
 
         public void DisplayLecturers(List<Lecturer> lecturers)
         {
-
+            ListViewLecturers.Items.Clear();
 
             foreach (Lecturer lecturer in lecturers)
             {
@@ -45,7 +58,7 @@ namespace SomerenUI
 
         public void DisplayRooms(List<Room> rooms)
         {
-
+            ListViewRooms.Items.Clear();
 
             foreach (Room room in rooms)
             {
@@ -58,14 +71,17 @@ namespace SomerenUI
                 ListViewRooms.Items.Add(item);
             }
         }
-        private void ListViewLecturers_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void toolStripRooms_Click(object sender, EventArgs e)
+        {
+            LecturersPanel.Hide();
+            ShowRoomsPanel();
         }
 
-        private void ListViewRooms_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void toolStripLecturers_Click_1(object sender, EventArgs e)
         {
-
+            RoomsPanel.Hide();
+            ShowLecturersPanel();
         }
     }
 }

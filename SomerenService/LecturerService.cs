@@ -18,7 +18,8 @@ namespace SomerenService
 
         public List<Lecturer> GetAll()
         {
-            return lecturerDAO.GetAll();
+           
+               return lecturerDAO.GetAll();
         }
     }
 }
