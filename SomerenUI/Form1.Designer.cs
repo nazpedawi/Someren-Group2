@@ -34,11 +34,11 @@
             Age = new ColumnHeader();
             PhoneNumber = new ColumnHeader();
             labelLecturers = new Label();
-            listView1 = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
+            ListViewRooms = new ListView();
+            RoomNumber = new ColumnHeader();
+            BuildingName = new ColumnHeader();
+            RoomType = new ColumnHeader();
+            NumberOfBeds = new ColumnHeader();
             label1 = new Label();
             SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             ListViewLecturers.Columns.AddRange(new ColumnHeader[] { FirstName, LastName, Age, PhoneNumber });
             ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             ListViewLecturers.Location = new Point(27, 26);
-            ListViewLecturers.Margin = new Padding(2, 2, 2, 2);
+            ListViewLecturers.Margin = new Padding(2);
             ListViewLecturers.Name = "ListViewLecturers";
             ListViewLecturers.Size = new Size(415, 173);
             ListViewLecturers.TabIndex = 0;
@@ -86,39 +86,39 @@
             labelLecturers.TabIndex = 1;
             labelLecturers.Text = "Lecturers";
             // 
-            // listView1
+            // ListViewRooms
             // 
-            listView1.BackColor = SystemColors.InactiveCaption;
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
-            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(27, 255);
-            listView1.Margin = new Padding(2);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(484, 173);
-            listView1.TabIndex = 2;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            ListViewRooms.BackColor = SystemColors.InactiveCaption;
+            ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
+            ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            ListViewRooms.Location = new Point(27, 255);
+            ListViewRooms.Margin = new Padding(2);
+            ListViewRooms.Name = "ListViewRooms";
+            ListViewRooms.Size = new Size(484, 173);
+            ListViewRooms.TabIndex = 2;
+            ListViewRooms.UseCompatibleStateImageBehavior = false;
+            ListViewRooms.View = View.Details;
+            ListViewRooms.SelectedIndexChanged += ListViewRooms_SelectedIndexChanged_1;
             // 
-            // columnHeader1
+            // RoomNumber
             // 
-            columnHeader1.Text = "Room Number";
-            columnHeader1.Width = 120;
+            RoomNumber.Text = "Room Number";
+            RoomNumber.Width = 120;
             // 
-            // columnHeader2
+            // BuildingName
             // 
-            columnHeader2.Text = "Building Name";
-            columnHeader2.Width = 120;
+            BuildingName.Text = "Building Name";
+            BuildingName.Width = 120;
             // 
-            // columnHeader3
+            // RoomType
             // 
-            columnHeader3.Text = "Room Type";
-            columnHeader3.Width = 120;
+            RoomType.Text = "Room Type";
+            RoomType.Width = 120;
             // 
-            // columnHeader4
+            // NumberOfBeds
             // 
-            columnHeader4.Text = "Number of bed";
-            columnHeader4.Width = 120;
+            NumberOfBeds.Text = "Number Of Beds";
+            NumberOfBeds.Width = 120;
             // 
             // label1
             // 
@@ -135,10 +135,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(717, 463);
             Controls.Add(label1);
-            Controls.Add(listView1);
+            Controls.Add(ListViewRooms);
             Controls.Add(labelLecturers);
             Controls.Add(ListViewLecturers);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -153,11 +153,11 @@
         private ColumnHeader Age;
         private ColumnHeader PhoneNumber;
         private Label labelLecturers;
-        private ListView listView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
+        private ListView ListViewRooms;
+        private ColumnHeader RoomNumber;
+        private ColumnHeader BuildingName;
+        private ColumnHeader RoomType;
+        private ColumnHeader NumberOfBeds;
         private Label label1;
     }
 }

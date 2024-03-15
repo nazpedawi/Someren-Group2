@@ -8,7 +8,17 @@ using SomerenModel;
 
 namespace SomerenService
 {
-    internal class RoomService
+    public class RoomService
     {
+        private RoomDAO roomDAO;
+        public RoomService()
+        {
+            roomDAO = new RoomDAO();
+        }
+
+        public List<Room> GetAll()
+        {
+            return roomDAO.GetAll();
+        }
     }
 }

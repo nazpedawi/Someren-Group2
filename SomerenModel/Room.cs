@@ -9,11 +9,11 @@ namespace SomerenModel
     public class Room
     {
         public int RoomNumber { get; set; }
-        public char BuildingName { get; set; }
+        public string BuildingName { get; set; }
         public string RoomType { get; set; }
         public int NumberOfBeds { get; set; }
 
-        public Room(int roomNumber, char buildingName, string roomType, int numberOfBeds)
+        public Room(int roomNumber, string buildingName, string roomType, int numberOfBeds)
         {
             RoomNumber = roomNumber;
             BuildingName = buildingName;
