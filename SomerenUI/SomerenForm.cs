@@ -8,22 +8,28 @@ namespace SomerenUI
         public SomerenForm()
         {
             InitializeComponent();
-            LecturersPanel.Visible = false;
-            RoomsPanel.Visible = false;
+            LecturersPanel.Hide();
+            RoomsPanel.Hide();
         }
 
         private void ShowLecturersPanel()
         {
+           
             LecturersPanel.Show();
-
-            List<Lecturer> lecturers = GetAllLecturers();
-            DisplayLecturers(lecturers);
+            try
+            {
+                List<Lecturer> lecturers = GetAllLecturers();
+                DisplayLecturers(lecturers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Occured While Loading Lecturers :" + ex.Message);
+            }
         }
 
         private void ShowRoomsPanel()
         {
             RoomsPanel.Show();
-
             List<Room> rooms = GetAllRooms();
             DisplayRooms(rooms);
         }
@@ -78,7 +84,7 @@ namespace SomerenUI
             ShowRoomsPanel();
         }
 
-        private void toolStripLecturers_Click_1(object sender, EventArgs e)
+        private void toolStripLecturers_Click(object sender, EventArgs e)
         {
             RoomsPanel.Hide();
             ShowLecturersPanel();

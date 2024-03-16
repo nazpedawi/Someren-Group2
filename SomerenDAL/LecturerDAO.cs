@@ -35,13 +35,19 @@ namespace SomerenDAL
                     lecturers.Add(lecturer);
                 }
                 reader.Close();
-                dbConnection.Close();
                 return lecturers;
             }
 
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("An Error Occured While Retrieving 'Lecturers' From The Database");
+               throw new Exception("An Error Occured While Retrieving 'Lecturers' From The Database", ex);
+            }
+            finally
+            {
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
             }
         }
         private Lecturer ReadLecturer(SqlDataReader reader)
@@ -59,7 +65,7 @@ namespace SomerenDAL
             }
             catch (Exception ex)
             {
-                throw new Exception("An Error Occured While Reading 'Lecturer' Data");
+                throw new Exception("An Error Occured While Reading 'Lecturer' Data", ex);
             }
         }
     }

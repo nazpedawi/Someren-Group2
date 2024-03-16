@@ -40,8 +40,8 @@
             NumberOfBeds = new ColumnHeader();
             labelRooms = new Label();
             LecturersPanel = new Panel();
-            labelLecturers = new Label();
             RoomsPanel = new Panel();
+            labelLecturers = new Label();
             toolStrip1 = new ToolStrip();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripRooms = new ToolStripLabel();
@@ -90,7 +90,7 @@
             ListViewRooms.BackColor = SystemColors.InactiveCaption;
             ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
             ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewRooms.Location = new Point(0, 35);
+            ListViewRooms.Location = new Point(3, 38);
             ListViewRooms.Name = "ListViewRooms";
             ListViewRooms.Size = new Size(591, 253);
             ListViewRooms.TabIndex = 2;
@@ -120,7 +120,7 @@
             // labelRooms
             // 
             labelRooms.AutoSize = true;
-            labelRooms.Location = new Point(-4, 3);
+            labelRooms.Location = new Point(-1, 0);
             labelRooms.Margin = new Padding(4, 0, 4, 0);
             labelRooms.Name = "labelRooms";
             labelRooms.Size = new Size(68, 25);
@@ -133,8 +133,17 @@
             LecturersPanel.Controls.Add(ListViewLecturers);
             LecturersPanel.Location = new Point(34, 38);
             LecturersPanel.Name = "LecturersPanel";
-            LecturersPanel.Size = new Size(673, 291);
+            LecturersPanel.Size = new Size(609, 291);
             LecturersPanel.TabIndex = 4;
+            // 
+            // RoomsPanel
+            // 
+            RoomsPanel.Controls.Add(ListViewRooms);
+            RoomsPanel.Controls.Add(labelRooms);
+            RoomsPanel.Location = new Point(649, 36);
+            RoomsPanel.Name = "RoomsPanel";
+            RoomsPanel.Size = new Size(630, 291);
+            RoomsPanel.TabIndex = 6;
             // 
             // labelLecturers
             // 
@@ -144,15 +153,6 @@
             labelLecturers.Size = new Size(82, 25);
             labelLecturers.TabIndex = 1;
             labelLecturers.Text = "Lecturers";
-            // 
-            // RoomsPanel
-            // 
-            RoomsPanel.Controls.Add(labelRooms);
-            RoomsPanel.Controls.Add(ListViewRooms);
-            RoomsPanel.Location = new Point(636, 38);
-            RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(630, 291);
-            RoomsPanel.TabIndex = 6;
             // 
             // toolStrip1
             // 
@@ -192,16 +192,16 @@
             toolStripLecturers.Name = "toolStripLecturers";
             toolStripLecturers.Size = new Size(82, 25);
             toolStripLecturers.Text = "Lecturers";
-            toolStripLecturers.Click += toolStripLecturers_Click_1;
+            toolStripLecturers.Click += toolStripLecturers_Click;
             // 
             // SomerenForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1318, 862);
-            Controls.Add(RoomsPanel);
             Controls.Add(toolStrip1);
             Controls.Add(LecturersPanel);
+            Controls.Add(RoomsPanel);
             Name = "SomerenForm";
             Text = "Someren Form";
             LecturersPanel.ResumeLayout(false);
