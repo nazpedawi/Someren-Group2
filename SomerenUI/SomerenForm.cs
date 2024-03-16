@@ -10,11 +10,12 @@ namespace SomerenUI
             InitializeComponent();
             LecturersPanel.Hide();
             RoomsPanel.Hide();
+            DrinksPanel.Hide();
         }
 
         private void ShowLecturersPanel()
         {
-           
+
             LecturersPanel.Show();
             try
             {
@@ -23,7 +24,7 @@ namespace SomerenUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An Error Occured While Loading Lecturers :" + ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -78,16 +79,62 @@ namespace SomerenUI
             }
         }
 
+        private void ShowDrinksPanel()
+        {
+
+            DrinksPanel.Show();
+            try
+            {
+                List<Drink> drinks = GetAllDrinks();
+                DisplayDrinks(drinks);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public List<Drink> GetAllDrinks()
+        {
+            DrinkService drinkService = new DrinkService();
+            List<Drink> drinks = drinkService.GetAll();
+            return drinks;
+        }
+
+        public void DisplayDrinks(List<Drink> drinks)
+        {
+            ListViewDrinks.Items.Clear();
+
+            foreach (Drink drink in drinks)
+            {
+                ListViewItem item = new ListViewItem(drink.Name);
+                item.Tag = drink;
+                item.SubItems.Add(drink.Type);
+                item.SubItems.Add(drink.Price.ToString());
+                item.SubItems.Add(drink.StockAmount.ToString());
+
+                ListViewDrinks.Items.Add(item);
+            }
+        }
         private void toolStripRooms_Click(object sender, EventArgs e)
         {
             LecturersPanel.Hide();
+            DrinksPanel.Hide();
             ShowRoomsPanel();
         }
 
         private void toolStripLecturers_Click(object sender, EventArgs e)
         {
             RoomsPanel.Hide();
+            DrinksPanel.Hide();
             ShowLecturersPanel();
+        }
+
+        private void toolStripDrinks_Click(object sender, EventArgs e)
+        {
+            LecturersPanel.Hide();
+            RoomsPanel.Hide();
+            ShowDrinksPanel();
         }
     }
 }

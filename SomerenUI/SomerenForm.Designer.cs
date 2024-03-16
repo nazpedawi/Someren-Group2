@@ -40,17 +40,26 @@
             NumberOfBeds = new ColumnHeader();
             labelRooms = new Label();
             LecturersPanel = new Panel();
-            RoomsPanel = new Panel();
             labelLecturers = new Label();
+            RoomsPanel = new Panel();
             toolStrip1 = new ToolStrip();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripRooms = new ToolStripLabel();
             toolStripSeparator2 = new ToolStripSeparator();
             toolStripStudents = new ToolStripLabel();
             toolStripLecturers = new ToolStripLabel();
+            toolStripDrinks = new ToolStripLabel();
+            DrinksPanel = new Panel();
+            labelDrinks = new Label();
+            ListViewDrinks = new ListView();
+            DrinkName = new ColumnHeader();
+            Type = new ColumnHeader();
+            Price = new ColumnHeader();
+            StockAmount = new ColumnHeader();
             LecturersPanel.SuspendLayout();
             RoomsPanel.SuspendLayout();
             toolStrip1.SuspendLayout();
+            DrinksPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ListViewLecturers
@@ -136,15 +145,6 @@
             LecturersPanel.Size = new Size(609, 291);
             LecturersPanel.TabIndex = 4;
             // 
-            // RoomsPanel
-            // 
-            RoomsPanel.Controls.Add(ListViewRooms);
-            RoomsPanel.Controls.Add(labelRooms);
-            RoomsPanel.Location = new Point(649, 36);
-            RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(630, 291);
-            RoomsPanel.TabIndex = 6;
-            // 
             // labelLecturers
             // 
             labelLecturers.AutoSize = true;
@@ -154,10 +154,19 @@
             labelLecturers.TabIndex = 1;
             labelLecturers.Text = "Lecturers";
             // 
+            // RoomsPanel
+            // 
+            RoomsPanel.Controls.Add(ListViewRooms);
+            RoomsPanel.Controls.Add(labelRooms);
+            RoomsPanel.Location = new Point(649, 36);
+            RoomsPanel.Name = "RoomsPanel";
+            RoomsPanel.Size = new Size(630, 291);
+            RoomsPanel.TabIndex = 6;
+            // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, toolStripRooms, toolStripSeparator2, toolStripStudents, toolStripLecturers });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, toolStripRooms, toolStripSeparator2, toolStripStudents, toolStripLecturers, toolStripDrinks });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1318, 30);
@@ -194,11 +203,68 @@
             toolStripLecturers.Text = "Lecturers";
             toolStripLecturers.Click += toolStripLecturers_Click;
             // 
+            // toolStripDrinks
+            // 
+            toolStripDrinks.Name = "toolStripDrinks";
+            toolStripDrinks.Size = new Size(62, 25);
+            toolStripDrinks.Text = "Drinks";
+            toolStripDrinks.Click += toolStripDrinks_Click;
+            // 
+            // DrinksPanel
+            // 
+            DrinksPanel.Controls.Add(labelDrinks);
+            DrinksPanel.Controls.Add(ListViewDrinks);
+            DrinksPanel.Location = new Point(34, 354);
+            DrinksPanel.Name = "DrinksPanel";
+            DrinksPanel.Size = new Size(624, 305);
+            DrinksPanel.TabIndex = 7;
+            // 
+            // labelDrinks
+            // 
+            labelDrinks.AutoSize = true;
+            labelDrinks.Location = new Point(3, 7);
+            labelDrinks.Name = "labelDrinks";
+            labelDrinks.Size = new Size(62, 25);
+            labelDrinks.TabIndex = 1;
+            labelDrinks.Text = "Drinks";
+            // 
+            // ListViewDrinks
+            // 
+            ListViewDrinks.BackColor = SystemColors.InactiveCaption;
+            ListViewDrinks.Columns.AddRange(new ColumnHeader[] { DrinkName, Type, Price, StockAmount });
+            ListViewDrinks.Location = new Point(9, 34);
+            ListViewDrinks.Name = "ListViewDrinks";
+            ListViewDrinks.Size = new Size(591, 253);
+            ListViewDrinks.TabIndex = 0;
+            ListViewDrinks.UseCompatibleStateImageBehavior = false;
+            ListViewDrinks.View = View.Details;
+            // 
+            // DrinkName
+            // 
+            DrinkName.Text = "Name";
+            DrinkName.Width = 130;
+            // 
+            // Type
+            // 
+            Type.Text = "Type";
+            Type.Width = 150;
+            // 
+            // Price
+            // 
+            Price.Text = "Price";
+            Price.Width = 80;
+            // 
+            // StockAmount
+            // 
+            StockAmount.Text = "Stock Amount";
+            StockAmount.Width = 140;
+            // 
             // SomerenForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1318, 862);
+            Controls.Add(DrinksPanel);
             Controls.Add(toolStrip1);
             Controls.Add(LecturersPanel);
             Controls.Add(RoomsPanel);
@@ -210,6 +276,8 @@
             RoomsPanel.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            DrinksPanel.ResumeLayout(false);
+            DrinksPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +304,13 @@
         private Label labelLecturers;
         private Panel RoomsPanel;
         private ToolStripLabel toolStripLecturers;
+        private ToolStripLabel toolStripDrinks;
+        private Panel DrinksPanel;
+        private ListView ListViewDrinks;
+        private ColumnHeader DrinkName;
+        private ColumnHeader Type;
+        private ColumnHeader Price;
+        private ColumnHeader StockAmount;
+        private Label labelDrinks;
     }
 }
