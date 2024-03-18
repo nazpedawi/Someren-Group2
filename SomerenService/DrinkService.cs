@@ -21,5 +21,14 @@ namespace SomerenService
 
             return drinkDAO.GetAll();
         }
+        public void AddDrink (Drink drink) 
+        {
+            drinkDAO.AddDrink(drink);
+        }
+
+        public void DeleteDrink(Drink drink)
+        {
+            drinkDAO.DeleteDrink(drink);
+        }
     }
 }

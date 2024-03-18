@@ -68,5 +68,42 @@ namespace SomerenDAL
                 throw new Exception("An Error Occured While Reading 'Drink' Data", ex);
             }
         }
+
+        public Drink AddDrink(Drink drink)
+        {
+            dbConnection.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name,@Type, @Price, @StockAmount);"
+                + "SELECT CAST(scope_identity() AS int)", dbConnection);
+
+            cmd.Parameters.AddWithValue("@Name", drink.Name);
+            cmd.Parameters.AddWithValue("@Type", drink.Type);
+            cmd.Parameters.AddWithValue("@Price", drink.Price);
+            cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
+
+
+            if (drink.Type == "Alcoholic" || drink.Type == "alcoholic")
+            {
+                drink.VAT = 0.21m;
+            }
+            else
+                drink.VAT = 0.09m;
+
+            dbConnection.Close();
+
+            int id = (int)cmd.ExecuteScalar();
+            return new Drink(id, drink.Name, drink.Type, drink.Price, drink.VAT, drink.StockAmount);
+        }
+
+        public void DeleteDrink(Drink drink)
+        {
+            dbConnection.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE Id = @Id", dbConnection);
+            cmd.Parameters.AddWithValue("@Id", drink.DrinkID);
+            cmd.ExecuteNonQuery();
+            dbConnection.Close();
+        }
+            
+
     }
 }
