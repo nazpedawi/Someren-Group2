@@ -135,5 +135,10 @@ namespace SomerenUI
             LecturersPanel.Hide();
             StudentsPanel.Show();
         }
+
+        private void SomerenForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
