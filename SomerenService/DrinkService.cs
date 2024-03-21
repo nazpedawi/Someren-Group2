@@ -30,5 +30,10 @@ namespace SomerenService
         {
             drinkDAO.DeleteDrink(drink);
         }
+
+        public void ModifyDrink(Drink drink)
+        {
+            drinkDAO.ModifyDrink(drink);
+        }
     }
 }

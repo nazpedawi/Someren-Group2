@@ -8,15 +8,15 @@ namespace SomerenUI
         public SomerenForm()
         {
             InitializeComponent();
-            LecturersPanel.Hide();
+            StudentsPanel.Hide();
             RoomsPanel.Hide();
-            DrinksPanel.Hide();
+            LecturersPanel.Hide();
         }
 
         private void ShowLecturersPanel()
         {
-
-            LecturersPanel.Show();
+           
+           LecturersPanel.Show();
             try
             {
                 List<Lecturer> lecturers = GetAllLecturers();
@@ -34,6 +34,13 @@ namespace SomerenUI
             List<Room> rooms = GetAllRooms();
             DisplayRooms(rooms);
         }
+
+        private void ShoWStudentsPanel()
+        {
+            StudentsPanel.Show();
+            List<Student> students = GetAllStudents();
+            DisplayStudents(students);
+        }
         public List<Lecturer> GetAllLecturers()
         {
             LecturerService lecturerService = new LecturerService();
@@ -41,6 +48,12 @@ namespace SomerenUI
             return lecturers;
         }
 
+        public List<Student> GetAllStudents()
+        {
+            StudentService studentService = new StudentService();
+            List<Student> students = studentService.GetAll();
+            return students;
+        }
         public void DisplayLecturers(List<Lecturer> lecturers)
         {
             ListViewLecturers.Items.Clear();
@@ -54,6 +67,22 @@ namespace SomerenUI
                 item.SubItems.Add(lecturer.PhoneNumber.ToString());
 
                 ListViewLecturers.Items.Add(item);
+            }
+        }
+        public void DisplayStudents(List<Student> students)
+        {
+            ListViewStudents.Items.Clear();
+
+            foreach (Student student in students)
+            {
+                ListViewItem item = new ListViewItem(student.StudentNumber.ToString());
+                item.Tag = student;
+                item.SubItems.Add(student.FirstName);
+                item.SubItems.Add(student.LastName);
+                item.SubItems.Add(student.Class.ToString());
+                item.SubItems.Add(student.PhoneNumber.ToString());
+
+                ListViewStudents.Items.Add(item);
             }
         }
         public List<Room> GetAllRooms()
@@ -79,62 +108,32 @@ namespace SomerenUI
             }
         }
 
-        private void ShowDrinksPanel()
-        {
 
-            DrinksPanel.Show();
-            try
-            {
-                List<Drink> drinks = GetAllDrinks();
-                DisplayDrinks(drinks);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public List<Drink> GetAllDrinks()
-        {
-            DrinkService drinkService = new DrinkService();
-            List<Drink> drinks = drinkService.GetAll();
-            return drinks;
-        }
-
-        public void DisplayDrinks(List<Drink> drinks)
-        {
-            ListViewDrinks.Items.Clear();
-
-            foreach (Drink drink in drinks)
-            {
-                ListViewItem item = new ListViewItem(drink.Name);
-                item.Tag = drink;
-                item.SubItems.Add(drink.Type);
-                item.SubItems.Add(drink.Price.ToString());
-                item.SubItems.Add(drink.StockAmount.ToString());
-
-                ListViewDrinks.Items.Add(item);
-            }
-        }
         private void toolStripRooms_Click(object sender, EventArgs e)
         {
+            StudentsPanel.Hide();
             LecturersPanel.Hide();
-            DrinksPanel.Hide();
             ShowRoomsPanel();
         }
 
         private void toolStripLecturers_Click(object sender, EventArgs e)
         {
             RoomsPanel.Hide();
-            DrinksPanel.Hide();
+            StudentsPanel.Hide();
             ShowLecturersPanel();
         }
 
         private void toolStripDrinks_Click(object sender, EventArgs e)
         {
-            LecturersPanel.Hide();
+            DrinksForm drinksForm = new DrinksForm();
+            drinksForm.ShowDialog();
+        }
+
+        private void toolStripStudents_Click(object sender, EventArgs e)
+        {
             RoomsPanel.Hide();
-            ShowDrinksPanel();
+            LecturersPanel.Hide();
+            StudentsPanel.Show();
         }
     }
 }

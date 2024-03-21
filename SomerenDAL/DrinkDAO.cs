@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Data;
+using System.Data.Common;
 
 namespace SomerenDAL
 {
@@ -14,13 +16,19 @@ namespace SomerenDAL
         private SqlConnection dbConnection;
         public DrinkDAO()
         {
-            string connString = ConfigurationManager
-                .ConnectionStrings["DBConnectionString"]
-                .ConnectionString;
+            try
+            {
+                string connString = ConfigurationManager
+                    .ConnectionStrings["DBConnectionString"]
+                    .ConnectionString;
 
-            dbConnection = new SqlConnection(connString);
+                dbConnection = new SqlConnection(connString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An Error occured while configuring database connection.", ex);
+            }
         }
-
         public List<Drink> GetAll()
         {
             try
@@ -73,25 +81,16 @@ namespace SomerenDAL
         {
             dbConnection.Open();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name,@Type, @Price, @StockAmount);"
+            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name,@Type, @Price, @VAT, @StockAmount);"
                 + "SELECT CAST(scope_identity() AS int)", dbConnection);
-
-            cmd.Parameters.AddWithValue("@Name", drink.Name);
-            cmd.Parameters.AddWithValue("@Type", drink.Type);
-            cmd.Parameters.AddWithValue("@Price", drink.Price);
-            cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
-
-
-            if (drink.Type == "Alcoholic" || drink.Type == "alcoholic")
-            {
-                drink.VAT = 0.21m;
-            }
-            else
-                drink.VAT = 0.09m;
-
-            dbConnection.Close();
+             cmd.Parameters.AddWithValue("@Name", drink.Name);
+                        cmd.Parameters.AddWithValue("@Type", drink.Type);
+                        cmd.Parameters.AddWithValue("@Price", drink.Price);
+                        cmd.Parameters.AddWithValue("@VAT", drink.VAT);
+                        cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
 
             int id = (int)cmd.ExecuteScalar();
+            dbConnection.Close();
             return new Drink(id, drink.Name, drink.Type, drink.Price, drink.VAT, drink.StockAmount);
         }
 
@@ -103,7 +102,41 @@ namespace SomerenDAL
             cmd.ExecuteNonQuery();
             dbConnection.Close();
         }
-            
 
+        public void ModifyDrink(Drink drink)
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand(
+                   "UPDATE Drinks SET Name = @Name, Type = @Type,  Price = @Price, StockAmount = @StockAmount                                              StockAmount = @StockAmount \r\n                                           WHERE DrinkID = @DrinkID\", dbConnection);  " +
+                                "WHERE DrinkID = @DrinkID", dbConnection);
+
+                cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
+                cmd.Parameters.AddWithValue("@Name", drink.Name);
+                cmd.Parameters.AddWithValue("@Type", drink.Type);
+                cmd.Parameters.AddWithValue("@Price", drink.Price);
+                cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    drink = ReadDrink(reader);
+                }
+                reader.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An error occurred while updating the drink", ex);
+            }
+            finally
+            {
+                if (dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }

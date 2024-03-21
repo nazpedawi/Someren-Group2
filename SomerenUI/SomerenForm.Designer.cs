@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewLecturers = new ListView();
-            FirstName = new ColumnHeader();
-            LastName = new ColumnHeader();
-            Age = new ColumnHeader();
-            PhoneNumber = new ColumnHeader();
             ListViewRooms = new ListView();
             RoomNumber = new ColumnHeader();
             BuildingName = new ColumnHeader();
             RoomType = new ColumnHeader();
             NumberOfBeds = new ColumnHeader();
             labelRooms = new Label();
-            LecturersPanel = new Panel();
-            labelLecturers = new Label();
             RoomsPanel = new Panel();
             toolStrip1 = new ToolStrip();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -49,59 +42,35 @@
             toolStripStudents = new ToolStripLabel();
             toolStripLecturers = new ToolStripLabel();
             toolStripDrinks = new ToolStripLabel();
-            DrinksPanel = new Panel();
-            labelDrinks = new Label();
-            ListViewDrinks = new ListView();
-            DrinkName = new ColumnHeader();
-            Type = new ColumnHeader();
-            Price = new ColumnHeader();
-            StockAmount = new ColumnHeader();
-            LecturersPanel.SuspendLayout();
+            StudentsPanel = new Panel();
+            labelLecturers = new Label();
+            ListViewStudents = new ListView();
+            StudentNumber = new ColumnHeader();
+            FirstName = new ColumnHeader();
+            LastName = new ColumnHeader();
+            Class = new ColumnHeader();
+            PhoneNumber = new ColumnHeader();
+            label1 = new Label();
+            ListViewLecturers = new ListView();
+            LecturerFirstName = new ColumnHeader();
+            LecturerLastName = new ColumnHeader();
+            Age = new ColumnHeader();
+            LecturerPhoneNumber = new ColumnHeader();
+            LecturersPanel = new Panel();
             RoomsPanel.SuspendLayout();
             toolStrip1.SuspendLayout();
-            DrinksPanel.SuspendLayout();
+            StudentsPanel.SuspendLayout();
+            LecturersPanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // ListViewLecturers
-            // 
-            ListViewLecturers.BackColor = SystemColors.InactiveCaption;
-            ListViewLecturers.Columns.AddRange(new ColumnHeader[] { FirstName, LastName, Age, PhoneNumber });
-            ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewLecturers.Location = new Point(5, 36);
-            ListViewLecturers.Name = "ListViewLecturers";
-            ListViewLecturers.Size = new Size(591, 253);
-            ListViewLecturers.TabIndex = 0;
-            ListViewLecturers.UseCompatibleStateImageBehavior = false;
-            ListViewLecturers.View = View.Details;
-            // 
-            // FirstName
-            // 
-            FirstName.Text = "First Name";
-            FirstName.Width = 140;
-            // 
-            // LastName
-            // 
-            LastName.Text = "Last Name";
-            LastName.Width = 140;
-            // 
-            // Age
-            // 
-            Age.Text = "Age";
-            Age.Width = 130;
-            // 
-            // PhoneNumber
-            // 
-            PhoneNumber.Text = "Phone Number";
-            PhoneNumber.Width = 150;
             // 
             // ListViewRooms
             // 
             ListViewRooms.BackColor = SystemColors.InactiveCaption;
             ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
             ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewRooms.Location = new Point(3, 38);
+            ListViewRooms.Location = new Point(33, 43);
             ListViewRooms.Name = "ListViewRooms";
-            ListViewRooms.Size = new Size(591, 253);
+            ListViewRooms.Size = new Size(591, 348);
             ListViewRooms.TabIndex = 2;
             ListViewRooms.UseCompatibleStateImageBehavior = false;
             ListViewRooms.View = View.Details;
@@ -129,38 +98,20 @@
             // labelRooms
             // 
             labelRooms.AutoSize = true;
-            labelRooms.Location = new Point(-1, 0);
+            labelRooms.Location = new Point(33, 15);
             labelRooms.Margin = new Padding(4, 0, 4, 0);
             labelRooms.Name = "labelRooms";
             labelRooms.Size = new Size(68, 25);
             labelRooms.TabIndex = 3;
             labelRooms.Text = "Rooms";
             // 
-            // LecturersPanel
-            // 
-            LecturersPanel.Controls.Add(labelLecturers);
-            LecturersPanel.Controls.Add(ListViewLecturers);
-            LecturersPanel.Location = new Point(34, 38);
-            LecturersPanel.Name = "LecturersPanel";
-            LecturersPanel.Size = new Size(609, 291);
-            LecturersPanel.TabIndex = 4;
-            // 
-            // labelLecturers
-            // 
-            labelLecturers.AutoSize = true;
-            labelLecturers.Location = new Point(0, 4);
-            labelLecturers.Name = "labelLecturers";
-            labelLecturers.Size = new Size(82, 25);
-            labelLecturers.TabIndex = 1;
-            labelLecturers.Text = "Lecturers";
-            // 
             // RoomsPanel
             // 
-            RoomsPanel.Controls.Add(ListViewRooms);
             RoomsPanel.Controls.Add(labelRooms);
-            RoomsPanel.Location = new Point(649, 36);
+            RoomsPanel.Controls.Add(ListViewRooms);
+            RoomsPanel.Location = new Point(25, 536);
             RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(630, 291);
+            RoomsPanel.Size = new Size(723, 433);
             RoomsPanel.TabIndex = 6;
             // 
             // toolStrip1
@@ -169,7 +120,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, toolStripRooms, toolStripSeparator2, toolStripStudents, toolStripLecturers, toolStripDrinks });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1318, 30);
+            toolStrip1.Size = new Size(1407, 30);
             toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -195,6 +146,7 @@
             toolStripStudents.Name = "toolStripStudents";
             toolStripStudents.Size = new Size(81, 25);
             toolStripStudents.Text = "Students";
+            toolStripStudents.Click += toolStripStudents_Click;
             // 
             // toolStripLecturers
             // 
@@ -206,111 +158,166 @@
             // toolStripDrinks
             // 
             toolStripDrinks.Name = "toolStripDrinks";
-            toolStripDrinks.Size = new Size(62, 25);
-            toolStripDrinks.Text = "Drinks";
+            toolStripDrinks.Size = new Size(126, 25);
+            toolStripDrinks.Text = "Drink Supplies";
             toolStripDrinks.Click += toolStripDrinks_Click;
             // 
-            // DrinksPanel
+            // StudentsPanel
             // 
-            DrinksPanel.Controls.Add(labelDrinks);
-            DrinksPanel.Controls.Add(ListViewDrinks);
-            DrinksPanel.Location = new Point(34, 354);
-            DrinksPanel.Name = "DrinksPanel";
-            DrinksPanel.Size = new Size(624, 305);
-            DrinksPanel.TabIndex = 7;
+            StudentsPanel.Controls.Add(labelLecturers);
+            StudentsPanel.Controls.Add(ListViewStudents);
+            StudentsPanel.Location = new Point(12, 42);
+            StudentsPanel.Name = "StudentsPanel";
+            StudentsPanel.Size = new Size(748, 439);
+            StudentsPanel.TabIndex = 7;
             // 
-            // labelDrinks
+            // labelLecturers
             // 
-            labelDrinks.AutoSize = true;
-            labelDrinks.Location = new Point(3, 7);
-            labelDrinks.Name = "labelDrinks";
-            labelDrinks.Size = new Size(62, 25);
-            labelDrinks.TabIndex = 1;
-            labelDrinks.Text = "Drinks";
+            labelLecturers.AutoSize = true;
+            labelLecturers.Location = new Point(33, 24);
+            labelLecturers.Name = "labelLecturers";
+            labelLecturers.Size = new Size(81, 25);
+            labelLecturers.TabIndex = 1;
+            labelLecturers.Text = "Students";
             // 
-            // ListViewDrinks
+            // ListViewStudents
             // 
-            ListViewDrinks.BackColor = SystemColors.InactiveCaption;
-            ListViewDrinks.Columns.AddRange(new ColumnHeader[] { DrinkName, Type, Price, StockAmount });
-            ListViewDrinks.Location = new Point(9, 34);
-            ListViewDrinks.Name = "ListViewDrinks";
-            ListViewDrinks.Size = new Size(591, 253);
-            ListViewDrinks.TabIndex = 0;
-            ListViewDrinks.UseCompatibleStateImageBehavior = false;
-            ListViewDrinks.View = View.Details;
+            ListViewStudents.BackColor = SystemColors.InactiveCaption;
+            ListViewStudents.Columns.AddRange(new ColumnHeader[] { StudentNumber, FirstName, LastName, Class, PhoneNumber });
+            ListViewStudents.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            ListViewStudents.Location = new Point(33, 52);
+            ListViewStudents.Name = "ListViewStudents";
+            ListViewStudents.Size = new Size(636, 348);
+            ListViewStudents.TabIndex = 0;
+            ListViewStudents.UseCompatibleStateImageBehavior = false;
+            ListViewStudents.View = View.Details;
             // 
-            // DrinkName
+            // StudentNumber
             // 
-            DrinkName.Text = "Name";
-            DrinkName.Width = 130;
+            StudentNumber.Text = "Student Number";
             // 
-            // Type
+            // FirstName
             // 
-            Type.Text = "Type";
-            Type.Width = 150;
+            FirstName.Text = "First Name";
+            FirstName.Width = 140;
             // 
-            // Price
+            // LastName
             // 
-            Price.Text = "Price";
-            Price.Width = 80;
+            LastName.Text = "Last Name";
+            LastName.Width = 140;
             // 
-            // StockAmount
+            // Class
             // 
-            StockAmount.Text = "Stock Amount";
-            StockAmount.Width = 140;
+            Class.Text = "Class";
+            Class.Width = 130;
+            // 
+            // PhoneNumber
+            // 
+            PhoneNumber.Text = "Phone Number";
+            PhoneNumber.Width = 150;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(10, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(82, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Lecturers";
+            // 
+            // ListViewLecturers
+            // 
+            ListViewLecturers.BackColor = SystemColors.InactiveCaption;
+            ListViewLecturers.Columns.AddRange(new ColumnHeader[] { LecturerFirstName, LecturerLastName, Age, LecturerPhoneNumber });
+            ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            ListViewLecturers.Location = new Point(0, 44);
+            ListViewLecturers.Name = "ListViewLecturers";
+            ListViewLecturers.Size = new Size(591, 348);
+            ListViewLecturers.TabIndex = 8;
+            ListViewLecturers.UseCompatibleStateImageBehavior = false;
+            ListViewLecturers.View = View.Details;
+            // 
+            // LecturerFirstName
+            // 
+            LecturerFirstName.Text = "First Name";
+            LecturerFirstName.Width = 140;
+            // 
+            // LecturerLastName
+            // 
+            LecturerLastName.Text = "Last Name";
+            LecturerLastName.Width = 140;
+            // 
+            // Age
+            // 
+            Age.Text = "Age";
+            Age.Width = 120;
+            // 
+            // LecturerPhoneNumber
+            // 
+            LecturerPhoneNumber.Text = "PhoneNumber";
+            LecturerPhoneNumber.Width = 150;
+            // 
+            // LecturersPanel
+            // 
+            LecturersPanel.Controls.Add(ListViewLecturers);
+            LecturersPanel.Controls.Add(label1);
+            LecturersPanel.Location = new Point(766, 42);
+            LecturersPanel.Name = "LecturersPanel";
+            LecturersPanel.Size = new Size(611, 437);
+            LecturersPanel.TabIndex = 9;
             // 
             // SomerenForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1318, 862);
-            Controls.Add(DrinksPanel);
-            Controls.Add(toolStrip1);
+            ClientSize = new Size(1407, 1050);
             Controls.Add(LecturersPanel);
+            Controls.Add(StudentsPanel);
+            Controls.Add(toolStrip1);
             Controls.Add(RoomsPanel);
             Name = "SomerenForm";
             Text = "Someren Form";
-            LecturersPanel.ResumeLayout(false);
-            LecturersPanel.PerformLayout();
             RoomsPanel.ResumeLayout(false);
             RoomsPanel.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            DrinksPanel.ResumeLayout(false);
-            DrinksPanel.PerformLayout();
+            StudentsPanel.ResumeLayout(false);
+            StudentsPanel.PerformLayout();
+            LecturersPanel.ResumeLayout(false);
+            LecturersPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListView ListViewLecturers;
-        private ColumnHeader FirstName;
-        private ColumnHeader LastName;
-        private ColumnHeader Age;
-        private ColumnHeader PhoneNumber;
         private ListView ListViewRooms;
         private ColumnHeader RoomNumber;
         private ColumnHeader BuildingName;
         private ColumnHeader RoomType;
         private ColumnHeader NumberOfBeds;
         private Label labelRooms;
-        private Panel LecturersPanel;
         private ToolStrip toolStrip1;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel toolStripRooms;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripLabel toolStripStudents;
-        private Label labelLecturers;
         private Panel RoomsPanel;
         private ToolStripLabel toolStripLecturers;
         private ToolStripLabel toolStripDrinks;
-        private Panel DrinksPanel;
-        private ListView ListViewDrinks;
-        private ColumnHeader DrinkName;
-        private ColumnHeader Type;
-        private ColumnHeader Price;
-        private ColumnHeader StockAmount;
-        private Label labelDrinks;
+        private Panel StudentsPanel;
+        private Label labelLecturers;
+        private ListView ListViewStudents;
+        private ColumnHeader FirstName;
+        private ColumnHeader LastName;
+        private ColumnHeader Class;
+        private ColumnHeader PhoneNumber;
+        private ColumnHeader StudentNumber;
+        private Label label1;
+        private ListView ListViewLecturers;
+        private ColumnHeader LecturerFirstName;
+        private ColumnHeader LecturerLastName;
+        private ColumnHeader Age;
+        private ColumnHeader LecturerPhoneNumber;
+        private Panel LecturersPanel;
     }
 }

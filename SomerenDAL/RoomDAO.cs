@@ -14,11 +14,18 @@ namespace SomerenDAL
         private SqlConnection dbConnection;
         public RoomDAO()
         {
-            string connString = ConfigurationManager
-                .ConnectionStrings["DBConnectionString"]
-                .ConnectionString;
+            try
+            {
+                string connString = ConfigurationManager
+                    .ConnectionStrings["DBConnectionString"]
+                    .ConnectionString;
 
-            dbConnection = new SqlConnection(connString);
+                dbConnection = new SqlConnection(connString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An Error occured while configuring database connection.", ex);
+            }
         }
         public List<Room> GetAll()
         {

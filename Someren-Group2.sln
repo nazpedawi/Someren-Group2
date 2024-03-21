@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SomerenDAL", "SomerenDAL\So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SomerenService", "SomerenService\SomerenService.csproj", "{BAC01EE3-AD7C-434A-86F9-F090788910B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomerenUI", "SomerenUI\SomerenUI.csproj", "{D93A42D4-1E91-4FD4-A3FE-F585A1D6CF75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SomerenUI", "SomerenUI\SomerenUI.csproj", "{D93A42D4-1E91-4FD4-A3FE-F585A1D6CF75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
