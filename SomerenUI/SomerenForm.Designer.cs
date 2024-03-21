@@ -50,13 +50,13 @@
             LastName = new ColumnHeader();
             Class = new ColumnHeader();
             PhoneNumber = new ColumnHeader();
+            LecturersPanel = new Panel();
             label1 = new Label();
             ListViewLecturers = new ListView();
             LecturerFirstName = new ColumnHeader();
             LecturerLastName = new ColumnHeader();
             Age = new ColumnHeader();
             LecturerPhoneNumber = new ColumnHeader();
-            LecturersPanel = new Panel();
             RoomsPanel.SuspendLayout();
             toolStrip1.SuspendLayout();
             StudentsPanel.SuspendLayout();
@@ -109,9 +109,9 @@
             // 
             RoomsPanel.Controls.Add(labelRooms);
             RoomsPanel.Controls.Add(ListViewRooms);
-            RoomsPanel.Location = new Point(25, 536);
+            RoomsPanel.Location = new Point(0, 34);
             RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(723, 433);
+            RoomsPanel.Size = new Size(735, 433);
             RoomsPanel.TabIndex = 6;
             // 
             // toolStrip1
@@ -216,6 +216,15 @@
             PhoneNumber.Text = "Phone Number";
             PhoneNumber.Width = 150;
             // 
+            // LecturersPanel
+            // 
+            LecturersPanel.Controls.Add(label1);
+            LecturersPanel.Controls.Add(ListViewLecturers);
+            LecturersPanel.Location = new Point(12, 33);
+            LecturersPanel.Name = "LecturersPanel";
+            LecturersPanel.Size = new Size(682, 437);
+            LecturersPanel.TabIndex = 9;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -230,7 +239,7 @@
             ListViewLecturers.BackColor = SystemColors.InactiveCaption;
             ListViewLecturers.Columns.AddRange(new ColumnHeader[] { LecturerFirstName, LecturerLastName, Age, LecturerPhoneNumber });
             ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewLecturers.Location = new Point(0, 44);
+            ListViewLecturers.Location = new Point(13, 49);
             ListViewLecturers.Name = "ListViewLecturers";
             ListViewLecturers.Size = new Size(591, 348);
             ListViewLecturers.TabIndex = 8;
@@ -257,24 +266,15 @@
             LecturerPhoneNumber.Text = "PhoneNumber";
             LecturerPhoneNumber.Width = 150;
             // 
-            // LecturersPanel
-            // 
-            LecturersPanel.Controls.Add(ListViewLecturers);
-            LecturersPanel.Controls.Add(label1);
-            LecturersPanel.Location = new Point(766, 42);
-            LecturersPanel.Name = "LecturersPanel";
-            LecturersPanel.Size = new Size(611, 437);
-            LecturersPanel.TabIndex = 9;
-            // 
             // SomerenForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1407, 1050);
-            Controls.Add(LecturersPanel);
-            Controls.Add(StudentsPanel);
             Controls.Add(toolStrip1);
             Controls.Add(RoomsPanel);
+            Controls.Add(LecturersPanel);
+            Controls.Add(StudentsPanel);
             Name = "SomerenForm";
             Text = "Someren Form";
             RoomsPanel.ResumeLayout(false);

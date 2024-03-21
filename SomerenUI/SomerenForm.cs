@@ -15,8 +15,8 @@ namespace SomerenUI
 
         private void ShowLecturersPanel()
         {
-           
-           LecturersPanel.Show();
+
+            LecturersPanel.Show();
             try
             {
                 List<Lecturer> lecturers = GetAllLecturers();
@@ -133,7 +133,7 @@ namespace SomerenUI
         {
             RoomsPanel.Hide();
             LecturersPanel.Hide();
-            StudentsPanel.Show();
+            ShoWStudentsPanel();
         }
 
         private void SomerenForm_Load(object sender, EventArgs e)
