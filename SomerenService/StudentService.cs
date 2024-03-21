@@ -9,5 +9,14 @@ using SomerenModel;
 namespace SomerenService;
 public class StudentService
 {
+    private StudentDAO studentDAO;
+    public StudentService()
+    {
+        studentDAO = new StudentDAO();
+    }
 
+    public List<Student> GetAll()
+    {
+        return studentDAO.GetAll(); 
+    }
 }

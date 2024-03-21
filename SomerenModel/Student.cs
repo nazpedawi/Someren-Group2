@@ -13,10 +13,10 @@ namespace SomerenModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int PhoneNumber { get; set; }
-        public char Class { get; set; }
+        public string Class { get; set; }
         public int RoomNumber { get; set; }
 
-        public Student(int studentNumber, string firstName, string lastName, int phoneNumber, char Class, int roomNumber)
+        public Student(int studentNumber, string firstName, string lastName, int phoneNumber, string Class, int roomNumber)
         {
             StudentNumber = studentNumber;
             FirstName = firstName;

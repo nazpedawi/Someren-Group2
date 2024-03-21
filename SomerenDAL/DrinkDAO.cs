@@ -1,0 +1,109 @@
+﻿using Microsoft.Data.SqlClient;
+using SomerenModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
+
+namespace SomerenDAL
+{
+    public class DrinkDAO
+    {
+        private SqlConnection dbConnection;
+        public DrinkDAO()
+        {
+            string connString = ConfigurationManager
+                .ConnectionStrings["DBConnectionString"]
+                .ConnectionString;
+
+            dbConnection = new SqlConnection(connString);
+        }
+
+        public List<Drink> GetAll()
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Drinks", dbConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Drink> drinks = new List<Drink>();
+                while (reader.Read())
+                {
+                    Drink drink = ReadDrink(reader);
+                    drinks.Add(drink);
+                }
+                reader.Close();
+                return drinks;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception("An Error Occured While Retrieving 'Drinks' From The Database", ex);
+            }
+            finally
+            {
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
+        private Drink ReadDrink(SqlDataReader reader)
+        {
+            try
+            {
+                int drinkid = (int)reader["DrinkID"];
+                string name = (string)reader["Name"];
+                string type = (string)reader["Type"];
+                decimal price = (decimal)reader["Price"];
+                decimal vat = (decimal)reader["VAT"];
+                int stockamount = (int)reader["StockAmount"];
+
+                return new Drink(drinkid, name, type, price, vat, stockamount);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An Error Occured While Reading 'Drink' Data", ex);
+            }
+        }
+
+        public Drink AddDrink(Drink drink)
+        {
+            dbConnection.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name,@Type, @Price, @StockAmount);"
+                + "SELECT CAST(scope_identity() AS int)", dbConnection);
+
+            cmd.Parameters.AddWithValue("@Name", drink.Name);
+            cmd.Parameters.AddWithValue("@Type", drink.Type);
+            cmd.Parameters.AddWithValue("@Price", drink.Price);
+            cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
+
+
+            if (drink.Type == "Alcoholic" || drink.Type == "alcoholic")
+            {
+                drink.VAT = 0.21m;
+            }
+            else
+                drink.VAT = 0.09m;
+
+            dbConnection.Close();
+
+            int id = (int)cmd.ExecuteScalar();
+            return new Drink(id, drink.Name, drink.Type, drink.Price, drink.VAT, drink.StockAmount);
+        }
+
+        public void DeleteDrink(Drink drink)
+        {
+            dbConnection.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE Id = @Id", dbConnection);
+            cmd.Parameters.AddWithValue("@Id", drink.DrinkID);
+            cmd.ExecuteNonQuery();
+            dbConnection.Close();
+        }
+            
+
+    }
+}

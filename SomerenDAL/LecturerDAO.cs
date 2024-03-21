@@ -23,30 +23,50 @@ namespace SomerenDAL
 
         public List<Lecturer> GetAll()
         {
-            dbConnection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Lecturers", dbConnection);
-            SqlDataReader reader = cmd.ExecuteReader();
-            List<Lecturer> lecturers = new List<Lecturer>();
-            while (reader.Read())
+            try
             {
-                Lecturer lecturer = ReadLecturer(reader);
-                lecturers.Add(lecturer);
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Lecturers", dbConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Lecturer> lecturers = new List<Lecturer>();
+                while (reader.Read())
+                {
+                    Lecturer lecturer = ReadLecturer(reader);
+                    lecturers.Add(lecturer);
+                }
+                reader.Close();
+                return lecturers;
             }
-            reader.Close();
-            dbConnection.Close();
-            return lecturers;
-        }
 
+            catch (SqlException ex)
+            {
+               throw new Exception("An Error Occured While Retrieving 'Lecturers' From The Database", ex);
+            }
+            finally
+            {
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
         private Lecturer ReadLecturer(SqlDataReader reader)
         {
-            int lecturernumber = (int)reader["LecturerNumber"];
-            string firstname = (string)reader["FirstName"];
-            string lastname = (string)reader["LastName"];
-            int age = (int)reader["Age"];
-            int phonenumber = (int)reader["PhoneNumber"];
-            int roomnumber = (int)reader["RoomNumber"];
+            try
+            {
+                int lecturernumber = (int)reader["LecturerNumber"];
+                string firstname = (string)reader["FirstName"];
+                string lastname = (string)reader["LastName"];
+                int age = (int)reader["Age"];
+                int phonenumber = (int)reader["PhoneNumber"];
+                int roomnumber = (int)reader["RoomNumber"];
 
-            return new Lecturer(lecturernumber, firstname, lastname, age, phonenumber, roomnumber);
+                return new Lecturer(lecturernumber, firstname, lastname, age, phonenumber, roomnumber);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An Error Occured While Reading 'Lecturer' Data", ex);
+            }
         }
     }
 }

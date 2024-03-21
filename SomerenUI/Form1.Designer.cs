@@ -40,6 +40,12 @@
             RoomType = new ColumnHeader();
             NumberOfBeds = new ColumnHeader();
             label1 = new Label();
+            ListViewStudents = new ListView();
+            columnHeader1 = new ColumnHeader();
+            Studentlabel = new Label();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
             SuspendLayout();
             // 
             // ListViewLecturers
@@ -47,10 +53,10 @@
             ListViewLecturers.BackColor = SystemColors.InactiveCaption;
             ListViewLecturers.Columns.AddRange(new ColumnHeader[] { FirstName, LastName, Age, PhoneNumber });
             ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewLecturers.Location = new Point(27, 26);
+            ListViewLecturers.Location = new Point(31, 31);
             ListViewLecturers.Margin = new Padding(2);
             ListViewLecturers.Name = "ListViewLecturers";
-            ListViewLecturers.Size = new Size(415, 173);
+            ListViewLecturers.Size = new Size(474, 203);
             ListViewLecturers.TabIndex = 0;
             ListViewLecturers.UseCompatibleStateImageBehavior = false;
             ListViewLecturers.View = View.Details;
@@ -79,10 +85,10 @@
             // labelLecturers
             // 
             labelLecturers.AutoSize = true;
-            labelLecturers.Location = new Point(24, 4);
+            labelLecturers.Location = new Point(27, 5);
             labelLecturers.Margin = new Padding(2, 0, 2, 0);
             labelLecturers.Name = "labelLecturers";
-            labelLecturers.Size = new Size(61, 17);
+            labelLecturers.Size = new Size(68, 20);
             labelLecturers.TabIndex = 1;
             labelLecturers.Text = "Lecturers";
             // 
@@ -91,10 +97,10 @@
             ListViewRooms.BackColor = SystemColors.InactiveCaption;
             ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
             ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewRooms.Location = new Point(27, 255);
+            ListViewRooms.Location = new Point(31, 300);
             ListViewRooms.Margin = new Padding(2);
             ListViewRooms.Name = "ListViewRooms";
-            ListViewRooms.Size = new Size(484, 173);
+            ListViewRooms.Size = new Size(553, 203);
             ListViewRooms.TabIndex = 2;
             ListViewRooms.UseCompatibleStateImageBehavior = false;
             ListViewRooms.View = View.Details;
@@ -123,17 +129,60 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 226);
+            label1.Location = new Point(27, 266);
             label1.Name = "label1";
-            label1.Size = new Size(49, 17);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 3;
             label1.Text = "Rooms";
             // 
+            // ListViewStudents
+            // 
+            ListViewStudents.BackColor = SystemColors.InactiveCaption;
+            ListViewStudents.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            ListViewStudents.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            ListViewStudents.Location = new Point(534, 31);
+            ListViewStudents.Margin = new Padding(2);
+            ListViewStudents.Name = "ListViewStudents";
+            ListViewStudents.Size = new Size(424, 203);
+            ListViewStudents.TabIndex = 0;
+            ListViewStudents.UseCompatibleStateImageBehavior = false;
+            ListViewStudents.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "First Name";
+            columnHeader1.Width = 90;
+            // 
+            // Studentlabel
+            // 
+            Studentlabel.AutoSize = true;
+            Studentlabel.Location = new Point(534, 5);
+            Studentlabel.Name = "Studentlabel";
+            Studentlabel.Size = new Size(66, 20);
+            Studentlabel.TabIndex = 5;
+            Studentlabel.Text = "Students";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Last Name";
+            columnHeader2.Width = 90;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Phone No.";
+            columnHeader3.Width = 90;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Class";
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(717, 463);
+            ClientSize = new Size(969, 545);
+            Controls.Add(Studentlabel);
+            Controls.Add(ListViewStudents);
             Controls.Add(label1);
             Controls.Add(ListViewRooms);
             Controls.Add(labelLecturers);
@@ -147,6 +196,7 @@
 
         #endregion
 
+
         private ListView ListViewLecturers;
         private ColumnHeader FirstName;
         private ColumnHeader LastName;
@@ -159,5 +209,11 @@
         private ColumnHeader RoomType;
         private ColumnHeader NumberOfBeds;
         private Label label1;
+        private ListView ListViewStudents;
+        private ColumnHeader columnHeader1;
+        private Label Studentlabel;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
     }
 }

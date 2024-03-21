@@ -10,9 +10,10 @@ namespace SomerenUI
             InitializeComponent();
             List<Lecturer> lecturers = GetAllLecturers();
             List<Room> rooms = GetAllRooms();
+            List<Student> students = GetAllStudents();
             DisplayLecturers(lecturers);
             DisplayRooms(rooms);
-
+            DisplayStudents(students);
         }
         public List<Lecturer> GetAllLecturers()
         {
@@ -58,6 +59,24 @@ namespace SomerenUI
                 ListViewRooms.Items.Add(item);
             }
         }
+        public List<Student> GetAllStudents()
+        {
+            StudentService studentService = new StudentService();
+            List<Student> students = studentService.GetAll();
+            return students;
+        }
+        public void DisplayStudents(List<Student> students)
+        {
+            foreach (Student student in students) {
+                ListViewItem item = new ListViewItem(student.FirstName);
+                item.Tag = student;
+                item.SubItems.Add(student.LastName);
+                item.SubItems.Add(student.PhoneNumber.ToString());
+                item.SubItems.Add(student.Class.ToString());
+
+                ListViewStudents.Items.Add(item);
+            }
+        }
         private void ListViewLecturers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -67,5 +86,6 @@ namespace SomerenUI
         {
 
         }
+        
     }
 }
