@@ -136,5 +136,10 @@ namespace SomerenUI
             RoomsPanel.Hide();
             ShowDrinksPanel();
         }
+
+        private void SomerenForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
