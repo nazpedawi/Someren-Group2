@@ -11,6 +11,8 @@ namespace SomerenUI
             StudentsPanel.Hide();
             RoomsPanel.Hide();
             LecturersPanel.Hide();
+            DrinksPanel.Hide();
+            ListViewDrinks.LostFocus += ListViewDrinks_LostFocus;
         }
 
         private void ShowLecturersPanel()
@@ -35,12 +37,48 @@ namespace SomerenUI
             DisplayRooms(rooms);
         }
 
-        private void ShoWStudentsPanel()
+        private void ShowStudentsPanel()
         {
             StudentsPanel.Show();
             List<Student> students = GetAllStudents();
             DisplayStudents(students);
         }
+
+        private void ShowDrinksPanel()
+        {
+            DrinksPanel.Show();
+            List<Drink> drinks = GetAllDrinks();
+            DisplayDrinks(drinks);
+        }
+        public void DisplayDrinks(List<Drink> drinks)
+        {
+            ListViewDrinks.Items.Clear();
+
+            foreach (Drink drink in drinks)
+            {
+                ListViewItem item = new ListViewItem(drink.Name);
+                item.Tag = drink;
+                item.SubItems.Add(drink.Type);
+                item.SubItems.Add(drink.Price.ToString());
+                item.SubItems.Add(drink.StockAmount.ToString());
+
+                if (drink.StockAmount < 1)
+                {
+                    item.SubItems.Add("Stock empty");
+                }
+                else if (drink.StockAmount < 10)
+                {
+                    item.SubItems.Add("Stock nearly depleted");
+                }
+                else
+                {
+                    item.SubItems.Add("Stock sufficient");
+                }
+
+                ListViewDrinks.Items.Add(item);
+            }
+        }
+
         public List<Lecturer> GetAllLecturers()
         {
             LecturerService lecturerService = new LecturerService();
@@ -54,6 +92,19 @@ namespace SomerenUI
             List<Student> students = studentService.GetAll();
             return students;
         }
+        public List<Room> GetAllRooms()
+        {
+            RoomService roomService = new RoomService();
+            List<Room> rooms = roomService.GetAll();
+            return rooms;
+        }
+        public List<Drink> GetAllDrinks()
+        {
+            DrinkService drinkService = new DrinkService();
+            List<Drink> drinks = drinkService.GetAll();
+            return drinks;
+        }
+
         public void DisplayLecturers(List<Lecturer> lecturers)
         {
             ListViewLecturers.Items.Clear();
@@ -85,12 +136,6 @@ namespace SomerenUI
                 ListViewStudents.Items.Add(item);
             }
         }
-        public List<Room> GetAllRooms()
-        {
-            RoomService roomService = new RoomService();
-            List<Room> rooms = roomService.GetAll();
-            return rooms;
-        }
 
         public void DisplayRooms(List<Room> rooms)
         {
@@ -107,38 +152,65 @@ namespace SomerenUI
                 ListViewRooms.Items.Add(item);
             }
         }
-
-
-        private void toolStripRooms_Click(object sender, EventArgs e)
-        {
-            StudentsPanel.Hide();
-            LecturersPanel.Hide();
-            ShowRoomsPanel();
-        }
-
-        private void toolStripLecturers_Click(object sender, EventArgs e)
-        {
-            RoomsPanel.Hide();
-            StudentsPanel.Hide();
-            ShowLecturersPanel();
-        }
-
-        private void toolStripDrinks_Click(object sender, EventArgs e)
-        {
-            DrinksForm drinksForm = new DrinksForm();
-            drinksForm.ShowDialog();
-        }
-
         private void toolStripStudents_Click(object sender, EventArgs e)
         {
             RoomsPanel.Hide();
             LecturersPanel.Hide();
-            ShoWStudentsPanel();
+            DrinksPanel.Hide();
+            ShowStudentsPanel();
+        }
+        private void toolStripLecturers_Click(object sender, EventArgs e)
+        {
+            RoomsPanel.Hide();
+            StudentsPanel.Hide();
+            DrinksPanel.Hide();
+            ShowLecturersPanel();
+        }
+        private void toolStripRooms_Click(object sender, EventArgs e)
+        {
+            StudentsPanel.Hide();
+            LecturersPanel.Hide();
+            DrinksPanel.Hide();
+            ShowRoomsPanel();
+        }
+        private void toolStripDrinks_Click(object sender, EventArgs e)
+        {
+            StudentsPanel.Hide();
+            LecturersPanel.Hide();
+            RoomsPanel.Hide();
+            ShowDrinksPanel();
         }
 
-        private void SomerenForm_Load(object sender, EventArgs e)
+        private void AddDrinkbtn_Click(object sender, EventArgs e)
         {
+            AddDrinksForm addDrinkForm = new AddDrinksForm();
+            addDrinkForm.ShowDialog();
+        }
 
+        private void DeleteDrinkbtn_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+            if (ListViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
+                Drink drink = selectedItem.Tag as Drink;
+
+                if (drink != null)
+                {
+                    drinkService.DeleteDrink(drink);
+                    ListViewDrinks.Items.Remove(selectedItem);
+                    MessageBox.Show("Drink was deleted successfully.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a drink first");
+            }
+        }
+
+        private void ListViewDrinks_LostFocus(object sender, EventArgs e)
+        {
+            ListViewDrinks.Focus();
         }
     }
 }

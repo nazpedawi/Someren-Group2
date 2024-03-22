@@ -96,11 +96,11 @@ namespace SomerenDAL
 
         public void DeleteDrink(Drink drink)
         {
-            dbConnection.Open();
-            SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE Id = @Id", dbConnection);
-            cmd.Parameters.AddWithValue("@Id", drink.DrinkID);
-            cmd.ExecuteNonQuery();
-            dbConnection.Close();
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE Name = @Name", dbConnection);
+                cmd.Parameters.AddWithValue("@Name", drink.Name);
+                cmd.ExecuteNonQuery();
+                dbConnection.Close();
         }
 
         public void ModifyDrink(Drink drink)

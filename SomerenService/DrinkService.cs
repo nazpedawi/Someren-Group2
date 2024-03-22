@@ -18,7 +18,6 @@ namespace SomerenService
 
         public List<Drink> GetAll()
         {
-
             return drinkDAO.GetAll();
         }
         public void AddDrink (Drink drink) 
