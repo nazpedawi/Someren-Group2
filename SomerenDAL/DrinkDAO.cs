@@ -34,7 +34,7 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Drinks", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT DrinkID, Name, Type, Price, VAT, StockAmount FROM Drinks", dbConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Drink> drinks = new List<Drink>();
                 while (reader.Read())
@@ -81,13 +81,13 @@ namespace SomerenDAL
         {
             dbConnection.Open();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name,@Type, @Price, @VAT, @StockAmount);"
+            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name, @Type, @Price, @VAT, @StockAmount);"
                 + "SELECT CAST(scope_identity() AS int)", dbConnection);
-             cmd.Parameters.AddWithValue("@Name", drink.Name);
-                        cmd.Parameters.AddWithValue("@Type", drink.Type);
-                        cmd.Parameters.AddWithValue("@Price", drink.Price);
-                        cmd.Parameters.AddWithValue("@VAT", drink.VAT);
-                        cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
+            cmd.Parameters.AddWithValue("@Name", drink.Name);
+            cmd.Parameters.AddWithValue("@Type", drink.Type);
+            cmd.Parameters.AddWithValue("@Price", drink.Price);
+            cmd.Parameters.AddWithValue("@VAT", drink.VAT);
+            cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
 
             int id = (int)cmd.ExecuteScalar();
             dbConnection.Close();
@@ -96,35 +96,27 @@ namespace SomerenDAL
 
         public void DeleteDrink(Drink drink)
         {
-                dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE Name = @Name", dbConnection);
-                cmd.Parameters.AddWithValue("@Name", drink.Name);
-                cmd.ExecuteNonQuery();
-                dbConnection.Close();
+            dbConnection.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE DrinkID = @DrinkID", dbConnection);
+            cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
+            cmd.ExecuteNonQuery();
+            dbConnection.Close();
         }
 
-        public void ModifyDrink(Drink drink)
+        public void UpdateDrink(Drink drink)
         {
             try
             {
                 dbConnection.Open();
                 SqlCommand cmd = new SqlCommand(
-                   "UPDATE Drinks SET Name = @Name, Type = @Type,  Price = @Price, StockAmount = @StockAmount                                              StockAmount = @StockAmount \r\n                                           WHERE DrinkID = @DrinkID\", dbConnection);  " +
-                                "WHERE DrinkID = @DrinkID", dbConnection);
-
+                   "UPDATE Drinks SET Name = @Name, Type = @Type,  Price = @Price, StockAmount = @StockAmount WHERE DrinkID = @DrinkID", dbConnection);
                 cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
                 cmd.Parameters.AddWithValue("@Name", drink.Name);
                 cmd.Parameters.AddWithValue("@Type", drink.Type);
                 cmd.Parameters.AddWithValue("@Price", drink.Price);
                 cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    drink = ReadDrink(reader);
-                }
-                reader.Close();
-
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {

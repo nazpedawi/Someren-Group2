@@ -12,7 +12,6 @@ namespace SomerenUI
             RoomsPanel.Hide();
             LecturersPanel.Hide();
             DrinksPanel.Hide();
-            ListViewDrinks.LostFocus += ListViewDrinks_LostFocus;
         }
 
         private void ShowLecturersPanel()
@@ -208,9 +207,39 @@ namespace SomerenUI
             }
         }
 
-        private void ListViewDrinks_LostFocus(object sender, EventArgs e)
+        private void UpdateDrinkbtn_Click(object sender, EventArgs e)
         {
-            ListViewDrinks.Focus();
+            DrinkService drinkService = new DrinkService();
+            if (ListViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
+                Drink drink = selectedItem.Tag as Drink;
+
+
+                UpdateDrinksForm updateForm = new UpdateDrinksForm(drink);
+                if (updateForm.ShowDialog() == DialogResult.OK)
+                {
+                    selectedItem.SubItems[0].Text = drink.Name;
+                    selectedItem.SubItems[1].Text = drink.Type;
+                    selectedItem.SubItems[2].Text = drink.Price.ToString();
+                    selectedItem.SubItems[3].Text = drink.StockAmount.ToString();
+
+                    try
+                    {
+                        drinkService.UpdateDrink(drink);
+                        MessageBox.Show("Drink updated successfully!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating drink: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a drink first.");
+            }
         }
+
     }
 }

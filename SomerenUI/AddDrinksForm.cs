@@ -70,9 +70,8 @@ namespace SomerenUI
                 Drink drink = new Drink(0, name, type, price, vat, stockAmount);
                 DrinkService.AddDrink(drink);
 
-                this.Close();
-
                 MessageBox.Show("Drink was Added Successfully!");
+                this.Close();
             }
 
             catch (Exception ex)

@@ -1,6 +1,6 @@
 ﻿namespace SomerenUI
 {
-    partial class AddDrinksForm
+    partial class UpdateDrinksForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddDrinksForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateDrinksForm));
             panel1 = new Panel();
             NonAlcoholicbtn = new RadioButton();
             Alcoholicbtn = new RadioButton();
-            AddDrinkbtn = new Button();
+            UpdateDrinkbtn = new Button();
             DrinkStockAmounttxtbox = new TextBox();
             DrinkPricetxtbox = new TextBox();
             DrinkNametxtbox = new TextBox();
@@ -47,7 +47,7 @@
             // 
             panel1.Controls.Add(NonAlcoholicbtn);
             panel1.Controls.Add(Alcoholicbtn);
-            panel1.Controls.Add(AddDrinkbtn);
+            panel1.Controls.Add(UpdateDrinkbtn);
             panel1.Controls.Add(DrinkStockAmounttxtbox);
             panel1.Controls.Add(DrinkPricetxtbox);
             panel1.Controls.Add(DrinkNametxtbox);
@@ -55,10 +55,10 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(18, 23);
+            panel1.Location = new Point(40, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(720, 281);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 1;
             // 
             // NonAlcoholicbtn
             // 
@@ -82,22 +82,21 @@
             Alcoholicbtn.Text = "Alcoholic";
             Alcoholicbtn.UseVisualStyleBackColor = true;
             // 
-            // AddDrinkbtn
+            // UpdateDrinkbtn
             // 
-            AddDrinkbtn.BackColor = Color.FromArgb(0, 192, 0);
-            AddDrinkbtn.Cursor = Cursors.Hand;
-            AddDrinkbtn.ForeColor = Color.White;
-            AddDrinkbtn.Image = (Image)resources.GetObject("AddDrinkbtn.Image");
-            AddDrinkbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            AddDrinkbtn.Location = new Point(517, 161);
-            AddDrinkbtn.Name = "AddDrinkbtn";
-            AddDrinkbtn.Size = new Size(156, 82);
-            AddDrinkbtn.TabIndex = 7;
-            AddDrinkbtn.Text = "Add Drink";
-            AddDrinkbtn.TextAlign = ContentAlignment.MiddleRight;
-            AddDrinkbtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            AddDrinkbtn.UseVisualStyleBackColor = false;
-            AddDrinkbtn.Click += AddDrinkbtn_Click;
+            UpdateDrinkbtn.BackColor = Color.FromArgb(0, 192, 0);
+            UpdateDrinkbtn.Cursor = Cursors.Hand;
+            UpdateDrinkbtn.ForeColor = Color.White;
+            UpdateDrinkbtn.Image = (Image)resources.GetObject("UpdateDrinkbtn.Image");
+            UpdateDrinkbtn.ImageAlign = ContentAlignment.MiddleLeft;
+            UpdateDrinkbtn.Location = new Point(488, 187);
+            UpdateDrinkbtn.Name = "UpdateDrinkbtn";
+            UpdateDrinkbtn.Size = new Size(135, 64);
+            UpdateDrinkbtn.TabIndex = 7;
+            UpdateDrinkbtn.Text = "Update";
+            UpdateDrinkbtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            UpdateDrinkbtn.UseVisualStyleBackColor = false;
+            UpdateDrinkbtn.Click += UpdateDrinkbtn_Click;
             // 
             // DrinkStockAmounttxtbox
             // 
@@ -163,14 +162,14 @@
             label1.TabIndex = 0;
             label1.Text = "Name";
             // 
-            // AddDrinksForm
+            // UpdateDrinksForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(743, 314);
+            ClientSize = new Size(800, 450);
             Controls.Add(panel1);
-            Name = "AddDrinksForm";
-            Text = "AddDrinksForm";
+            Name = "UpdateDrinksForm";
+            Text = "Update Drinks Form";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -179,15 +178,15 @@
         #endregion
 
         private Panel panel1;
-        private Label label1;
         private RadioButton NonAlcoholicbtn;
         private RadioButton Alcoholicbtn;
-        private Button AddDrinkbtn;
+        private Button UpdateDrinkbtn;
         private TextBox DrinkStockAmounttxtbox;
         private TextBox DrinkPricetxtbox;
         private TextBox DrinkNametxtbox;
         private Label label4;
         private Label label3;
         private Label label2;
+        private Label label1;
     }
 }

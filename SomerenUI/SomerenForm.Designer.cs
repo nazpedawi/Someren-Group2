@@ -318,6 +318,7 @@
             // DeleteDrinkbtn
             // 
             DeleteDrinkbtn.BackColor = Color.Red;
+            DeleteDrinkbtn.Cursor = Cursors.Hand;
             DeleteDrinkbtn.ForeColor = Color.Transparent;
             DeleteDrinkbtn.Location = new Point(585, 421);
             DeleteDrinkbtn.Name = "DeleteDrinkbtn";
@@ -330,17 +331,20 @@
             // UpdateDrinkbtn
             // 
             UpdateDrinkbtn.BackColor = SystemColors.ControlDark;
+            UpdateDrinkbtn.Cursor = Cursors.Hand;
             UpdateDrinkbtn.ForeColor = Color.Transparent;
             UpdateDrinkbtn.Location = new Point(265, 421);
             UpdateDrinkbtn.Name = "UpdateDrinkbtn";
             UpdateDrinkbtn.Size = new Size(226, 63);
             UpdateDrinkbtn.TabIndex = 10;
-            UpdateDrinkbtn.Text = "Update Existing Drink";
+            UpdateDrinkbtn.Text = "Update Drink";
             UpdateDrinkbtn.UseVisualStyleBackColor = false;
+            UpdateDrinkbtn.Click += UpdateDrinkbtn_Click;
             // 
             // AddDrinkbtn
             // 
             AddDrinkbtn.BackColor = Color.FromArgb(0, 192, 0);
+            AddDrinkbtn.Cursor = Cursors.Hand;
             AddDrinkbtn.ForeColor = Color.Transparent;
             AddDrinkbtn.Location = new Point(12, 421);
             AddDrinkbtn.Name = "AddDrinkbtn";
