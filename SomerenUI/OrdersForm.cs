@@ -61,9 +61,20 @@ namespace SomerenUI
                 item.SubItems.Add(drink.Type);
                 item.SubItems.Add(drink.Price.ToString());
                 item.SubItems.Add(drink.StockAmount.ToString());
+                string stockStatus = GetStockStatus(drink.StockAmount);
+                item.SubItems.Add(stockStatus);
 
                 ListViewDrinks.Items.Add(item);
             }
+        }
+        private string GetStockStatus(int stockAmount)
+        {
+            if (stockAmount < 1)
+                return "Stock empty";
+            else if (stockAmount < 10)
+                return "Stock nearly depleted";
+            else
+                return "Stock sufficient";
         }
 
         private void OrdersForm_Load(object sender, EventArgs e)
@@ -91,7 +102,8 @@ namespace SomerenUI
             }
             ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
             Drink drink = selectedItem.Tag as Drink;
-            if (NumberOfDrinks > drink.StockAmount) {
+            if (NumberOfDrinks > drink.StockAmount)
+            {
                 MessageBox.Show("Not enough stock available.");
                 return;
             }
@@ -100,7 +112,7 @@ namespace SomerenUI
             Student student = SelectedItem.Tag as Student;
 
             MessageBox.Show($"Order placed for {student.FirstName} {student.LastName}: {NumberOfDrinks} {drink.Name}. Total price: {totalPrice}");
-            
+
             Order order = new Order(student.StudentNumber, drink.DrinkID, NumberOfDrinks);
             OrderService orderService = new OrderService();
             orderService.AddOrder(order);
@@ -110,21 +122,21 @@ namespace SomerenUI
             ListViewStudents.SelectedItems.Clear();
             ListViewDrinks.SelectedItems.Clear();
             textBox1.Clear();
-            
-            
 
-            
+
+
+
 
         }
 
         private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ListViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

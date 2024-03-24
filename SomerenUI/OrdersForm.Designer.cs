@@ -39,6 +39,7 @@
             DrinkType = new ColumnHeader();
             DrinkPrice = new ColumnHeader();
             StockAmount = new ColumnHeader();
+            Status = new ColumnHeader();
             ListViewStudents = new ListView();
             StudentNumber = new ColumnHeader();
             FirstName = new ColumnHeader();
@@ -57,36 +58,43 @@
             PanelOrders.Controls.Add(label1);
             PanelOrders.Controls.Add(ListViewDrinks);
             PanelOrders.Controls.Add(ListViewStudents);
-            PanelOrders.Location = new Point(12, 53);
+            PanelOrders.Location = new Point(15, 66);
+            PanelOrders.Margin = new Padding(4);
             PanelOrders.Name = "PanelOrders";
-            PanelOrders.Size = new Size(968, 490);
+            PanelOrders.Size = new Size(1296, 612);
             PanelOrders.TabIndex = 0;
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(0, 192, 0);
             button1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(319, 371);
+            button1.ForeColor = SystemColors.ButtonHighlight;
+            button1.Location = new Point(419, 478);
+            button1.Margin = new Padding(4);
             button1.Name = "button1";
-            button1.Size = new Size(289, 100);
+            button1.Size = new Size(291, 77);
             button1.TabIndex = 14;
             button1.Text = "Place order";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(502, 316);
+            textBox1.BackColor = SystemColors.InactiveCaption;
+            textBox1.Location = new Point(596, 420);
+            textBox1.Margin = new Padding(4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
+            textBox1.Size = new Size(155, 31);
             textBox1.TabIndex = 13;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(287, 318);
+            label3.Location = new Point(307, 418);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(209, 25);
+            label3.Size = new Size(240, 30);
             label3.TabIndex = 12;
             label3.Text = "Enter number of drinks:";
             label3.Click += label3_Click;
@@ -95,9 +103,10 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(448, 6);
+            label2.Location = new Point(581, 8);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(110, 25);
+            label2.Size = new Size(126, 30);
             label2.TabIndex = 11;
             label2.Text = "Select drink";
             // 
@@ -105,9 +114,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 6);
+            label1.Location = new Point(15, 8);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(130, 25);
+            label1.Size = new Size(149, 30);
             label1.TabIndex = 10;
             label1.Text = "Select student";
             // 
@@ -115,14 +125,14 @@
             // 
             ListViewDrinks.Activation = ItemActivation.OneClick;
             ListViewDrinks.BackColor = SystemColors.GradientActiveCaption;
-            ListViewDrinks.Columns.AddRange(new ColumnHeader[] { DrinkName, DrinkType, DrinkPrice, StockAmount });
+            ListViewDrinks.Columns.AddRange(new ColumnHeader[] { DrinkName, DrinkType, DrinkPrice, StockAmount, Status });
             ListViewDrinks.FullRowSelect = true;
             ListViewDrinks.GridLines = true;
             ListViewDrinks.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewDrinks.Location = new Point(448, 34);
+            ListViewDrinks.Location = new Point(586, 40);
             ListViewDrinks.Margin = new Padding(2);
             ListViewDrinks.Name = "ListViewDrinks";
-            ListViewDrinks.Size = new Size(499, 266);
+            ListViewDrinks.Size = new Size(700, 332);
             ListViewDrinks.TabIndex = 9;
             ListViewDrinks.UseCompatibleStateImageBehavior = false;
             ListViewDrinks.View = View.Details;
@@ -148,6 +158,11 @@
             StockAmount.Text = "Stock Amount";
             StockAmount.Width = 130;
             // 
+            // Status
+            // 
+            Status.Text = "Status";
+            Status.Width = 190;
+            // 
             // ListViewStudents
             // 
             ListViewStudents.Activation = ItemActivation.OneClick;
@@ -156,9 +171,10 @@
             ListViewStudents.FullRowSelect = true;
             ListViewStudents.GridLines = true;
             ListViewStudents.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewStudents.Location = new Point(12, 34);
+            ListViewStudents.Location = new Point(15, 42);
+            ListViewStudents.Margin = new Padding(4);
             ListViewStudents.Name = "ListViewStudents";
-            ListViewStudents.Size = new Size(421, 266);
+            ListViewStudents.Size = new Size(525, 332);
             ListViewStudents.TabIndex = 0;
             ListViewStudents.UseCompatibleStateImageBehavior = false;
             ListViewStudents.View = View.Details;
@@ -191,10 +207,11 @@
             // 
             // OrdersForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(992, 555);
+            ClientSize = new Size(1364, 694);
             Controls.Add(PanelOrders);
+            Margin = new Padding(4);
             Name = "OrdersForm";
             Text = "OrdersForm";
             Load += OrdersForm_Load;
@@ -222,5 +239,6 @@
         private Label label1;
         private TextBox textBox1;
         private Button button1;
+        private ColumnHeader Status;
     }
 }

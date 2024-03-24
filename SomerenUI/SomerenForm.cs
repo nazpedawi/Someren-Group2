@@ -53,11 +53,17 @@ namespace SomerenUI
         }
         private void ShowStudentsPanel()
         {
-            StudentsPanel.Show();
-            List<Student> students = GetAllStudents();
-            DisplayStudents(students);
+            try
+            {
+                StudentsPanel.Show();
+                List<Student> students = GetAllStudents();
+                DisplayStudents(students);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         private void ShowDrinksPanel()
         {
             DrinksPanel.Show();
@@ -180,15 +186,11 @@ namespace SomerenUI
             HidePanelsExcept(DrinksPanel);
             ShowDrinksPanel();
         }
-
-
-
         private void AddDrinkbtn_Click(object sender, EventArgs e)
         {
             AddDrinksForm addDrinkForm = new AddDrinksForm();
             addDrinkForm.ShowDialog();
         }
-
         private void DeleteDrinkbtn_Click(object sender, EventArgs e)
         {
             if (ListViewDrinks.SelectedItems.Count > 0)
@@ -256,6 +258,5 @@ namespace SomerenUI
             OrdersForm ordersForm = new OrdersForm();
             ordersForm.ShowDialog();
         }
-
     }
 }
