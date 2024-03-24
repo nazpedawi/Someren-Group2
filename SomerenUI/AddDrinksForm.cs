@@ -15,10 +15,10 @@ namespace SomerenUI
 {
     public partial class AddDrinksForm : Form
     {
-        DrinkService DrinkService;
+        DrinkService drinkService;
         public AddDrinksForm()
         {
-            DrinkService = new DrinkService();
+            drinkService = new DrinkService();
             InitializeComponent();
         }
 
@@ -46,37 +46,32 @@ namespace SomerenUI
                     type = "Non-Alcoholic";
                     vat = 0.09m;
                 }
-
                 if (string.IsNullOrEmpty(type))
                 {
                     MessageBox.Show("Please select the type of drink.");
                     return;
                 }
-
-                decimal price;
-                if (!decimal.TryParse(DrinkPricetxtbox.Text, out price))
+                decimal price = decimal.Parse(DrinkPricetxtbox.Text);
+                if (string.IsNullOrEmpty(price.ToString()))
                 {
-                    MessageBox.Show("Invalid price format, Please enter a decimal nunmber.");
+                    MessageBox.Show("Please enter a price.");
                     return;
                 }
-
                 int stockAmount;
                 if (!int.TryParse(DrinkStockAmounttxtbox.Text, out stockAmount))
                 {
                     MessageBox.Show("Invalid stock amount format, Please enter an integer.");
                     return;
                 }
-
                 Drink drink = new Drink(0, name, type, price, vat, stockAmount);
-                DrinkService.AddDrink(drink);
+                drinkService.AddDrink(drink);
 
-                MessageBox.Show("Drink was Added Successfully!");
-                this.Close();
+                MessageBox.Show("Drink added Successfully!");
+                Close();
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -5,18 +5,35 @@ namespace SomerenUI
 {
     public partial class SomerenForm : Form
     {
+        private DrinkService drinkService;
         public SomerenForm()
         {
             InitializeComponent();
+            InitializePanels();
+            drinkService = new DrinkService();
+        }
+        private void InitializePanels()
+        {
             StudentsPanel.Hide();
             RoomsPanel.Hide();
             LecturersPanel.Hide();
             DrinksPanel.Hide();
         }
-
+        private void HidePanelsExcept(Panel panelToShow)
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is Panel panel)
+                {
+                    if (panel != panelToShow)
+                    {
+                        panel.Hide();
+                    }
+                }
+            }
+        }
         private void ShowLecturersPanel()
         {
-
             LecturersPanel.Show();
             try
             {
@@ -28,21 +45,18 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ShowRoomsPanel()
         {
             RoomsPanel.Show();
             List<Room> rooms = GetAllRooms();
             DisplayRooms(rooms);
         }
-
         private void ShowStudentsPanel()
         {
             StudentsPanel.Show();
             List<Student> students = GetAllStudents();
             DisplayStudents(students);
         }
-
         private void ShowDrinksPanel()
         {
             DrinksPanel.Show();
@@ -60,31 +74,27 @@ namespace SomerenUI
                 item.SubItems.Add(drink.Type);
                 item.SubItems.Add(drink.Price.ToString());
                 item.SubItems.Add(drink.StockAmount.ToString());
-
-                if (drink.StockAmount < 1)
-                {
-                    item.SubItems.Add("Stock empty");
-                }
-                else if (drink.StockAmount < 10)
-                {
-                    item.SubItems.Add("Stock nearly depleted");
-                }
-                else
-                {
-                    item.SubItems.Add("Stock sufficient");
-                }
+                string stockStatus = GetStockStatus(drink.StockAmount);
+                item.SubItems.Add(stockStatus);
 
                 ListViewDrinks.Items.Add(item);
             }
         }
-
+        private string GetStockStatus(int stockAmount)
+        {
+            if (stockAmount < 1)
+                return "Stock empty";
+            else if (stockAmount < 10)
+                return "Stock nearly depleted";
+            else
+                return "Stock sufficient";
+        }
         public List<Lecturer> GetAllLecturers()
         {
             LecturerService lecturerService = new LecturerService();
             List<Lecturer> lecturers = lecturerService.GetAll();
             return lecturers;
         }
-
         public List<Student> GetAllStudents()
         {
             StudentService studentService = new StudentService();
@@ -103,7 +113,6 @@ namespace SomerenUI
             List<Drink> drinks = drinkService.GetAll();
             return drinks;
         }
-
         public void DisplayLecturers(List<Lecturer> lecturers)
         {
             ListViewLecturers.Items.Clear();
@@ -135,7 +144,6 @@ namespace SomerenUI
                 ListViewStudents.Items.Add(item);
             }
         }
-
         public void DisplayRooms(List<Room> rooms)
         {
             ListViewRooms.Items.Clear();
@@ -153,30 +161,22 @@ namespace SomerenUI
         }
         private void toolStripStudents_Click(object sender, EventArgs e)
         {
-            RoomsPanel.Hide();
-            LecturersPanel.Hide();
-            DrinksPanel.Hide();
+            HidePanelsExcept(DrinksPanel);
             ShowStudentsPanel();
         }
         private void toolStripLecturers_Click(object sender, EventArgs e)
         {
-            RoomsPanel.Hide();
-            StudentsPanel.Hide();
-            DrinksPanel.Hide();
+            HidePanelsExcept(LecturersPanel);
             ShowLecturersPanel();
         }
         private void toolStripRooms_Click(object sender, EventArgs e)
         {
-            StudentsPanel.Hide();
-            LecturersPanel.Hide();
-            DrinksPanel.Hide();
+            HidePanelsExcept(RoomsPanel);
             ShowRoomsPanel();
         }
         private void toolStripDrinks_Click(object sender, EventArgs e)
         {
-            StudentsPanel.Hide();
-            LecturersPanel.Hide();
-            RoomsPanel.Hide();
+            HidePanelsExcept(DrinksPanel);
             ShowDrinksPanel();
         }
 
@@ -188,7 +188,6 @@ namespace SomerenUI
 
         private void DeleteDrinkbtn_Click(object sender, EventArgs e)
         {
-            DrinkService drinkService = new DrinkService();
             if (ListViewDrinks.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
@@ -196,9 +195,16 @@ namespace SomerenUI
 
                 if (drink != null)
                 {
-                    drinkService.DeleteDrink(drink);
-                    ListViewDrinks.Items.Remove(selectedItem);
-                    MessageBox.Show("Drink was deleted successfully.");
+                    try
+                    {
+                        drinkService.DeleteDrink(drink);
+                        ListViewDrinks.Items.Remove(selectedItem);
+                        MessageBox.Show("Drink deleted successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
             else
@@ -206,33 +212,28 @@ namespace SomerenUI
                 MessageBox.Show("Please select a drink first");
             }
         }
-
         private void UpdateDrinkbtn_Click(object sender, EventArgs e)
         {
-            DrinkService drinkService = new DrinkService();
             if (ListViewDrinks.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
-                Drink drink = selectedItem.Tag as Drink;
-
-
-                UpdateDrinksForm updateForm = new UpdateDrinksForm(drink);
-                if (updateForm.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    selectedItem.SubItems[0].Text = drink.Name;
-                    selectedItem.SubItems[1].Text = drink.Type;
-                    selectedItem.SubItems[2].Text = drink.Price.ToString();
-                    selectedItem.SubItems[3].Text = drink.StockAmount.ToString();
+                    ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
+                    if (selectedItem.Tag is Drink drink)
+                    {
+                        UpdateDrinksForm updateForm = new UpdateDrinksForm(drink);
 
-                    try
-                    {
-                        drinkService.UpdateDrink(drink);
-                        MessageBox.Show("Drink updated successfully!");
+                        if (updateForm.ShowDialog() == DialogResult.OK)
+                        {
+                            UpdateDrinkInformation(selectedItem, drink);
+                            drinkService.UpdateDrink(drink);
+                            MessageBox.Show("Drink updated successfully!");
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error updating drink: " + ex.Message);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
             else
@@ -240,6 +241,12 @@ namespace SomerenUI
                 MessageBox.Show("Please select a drink first.");
             }
         }
-
+        private void UpdateDrinkInformation(ListViewItem selectedItem, Drink drink)
+        {
+            selectedItem.SubItems[0].Text = drink.Name;
+            selectedItem.SubItems[1].Text = drink.Type;
+            selectedItem.SubItems[2].Text = drink.Price.ToString();
+            selectedItem.SubItems[3].Text = drink.StockAmount.ToString();
+        }
     }
 }

@@ -18,10 +18,7 @@ namespace SomerenDAL
         {
             try
             {
-                string connString = ConfigurationManager
-                    .ConnectionStrings["DBConnectionString"]
-                    .ConnectionString;
-
+                string connString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
                 dbConnection = new SqlConnection(connString);
             }
             catch (Exception ex)
@@ -29,11 +26,40 @@ namespace SomerenDAL
                 throw new Exception("An Error occured while configuring database connection.", ex);
             }
         }
+        private void OpenConnection()
+        {
+            try
+            {
+                if (dbConnection.State != ConnectionState.Open)
+                {
+                    dbConnection.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while opening database connection.", ex);
+            }
+        }
+        private void CloseConnection()
+        {
+            try
+            {
+                if (dbConnection.State != ConnectionState.Closed)
+                {
+                    dbConnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while closing database connection.", ex);
+            }
+        }
+
         public List<Drink> GetAll()
         {
             try
             {
-                dbConnection.Open();
+                OpenConnection();
                 SqlCommand cmd = new SqlCommand("SELECT DrinkID, Name, Type, Price, VAT, StockAmount FROM Drinks", dbConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Drink> drinks = new List<Drink>();
@@ -52,10 +78,7 @@ namespace SomerenDAL
             }
             finally
             {
-                if (dbConnection.State == System.Data.ConnectionState.Open)
-                {
-                    dbConnection.Close();
-                }
+                CloseConnection();
             }
         }
         private Drink ReadDrink(SqlDataReader reader)
@@ -76,38 +99,56 @@ namespace SomerenDAL
                 throw new Exception("An Error Occured While Reading 'Drink' Data", ex);
             }
         }
-
         public Drink AddDrink(Drink drink)
         {
-            dbConnection.Open();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name, @Type, @Price, @VAT, @StockAmount);"
+                    + "SELECT CAST(scope_identity() AS int)", dbConnection);
+                cmd.Parameters.AddWithValue("@Name", drink.Name);
+                cmd.Parameters.AddWithValue("@Type", drink.Type);
+                cmd.Parameters.AddWithValue("@Price", drink.Price);
+                cmd.Parameters.AddWithValue("@VAT", drink.VAT);
+                cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
+                int id = (int)cmd.ExecuteScalar();
+                dbConnection.Close();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO Drinks VALUES (@Name, @Type, @Price, @VAT, @StockAmount);"
-                + "SELECT CAST(scope_identity() AS int)", dbConnection);
-            cmd.Parameters.AddWithValue("@Name", drink.Name);
-            cmd.Parameters.AddWithValue("@Type", drink.Type);
-            cmd.Parameters.AddWithValue("@Price", drink.Price);
-            cmd.Parameters.AddWithValue("@VAT", drink.VAT);
-            cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
-
-            int id = (int)cmd.ExecuteScalar();
-            dbConnection.Close();
-            return new Drink(id, drink.Name, drink.Type, drink.Price, drink.VAT, drink.StockAmount);
+                return new Drink(id, drink.Name, drink.Type, drink.Price, drink.VAT, drink.StockAmount);
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An error occurred while adding the drink", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
-
         public void DeleteDrink(Drink drink)
         {
-            dbConnection.Open();
-            SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE DrinkID = @DrinkID", dbConnection);
-            cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
-            cmd.ExecuteNonQuery();
-            dbConnection.Close();
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Drinks WHERE DrinkID = @DrinkID", dbConnection);
+                cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
+                cmd.ExecuteNonQuery();
+                dbConnection.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An error occurred while deleting the drink", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
-
         public void UpdateDrink(Drink drink)
         {
             try
             {
-                dbConnection.Open();
+                OpenConnection();
                 SqlCommand cmd = new SqlCommand(
                    "UPDATE Drinks SET Name = @Name, Type = @Type,  Price = @Price, StockAmount = @StockAmount WHERE DrinkID = @DrinkID", dbConnection);
                 cmd.Parameters.AddWithValue("@DrinkID", drink.DrinkID);
@@ -115,7 +156,6 @@ namespace SomerenDAL
                 cmd.Parameters.AddWithValue("@Type", drink.Type);
                 cmd.Parameters.AddWithValue("@Price", drink.Price);
                 cmd.Parameters.AddWithValue("@StockAmount", drink.StockAmount);
-
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -124,10 +164,7 @@ namespace SomerenDAL
             }
             finally
             {
-                if (dbConnection.State == ConnectionState.Open)
-                {
-                    dbConnection.Close();
-                }
+                CloseConnection();
             }
         }
     }

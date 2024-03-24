@@ -20,6 +20,10 @@ namespace SomerenUI
         {
             InitializeComponent();
             selectedDrink = drink;
+            InitializeForm();
+        }
+        private void InitializeForm()
+        {
             DrinkNametxtbox.Text = selectedDrink.Name;
             DrinkPricetxtbox.Text = selectedDrink.Price.ToString();
             DrinkStockAmounttxtbox.Text = selectedDrink.StockAmount.ToString();
@@ -35,16 +39,21 @@ namespace SomerenUI
                 selectedDrink.VAT = 0.09m;
             }
         }
-
         private void UpdateDrinkbtn_Click(object sender, EventArgs e)
         {
-            selectedDrink.Name = DrinkNametxtbox.Text;
-            selectedDrink.Price = decimal.Parse(DrinkPricetxtbox.Text);
-            selectedDrink.StockAmount = int.Parse(DrinkStockAmounttxtbox.Text);
-
-            selectedDrink.Type = Alcoholicbtn.Checked ? "Alcoholic" : "Non-Alcoholic";
-            DialogResult = DialogResult.OK;
-            this.Close();
+            try
+            {
+                selectedDrink.Name = DrinkNametxtbox.Text;
+                selectedDrink.Price = decimal.Parse(DrinkPricetxtbox.Text);
+                selectedDrink.StockAmount = int.Parse(DrinkStockAmounttxtbox.Text);
+                selectedDrink.Type = Alcoholicbtn.Checked ? "Alcoholic" : "Non-Alcoholic";
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void AlcoholicRadioButton_CheckedChanged(object sender, EventArgs e)
