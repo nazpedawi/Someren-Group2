@@ -63,7 +63,7 @@ namespace SomerenDAL
                 int drinkid = (int)reader["DrinkId"];
                 int numberofdrinks = (int)reader["NumberOfDrinks"];
 
-                return new Order(studentnumber, drinkid, numberofdrinks);
+                return new Order(studentnumber, drinkid, numberofdrinks, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -75,16 +75,15 @@ namespace SomerenDAL
         {
             try
             {
-                
-                    dbConnection.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Orders VALUES(@StudentNumber, @DrinkId, @NumberOfDrinks);" + "SELECT CAST(scope_identity() AS int)", dbConnection);
-                    cmd.Parameters.AddWithValue("@StudentNumber", order.StudentNumber);
-                    cmd.Parameters.AddWithValue("@DrinkId", order.DrinkId);
-                    cmd.Parameters.AddWithValue("@NumberOfDrinks", order.NumberOfDrinks);
-                    cmd.ExecuteNonQuery();
-                    dbConnection.Close();
-                    return new Order(order.StudentNumber, order.DrinkId, order.NumberOfDrinks);
-                
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Orders (StudentNumber, DrinkId, NumberOfDrinks, OrderDate) VALUES (@StudentNumber, @DrinkId, @NumberOfDrinks, GETDATE()); SELECT CAST(scope_identity() AS int)", dbConnection);
+                cmd.Parameters.AddWithValue("@StudentNumber", order.StudentNumber);
+                cmd.Parameters.AddWithValue("@DrinkId", order.DrinkId);
+                cmd.Parameters.AddWithValue("@NumberOfDrinks", order.NumberOfDrinks);
+                cmd.Parameters.AddWithValue("@OrderDate", order.OrderDate); // Add OrderDate parameter
+                cmd.ExecuteNonQuery();
+                dbConnection.Close();
+                return new Order(order.StudentNumber, order.DrinkId, order.NumberOfDrinks, order.OrderDate);
             }
             catch (Exception ex)
             {

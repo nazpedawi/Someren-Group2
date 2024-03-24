@@ -11,12 +11,14 @@ namespace SomerenModel
         public int StudentNumber {  get; set; }
         public int DrinkId { get; set; }
         public int NumberOfDrinks { get; set; }
+        public DateTime OrderDate { get; set; } // Add this property
 
-        public Order (int studentNumber, int drinkId, int numberOfDrinks)
+        public Order(int studentNumber, int drinkId, int numberOfDrinks, DateTime orderDate)
         {
             StudentNumber = studentNumber;
             DrinkId = drinkId;
             NumberOfDrinks = numberOfDrinks;
+            OrderDate = orderDate;
         }
     }
 }

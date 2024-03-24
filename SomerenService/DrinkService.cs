@@ -34,5 +34,18 @@ namespace SomerenService
         {
             drinkDAO.UpdateDrink(drink);
         }
+        public decimal GetDrinkPrice(int drinkId)
+        {
+            List<Drink> drinks = GetAll();
+            Drink drink = drinks.FirstOrDefault(d => d.DrinkID == drinkId);
+            if (drink != null)
+            {
+                return drink.Price;
+            }
+            else
+            {
+                throw new Exception("Drink not found.");
+            }
+        }
     }
 }

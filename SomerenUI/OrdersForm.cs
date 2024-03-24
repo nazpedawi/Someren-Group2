@@ -101,7 +101,7 @@ namespace SomerenUI
 
             MessageBox.Show($"Order placed for: \n {student.FirstName} {student.LastName} \n \n Ordered Items: \n {drink.Name}   (x{NumberOfDrinks})  \n \n Total price:  €{totalPrice}");
 
-            Order order = new Order(student.StudentNumber, drink.DrinkID, NumberOfDrinks);
+            Order order = new Order(student.StudentNumber, drink.DrinkID, NumberOfDrinks, DateTime.Now);
             OrderService orderService = new OrderService();
             orderService.AddOrder(order);
 

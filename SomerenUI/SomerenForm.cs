@@ -258,5 +258,13 @@ namespace SomerenUI
             OrdersForm ordersForm = new OrdersForm();
             ordersForm.ShowDialog();
         }
+
+
+
+        private void toolStripRevenue_Click(object sender, EventArgs e)
+        {
+            RevenueForm revenueForm = new RevenueForm();
+            revenueForm.ShowDialog();
+        }
     }
 }

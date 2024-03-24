@@ -58,6 +58,7 @@
             toolStripDrinks = new ToolStripLabel();
             toolStrip1 = new ToolStrip();
             toolStripOrders = new ToolStripLabel();
+            toolStripRevenue = new ToolStripButton();
             DrinksPanel = new Panel();
             DeleteDrinkbtn = new Button();
             UpdateDrinkbtn = new Button();
@@ -82,10 +83,10 @@
             ListViewRooms.BackColor = SystemColors.GradientActiveCaption;
             ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
             ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewRooms.Location = new Point(15, 35);
-            ListViewRooms.Margin = new Padding(2);
+            ListViewRooms.Location = new Point(10, 24);
+            ListViewRooms.Margin = new Padding(1);
             ListViewRooms.Name = "ListViewRooms";
-            ListViewRooms.Size = new Size(592, 348);
+            ListViewRooms.Size = new Size(416, 238);
             ListViewRooms.TabIndex = 2;
             ListViewRooms.UseCompatibleStateImageBehavior = false;
             ListViewRooms.View = View.Details;
@@ -114,10 +115,9 @@
             // 
             labelRooms.AutoSize = true;
             labelRooms.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRooms.Location = new Point(11, 2);
-            labelRooms.Margin = new Padding(4, 0, 4, 0);
+            labelRooms.Location = new Point(8, 1);
             labelRooms.Name = "labelRooms";
-            labelRooms.Size = new Size(79, 30);
+            labelRooms.Size = new Size(55, 20);
             labelRooms.TabIndex = 3;
             labelRooms.Text = "Rooms";
             // 
@@ -125,30 +125,30 @@
             // 
             RoomsPanel.Controls.Add(labelRooms);
             RoomsPanel.Controls.Add(ListViewRooms);
-            RoomsPanel.Location = new Point(111, 152);
-            RoomsPanel.Margin = new Padding(2);
+            RoomsPanel.Location = new Point(78, 103);
+            RoomsPanel.Margin = new Padding(1);
             RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(624, 396);
+            RoomsPanel.Size = new Size(437, 269);
             RoomsPanel.TabIndex = 6;
             // 
             // LecturersPanel
             // 
             LecturersPanel.Controls.Add(label1);
             LecturersPanel.Controls.Add(ListViewLecturers);
-            LecturersPanel.Location = new Point(110, 154);
-            LecturersPanel.Margin = new Padding(2);
+            LecturersPanel.Location = new Point(77, 105);
+            LecturersPanel.Margin = new Padding(1);
             LecturersPanel.Name = "LecturersPanel";
-            LecturersPanel.Size = new Size(618, 396);
+            LecturersPanel.Size = new Size(433, 269);
             LecturersPanel.TabIndex = 9;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(8, 0);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(6, 0);
+            label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(101, 30);
+            label1.Size = new Size(68, 20);
             label1.TabIndex = 0;
             label1.Text = "Lecturers";
             // 
@@ -157,10 +157,10 @@
             ListViewLecturers.BackColor = SystemColors.GradientActiveCaption;
             ListViewLecturers.Columns.AddRange(new ColumnHeader[] { LecturerFirstName, LecturerLastName, Age, LecturerPhoneNumber });
             ListViewLecturers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewLecturers.Location = new Point(12, 35);
-            ListViewLecturers.Margin = new Padding(2);
+            ListViewLecturers.Location = new Point(8, 24);
+            ListViewLecturers.Margin = new Padding(1);
             ListViewLecturers.Name = "ListViewLecturers";
-            ListViewLecturers.Size = new Size(592, 334);
+            ListViewLecturers.Size = new Size(416, 228);
             ListViewLecturers.TabIndex = 8;
             ListViewLecturers.UseCompatibleStateImageBehavior = false;
             ListViewLecturers.View = View.Details;
@@ -189,10 +189,10 @@
             // 
             StudentsPanel.Controls.Add(ListViewStudents);
             StudentsPanel.Controls.Add(labelStudents);
-            StudentsPanel.Location = new Point(52, 154);
-            StudentsPanel.Margin = new Padding(2);
+            StudentsPanel.Location = new Point(36, 105);
+            StudentsPanel.Margin = new Padding(1);
             StudentsPanel.Name = "StudentsPanel";
-            StudentsPanel.Size = new Size(764, 400);
+            StudentsPanel.Size = new Size(535, 272);
             StudentsPanel.TabIndex = 7;
             // 
             // ListViewStudents
@@ -200,10 +200,10 @@
             ListViewStudents.BackColor = SystemColors.GradientActiveCaption;
             ListViewStudents.Columns.AddRange(new ColumnHeader[] { StudentNumber, FirstName, LastName, Class, PhoneNumber });
             ListViewStudents.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewStudents.Location = new Point(11, 35);
-            ListViewStudents.Margin = new Padding(2);
+            ListViewStudents.Location = new Point(8, 24);
+            ListViewStudents.Margin = new Padding(1);
             ListViewStudents.Name = "ListViewStudents";
-            ListViewStudents.Size = new Size(735, 348);
+            ListViewStudents.Size = new Size(516, 238);
             ListViewStudents.TabIndex = 0;
             ListViewStudents.UseCompatibleStateImageBehavior = false;
             ListViewStudents.View = View.Details;
@@ -237,10 +237,10 @@
             // 
             labelStudents.AutoSize = true;
             labelStudents.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelStudents.Location = new Point(6, 2);
-            labelStudents.Margin = new Padding(2, 0, 2, 0);
+            labelStudents.Location = new Point(4, 1);
+            labelStudents.Margin = new Padding(1, 0, 1, 0);
             labelStudents.Name = "labelStudents";
-            labelStudents.Size = new Size(96, 30);
+            labelStudents.Size = new Size(66, 20);
             labelStudents.TabIndex = 1;
             labelStudents.Text = "Students";
             // 
@@ -251,10 +251,10 @@
             pictureBox1.ErrorImage = null;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(34, 5);
-            pictureBox1.Margin = new Padding(2);
+            pictureBox1.Location = new Point(24, 3);
+            pictureBox1.Margin = new Padding(1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(130, 102);
+            pictureBox1.Size = new Size(92, 71);
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
@@ -265,7 +265,7 @@
             toolStripStudents.ForeColor = SystemColors.Control;
             toolStripStudents.Margin = new Padding(30, 2, 0, 3);
             toolStripStudents.Name = "toolStripStudents";
-            toolStripStudents.Size = new Size(109, 70);
+            toolStripStudents.Size = new Size(75, 45);
             toolStripStudents.Text = "Students";
             toolStripStudents.Click += toolStripStudents_Click;
             // 
@@ -305,11 +305,11 @@
             toolStrip1.BackColor = SystemColors.WindowFrame;
             toolStrip1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripStudents, toolStripLecturers, toolStripRooms, toolStripDrinks, toolStripOrders });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripStudents, toolStripLecturers, toolStripRooms, toolStripDrinks, toolStripOrders, toolStripRevenue });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Padding = new Padding(200, 20, 10, 20);
-            toolStrip1.Size = new Size(1099, 115);
+            toolStrip1.Padding = new Padding(140, 14, 7, 14);
+            toolStrip1.Size = new Size(769, 78);
             toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -323,6 +323,16 @@
             toolStripOrders.Text = "Orders";
             toolStripOrders.Click += toolStripOrders_Click;
             // 
+            // toolStripRevenue
+            // 
+            toolStripRevenue.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripRevenue.ImageTransparentColor = Color.Magenta;
+            toolStripRevenue.Margin = new Padding(20, 2, 0, 3);
+            toolStripRevenue.Name = "toolStripRevenue";
+            toolStripRevenue.Size = new Size(77, 25);
+            toolStripRevenue.Text = "Revenue";
+            toolStripRevenue.Click += toolStripRevenue_Click;
+            // 
             // DrinksPanel
             // 
             DrinksPanel.Controls.Add(DeleteDrinkbtn);
@@ -330,10 +340,10 @@
             DrinksPanel.Controls.Add(AddDrinkbtn);
             DrinksPanel.Controls.Add(ListViewDrinks);
             DrinksPanel.Controls.Add(Drinkslbl);
-            DrinksPanel.Location = new Point(56, 155);
-            DrinksPanel.Margin = new Padding(2);
+            DrinksPanel.Location = new Point(39, 105);
+            DrinksPanel.Margin = new Padding(1);
             DrinksPanel.Name = "DrinksPanel";
-            DrinksPanel.Size = new Size(760, 504);
+            DrinksPanel.Size = new Size(532, 343);
             DrinksPanel.TabIndex = 10;
             // 
             // DeleteDrinkbtn
@@ -341,10 +351,10 @@
             DeleteDrinkbtn.BackColor = Color.Red;
             DeleteDrinkbtn.Cursor = Cursors.Hand;
             DeleteDrinkbtn.ForeColor = Color.Transparent;
-            DeleteDrinkbtn.Location = new Point(585, 421);
-            DeleteDrinkbtn.Margin = new Padding(2);
+            DeleteDrinkbtn.Location = new Point(410, 286);
+            DeleteDrinkbtn.Margin = new Padding(1);
             DeleteDrinkbtn.Name = "DeleteDrinkbtn";
-            DeleteDrinkbtn.Size = new Size(164, 62);
+            DeleteDrinkbtn.Size = new Size(115, 42);
             DeleteDrinkbtn.TabIndex = 11;
             DeleteDrinkbtn.Text = "Delete Drink";
             DeleteDrinkbtn.UseVisualStyleBackColor = false;
@@ -355,10 +365,10 @@
             UpdateDrinkbtn.BackColor = SystemColors.ControlDark;
             UpdateDrinkbtn.Cursor = Cursors.Hand;
             UpdateDrinkbtn.ForeColor = Color.Transparent;
-            UpdateDrinkbtn.Location = new Point(265, 421);
-            UpdateDrinkbtn.Margin = new Padding(2);
+            UpdateDrinkbtn.Location = new Point(186, 286);
+            UpdateDrinkbtn.Margin = new Padding(1);
             UpdateDrinkbtn.Name = "UpdateDrinkbtn";
-            UpdateDrinkbtn.Size = new Size(226, 62);
+            UpdateDrinkbtn.Size = new Size(158, 42);
             UpdateDrinkbtn.TabIndex = 10;
             UpdateDrinkbtn.Text = "Update Drink";
             UpdateDrinkbtn.UseVisualStyleBackColor = false;
@@ -369,10 +379,10 @@
             AddDrinkbtn.BackColor = Color.FromArgb(0, 192, 0);
             AddDrinkbtn.Cursor = Cursors.Hand;
             AddDrinkbtn.ForeColor = Color.Transparent;
-            AddDrinkbtn.Location = new Point(12, 421);
-            AddDrinkbtn.Margin = new Padding(2);
+            AddDrinkbtn.Location = new Point(8, 286);
+            AddDrinkbtn.Margin = new Padding(1);
             AddDrinkbtn.Name = "AddDrinkbtn";
-            AddDrinkbtn.Size = new Size(182, 62);
+            AddDrinkbtn.Size = new Size(127, 42);
             AddDrinkbtn.TabIndex = 9;
             AddDrinkbtn.Text = "Add New Drink";
             AddDrinkbtn.UseVisualStyleBackColor = false;
@@ -386,11 +396,11 @@
             ListViewDrinks.FullRowSelect = true;
             ListViewDrinks.GridLines = true;
             ListViewDrinks.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewDrinks.Location = new Point(12, 35);
-            ListViewDrinks.Margin = new Padding(2);
+            ListViewDrinks.Location = new Point(8, 24);
+            ListViewDrinks.Margin = new Padding(1);
             ListViewDrinks.MultiSelect = false;
             ListViewDrinks.Name = "ListViewDrinks";
-            ListViewDrinks.Size = new Size(730, 312);
+            ListViewDrinks.Size = new Size(512, 213);
             ListViewDrinks.TabIndex = 8;
             ListViewDrinks.UseCompatibleStateImageBehavior = false;
             ListViewDrinks.View = View.Details;
@@ -424,25 +434,25 @@
             // 
             Drinkslbl.AutoSize = true;
             Drinkslbl.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            Drinkslbl.Location = new Point(12, 2);
-            Drinkslbl.Margin = new Padding(2, 0, 2, 0);
+            Drinkslbl.Location = new Point(8, 1);
+            Drinkslbl.Margin = new Padding(1, 0, 1, 0);
             Drinkslbl.Name = "Drinkslbl";
-            Drinkslbl.Size = new Size(73, 30);
+            Drinkslbl.Size = new Size(50, 20);
             Drinkslbl.TabIndex = 0;
             Drinkslbl.Text = "Drinks";
             // 
             // SomerenForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1099, 842);
+            ClientSize = new Size(769, 573);
             Controls.Add(DrinksPanel);
             Controls.Add(LecturersPanel);
             Controls.Add(RoomsPanel);
             Controls.Add(StudentsPanel);
             Controls.Add(pictureBox1);
             Controls.Add(toolStrip1);
-            Margin = new Padding(2);
+            Margin = new Padding(1);
             Name = "SomerenForm";
             Text = "Someren Form";
             RoomsPanel.ResumeLayout(false);
@@ -500,5 +510,6 @@
         private Button UpdateDrinkbtn;
         private Button AddDrinkbtn;
         private ToolStripLabel toolStripOrders;
+        private ToolStripButton toolStripRevenue;
     }
 }
