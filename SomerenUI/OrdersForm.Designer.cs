@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             PanelOrders = new Panel();
-            button1 = new Button();
-            textBox1 = new TextBox();
+            PlaceOrderbtn = new Button();
+            NumberOfDrinkstxtbox = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -51,8 +51,8 @@
             // 
             // PanelOrders
             // 
-            PanelOrders.Controls.Add(button1);
-            PanelOrders.Controls.Add(textBox1);
+            PanelOrders.Controls.Add(PlaceOrderbtn);
+            PanelOrders.Controls.Add(NumberOfDrinkstxtbox);
             PanelOrders.Controls.Add(label3);
             PanelOrders.Controls.Add(label2);
             PanelOrders.Controls.Add(label1);
@@ -64,28 +64,29 @@
             PanelOrders.Size = new Size(1296, 612);
             PanelOrders.TabIndex = 0;
             // 
-            // button1
+            // PlaceOrderbtn
             // 
-            button1.BackColor = Color.FromArgb(0, 192, 0);
-            button1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(419, 478);
-            button1.Margin = new Padding(4);
-            button1.Name = "button1";
-            button1.Size = new Size(291, 77);
-            button1.TabIndex = 14;
-            button1.Text = "Place order";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            PlaceOrderbtn.BackColor = Color.FromArgb(0, 192, 0);
+            PlaceOrderbtn.Cursor = Cursors.Hand;
+            PlaceOrderbtn.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            PlaceOrderbtn.ForeColor = SystemColors.ButtonHighlight;
+            PlaceOrderbtn.Location = new Point(419, 478);
+            PlaceOrderbtn.Margin = new Padding(4);
+            PlaceOrderbtn.Name = "PlaceOrderbtn";
+            PlaceOrderbtn.Size = new Size(291, 77);
+            PlaceOrderbtn.TabIndex = 14;
+            PlaceOrderbtn.Text = "Place order";
+            PlaceOrderbtn.UseVisualStyleBackColor = false;
+            PlaceOrderbtn.Click += PlaceOrderbtn_Click;
             // 
-            // textBox1
+            // NumberOfDrinkstxtbox
             // 
-            textBox1.BackColor = SystemColors.InactiveCaption;
-            textBox1.Location = new Point(596, 420);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(155, 31);
-            textBox1.TabIndex = 13;
+            NumberOfDrinkstxtbox.BackColor = SystemColors.InactiveCaption;
+            NumberOfDrinkstxtbox.Location = new Point(596, 420);
+            NumberOfDrinkstxtbox.Margin = new Padding(4);
+            NumberOfDrinkstxtbox.Name = "NumberOfDrinkstxtbox";
+            NumberOfDrinkstxtbox.Size = new Size(155, 31);
+            NumberOfDrinkstxtbox.TabIndex = 13;
             // 
             // label3
             // 
@@ -97,7 +98,6 @@
             label3.Size = new Size(240, 30);
             label3.TabIndex = 12;
             label3.Text = "Enter number of drinks:";
-            label3.Click += label3_Click;
             // 
             // label2
             // 
@@ -136,7 +136,6 @@
             ListViewDrinks.TabIndex = 9;
             ListViewDrinks.UseCompatibleStateImageBehavior = false;
             ListViewDrinks.View = View.Details;
-            ListViewDrinks.SelectedIndexChanged += ListViewDrinks_SelectedIndexChanged;
             // 
             // DrinkName
             // 
@@ -178,7 +177,6 @@
             ListViewStudents.TabIndex = 0;
             ListViewStudents.UseCompatibleStateImageBehavior = false;
             ListViewStudents.View = View.Details;
-            ListViewStudents.SelectedIndexChanged += ListViewStudents_SelectedIndexChanged;
             // 
             // StudentNumber
             // 
@@ -214,7 +212,6 @@
             Margin = new Padding(4);
             Name = "OrdersForm";
             Text = "OrdersForm";
-            Load += OrdersForm_Load;
             PanelOrders.ResumeLayout(false);
             PanelOrders.PerformLayout();
             ResumeLayout(false);
@@ -237,8 +234,8 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox1;
-        private Button button1;
+        private TextBox NumberOfDrinkstxtbox;
+        private Button PlaceOrderbtn;
         private ColumnHeader Status;
     }
 }

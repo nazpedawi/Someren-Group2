@@ -26,7 +26,6 @@ namespace SomerenUI
             List<Student> students = studentService.GetAll();
             return students;
         }
-
         public void DisplayStudents(List<Student> students)
         {
             ListViewStudents.Items.Clear();
@@ -49,7 +48,6 @@ namespace SomerenUI
             List<Drink> drinks = drinkService.GetAll();
             return drinks;
         }
-
         public void DisplayDrinks(List<Drink> drinks)
         {
             ListViewDrinks.Items.Clear();
@@ -76,25 +74,14 @@ namespace SomerenUI
             else
                 return "Stock sufficient";
         }
-
-        private void OrdersForm_Load(object sender, EventArgs e)
+        private void PlaceOrderbtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (ListViewStudents.SelectedItems.Count == 0 || ListViewDrinks.SelectedItems.Count == 0 || string.IsNullOrWhiteSpace(textBox1.Text))
+            if (ListViewStudents.SelectedItems.Count == 0 || ListViewDrinks.SelectedItems.Count == 0 || string.IsNullOrWhiteSpace(NumberOfDrinkstxtbox.Text))
             {
                 MessageBox.Show("Please select a student, a drink, and enter the number of drinks.");
                 return;
             }
-            int NumberOfDrinks = Int32.Parse(textBox1.Text);
+            int NumberOfDrinks = Int32.Parse(NumberOfDrinkstxtbox.Text);
             if (NumberOfDrinks < 0)
             {
                 MessageBox.Show("Please enter a valid number of drinks");
@@ -102,6 +89,7 @@ namespace SomerenUI
             }
             ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
             Drink drink = selectedItem.Tag as Drink;
+
             if (NumberOfDrinks > drink.StockAmount)
             {
                 MessageBox.Show("Not enough stock available.");
@@ -111,7 +99,7 @@ namespace SomerenUI
             ListViewItem SelectedItem = ListViewStudents.SelectedItems[0];
             Student student = SelectedItem.Tag as Student;
 
-            MessageBox.Show($"Order placed for {student.FirstName} {student.LastName}: {NumberOfDrinks} {drink.Name}. Total price: {totalPrice}");
+            MessageBox.Show($"Order placed for: \n {student.FirstName} {student.LastName} \n \n Ordered Items: \n {drink.Name}   (x{NumberOfDrinks})  \n \n Total price:  €{totalPrice}");
 
             Order order = new Order(student.StudentNumber, drink.DrinkID, NumberOfDrinks);
             OrderService orderService = new OrderService();
@@ -121,22 +109,7 @@ namespace SomerenUI
 
             ListViewStudents.SelectedItems.Clear();
             ListViewDrinks.SelectedItems.Clear();
-            textBox1.Clear();
-
-
-
-
-
-        }
-
-        private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            NumberOfDrinkstxtbox.Clear();
         }
     }
 }
