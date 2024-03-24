@@ -22,7 +22,7 @@ namespace SomerenDAL
         public List<Student> GetAll()
         {
             dbConnection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Students", dbConnection);
+            SqlCommand cmd = new SqlCommand("SELECT StudentNumber, FirstName, LastName, Class, PhoneNumber, RoomNumber FROM Students", dbConnection);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Student> students = new List<Student>();
             while (reader.Read())

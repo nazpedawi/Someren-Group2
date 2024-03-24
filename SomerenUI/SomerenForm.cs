@@ -53,17 +53,11 @@ namespace SomerenUI
         }
         private void ShowStudentsPanel()
         {
-            try
-            {
-                StudentsPanel.Show();
-                List<Student> students = GetAllStudents();
-                DisplayStudents(students);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            StudentsPanel.Show();
+            List<Student> students = GetAllStudents();
+            DisplayStudents(students);
         }
+
         private void ShowDrinksPanel()
         {
             DrinksPanel.Show();
@@ -262,5 +256,6 @@ namespace SomerenUI
             OrdersForm ordersForm = new OrdersForm();
             ordersForm.ShowDialog();
         }
+
     }
 }
