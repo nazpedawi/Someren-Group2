@@ -13,12 +13,20 @@ namespace SomerenService
         private OrderDAO orderDAO;
         public OrderService()
         {
-            OrderDAO = new OrderDAO();
+            orderDAO = new OrderDAO();
         }
 
         public List<Order> GetAll()
         {
-            return OrderDAO.GetAll();
+            return orderDAO.GetAll();
+        }
+        public void AddOrder(Order order)
+        {
+            orderDAO.AddOrder(order);
+        }
+        public void UpdateOrder(Drink drink, int NumberOfDrinks)
+        {
+            orderDAO.UpdateStock(drink, NumberOfDrinks);
         }
     }
 }

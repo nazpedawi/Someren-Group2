@@ -95,26 +95,36 @@ namespace SomerenUI
                 MessageBox.Show("Not enough stock available.");
                 return;
             }
+            decimal totalPrice = NumberOfDrinks * drink.Price;
+            ListViewItem SelectedItem = ListViewStudents.SelectedItems[0];
+            Student student = SelectedItem.Tag as Student;
 
+            MessageBox.Show($"Order placed for {student.FirstName} {student.LastName}: {NumberOfDrinks} {drink.Name}. Total price: {totalPrice}");
+            
+            Order order = new Order(student.StudentNumber, drink.DrinkID, NumberOfDrinks);
+            OrderService orderService = new OrderService();
+            orderService.AddOrder(order);
+
+            orderService.UpdateOrder(drink, NumberOfDrinks);
+
+            ListViewStudents.SelectedItems.Clear();
+            ListViewDrinks.SelectedItems.Clear();
+            textBox1.Clear();
+            
+            
+
+            
 
         }
 
         private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListViewStudents.SelectedItems.Count > 0)
-            {
-                ListViewItem selectedItem = ListViewStudents.SelectedItems[0];
-                Student student = selectedItem.Tag as Student;
-            }
+            
         }
 
         private void ListViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListViewDrinks.SelectedItems.Count > 0)
-            {
-                ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
-                Drink drink = selectedItem.Tag as Drink;
-            }
+            
         }
     }
 }
