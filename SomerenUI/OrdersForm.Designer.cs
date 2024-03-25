@@ -129,7 +129,7 @@
             ListViewDrinks.FullRowSelect = true;
             ListViewDrinks.GridLines = true;
             ListViewDrinks.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewDrinks.Location = new Point(586, 40);
+            ListViewDrinks.Location = new Point(586, 42);
             ListViewDrinks.Margin = new Padding(2);
             ListViewDrinks.Name = "ListViewDrinks";
             ListViewDrinks.Size = new Size(700, 332);

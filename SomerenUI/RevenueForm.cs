@@ -28,7 +28,6 @@ namespace SomerenUI
             string connString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             dbConnection = new SqlConnection(connString);
         }
-
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             // Get start and end dates from date time picker
@@ -38,7 +37,7 @@ namespace SomerenUI
             // Get orders within the specified date range
             List<Order> orders = GetOrdersWithinDateRange(startDate, endDate);
 
-            // Calculate report metrics
+            // Calculate report
             int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
             decimal totalTurnover = GetTotalTurnover(orders);
             int numberOfCustomers = GetNumberOfCustomers(orders);
@@ -48,7 +47,6 @@ namespace SomerenUI
             lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
             lblNumberOfCustomers.Text = numberOfCustomers.ToString();
         }
-
         private List<Order> GetOrdersWithinDateRange(DateTime startDate, DateTime endDate)
         {
             try
@@ -76,7 +74,6 @@ namespace SomerenUI
                 dbConnection.Close();
             }
         }
-
         private int GetTotalNumberOfDrinks(List<Order> orders)
         {
             int totalNumberOfDrinks = 0;
@@ -86,7 +83,6 @@ namespace SomerenUI
             }
             return totalNumberOfDrinks;
         }
-
         private decimal GetTotalTurnover(List<Order> orders)
         {
             decimal totalTurnover = 0;
@@ -96,7 +92,6 @@ namespace SomerenUI
             }
             return totalTurnover;
         }
-
         private int GetNumberOfCustomers(List<Order> orders)
         {
             HashSet<int> customerSet = new HashSet<int>();
@@ -106,7 +101,6 @@ namespace SomerenUI
             }
             return customerSet.Count;
         }
-
         private Order ReadOrder(SqlDataReader reader)
         {
             int studentNumber = (int)reader["StudentNumber"];
@@ -115,7 +109,6 @@ namespace SomerenUI
             DateTime date = (DateTime)reader["OrderDate"];
             return new Order(studentNumber, drinkId, numberOfDrinks, date);
         }
-
         private decimal GetDrinkPrice(int drinkId)
         {
             DrinkService drinkService = new DrinkService();

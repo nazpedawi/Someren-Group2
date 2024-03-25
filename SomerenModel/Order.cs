@@ -11,7 +11,7 @@ namespace SomerenModel
         public int StudentNumber {  get; set; }
         public int DrinkId { get; set; }
         public int NumberOfDrinks { get; set; }
-        public DateTime OrderDate { get; set; } // Add this property
+        public DateTime OrderDate { get; set; }
 
         public Order(int studentNumber, int drinkId, int numberOfDrinks, DateTime orderDate)
         {

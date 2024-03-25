@@ -48,8 +48,15 @@ namespace SomerenUI
         private void ShowRoomsPanel()
         {
             RoomsPanel.Show();
-            List<Room> rooms = GetAllRooms();
-            DisplayRooms(rooms);
+            try
+            {
+                List<Room> rooms = GetAllRooms();
+                DisplayRooms(rooms);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void ShowStudentsPanel()
         {
@@ -66,9 +73,16 @@ namespace SomerenUI
         }
         private void ShowDrinksPanel()
         {
-            DrinksPanel.Show();
-            List<Drink> drinks = GetAllDrinks();
-            DisplayDrinks(drinks);
+            try
+            {
+                DrinksPanel.Show();
+                List<Drink> drinks = GetAllDrinks();
+                DisplayDrinks(drinks);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public void DisplayDrinks(List<Drink> drinks)
         {
@@ -258,10 +272,7 @@ namespace SomerenUI
             OrdersForm ordersForm = new OrdersForm();
             ordersForm.ShowDialog();
         }
-
-
-
-        private void toolStripRevenue_Click(object sender, EventArgs e)
+        private void toolStripRevenue_Click_1(object sender, EventArgs e)
         {
             RevenueForm revenueForm = new RevenueForm();
             revenueForm.ShowDialog();

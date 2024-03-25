@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RevenueForm));
             dateTimePickerStartDate = new DateTimePicker();
             groupBox1 = new GroupBox();
             lblTotalNumberOfDrinks = new Label();
@@ -46,17 +47,24 @@
             // 
             // dateTimePickerStartDate
             // 
-            dateTimePickerStartDate.Location = new Point(560, 46);
+            dateTimePickerStartDate.CalendarForeColor = Color.Coral;
+            dateTimePickerStartDate.CalendarMonthBackground = SystemColors.InactiveBorder;
+            dateTimePickerStartDate.Location = new Point(627, 69);
+            dateTimePickerStartDate.Margin = new Padding(4);
             dateTimePickerStartDate.Name = "dateTimePickerStartDate";
-            dateTimePickerStartDate.Size = new Size(200, 23);
+            dateTimePickerStartDate.Size = new Size(284, 31);
             dateTimePickerStartDate.TabIndex = 0;
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.ActiveCaption;
             groupBox1.Controls.Add(lblTotalNumberOfDrinks);
-            groupBox1.Location = new Point(29, 46);
+            groupBox1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox1.Location = new Point(41, 69);
+            groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(200, 100);
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(286, 146);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Total Number Of Drinks";
@@ -64,18 +72,22 @@
             // lblTotalNumberOfDrinks
             // 
             lblTotalNumberOfDrinks.AutoSize = true;
-            lblTotalNumberOfDrinks.Location = new Point(6, 47);
+            lblTotalNumberOfDrinks.Location = new Point(9, 69);
+            lblTotalNumberOfDrinks.Margin = new Padding(4, 0, 4, 0);
             lblTotalNumberOfDrinks.Name = "lblTotalNumberOfDrinks";
-            lblTotalNumberOfDrinks.Size = new Size(36, 17);
+            lblTotalNumberOfDrinks.Size = new Size(0, 30);
             lblTotalNumberOfDrinks.TabIndex = 0;
-            lblTotalNumberOfDrinks.Text = "label";
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.AppWorkspace;
             groupBox2.Controls.Add(lblTotalTurnover);
-            groupBox2.Location = new Point(29, 170);
+            groupBox2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox2.Location = new Point(41, 250);
+            groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(200, 100);
+            groupBox2.Padding = new Padding(4);
+            groupBox2.Size = new Size(286, 147);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Total Turnover";
@@ -83,18 +95,22 @@
             // lblTotalTurnover
             // 
             lblTotalTurnover.AutoSize = true;
-            lblTotalTurnover.Location = new Point(6, 48);
+            lblTotalTurnover.Location = new Point(9, 71);
+            lblTotalTurnover.Margin = new Padding(4, 0, 4, 0);
             lblTotalTurnover.Name = "lblTotalTurnover";
-            lblTotalTurnover.Size = new Size(36, 17);
+            lblTotalTurnover.Size = new Size(0, 30);
             lblTotalTurnover.TabIndex = 0;
-            lblTotalTurnover.Text = "label";
             // 
             // groupBox3
             // 
+            groupBox3.BackColor = SystemColors.ControlDark;
             groupBox3.Controls.Add(lblNumberOfCustomers);
-            groupBox3.Location = new Point(29, 290);
+            groupBox3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(41, 426);
+            groupBox3.Margin = new Padding(4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(200, 100);
+            groupBox3.Padding = new Padding(4);
+            groupBox3.Size = new Size(286, 147);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Number Of Customers";
@@ -102,51 +118,63 @@
             // lblNumberOfCustomers
             // 
             lblNumberOfCustomers.AutoSize = true;
-            lblNumberOfCustomers.Location = new Point(6, 51);
+            lblNumberOfCustomers.Location = new Point(9, 75);
+            lblNumberOfCustomers.Margin = new Padding(4, 0, 4, 0);
             lblNumberOfCustomers.Name = "lblNumberOfCustomers";
-            lblNumberOfCustomers.Size = new Size(36, 17);
+            lblNumberOfCustomers.Size = new Size(0, 30);
             lblNumberOfCustomers.TabIndex = 0;
-            lblNumberOfCustomers.Text = "label";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(466, 51);
+            label1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(472, 69);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(88, 17);
+            label1.Size = new Size(103, 28);
             label1.TabIndex = 3;
-            label1.Text = "Starting Time:";
+            label1.Text = "Start Date:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(466, 164);
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(472, 165);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(83, 17);
+            label2.Size = new Size(95, 28);
             label2.TabIndex = 4;
-            label2.Text = "Ending Time:";
+            label2.Text = "End Date:";
             // 
             // dateTimePickerEndDate
             // 
-            dateTimePickerEndDate.Location = new Point(560, 164);
+            dateTimePickerEndDate.Location = new Point(627, 164);
+            dateTimePickerEndDate.Margin = new Padding(4);
             dateTimePickerEndDate.Name = "dateTimePickerEndDate";
-            dateTimePickerEndDate.Size = new Size(200, 23);
+            dateTimePickerEndDate.Size = new Size(284, 31);
             dateTimePickerEndDate.TabIndex = 5;
             // 
             // btnGenerateReport
             // 
-            btnGenerateReport.Location = new Point(466, 247);
+            btnGenerateReport.BackColor = Color.FromArgb(0, 192, 0);
+            btnGenerateReport.Cursor = Cursors.Hand;
+            btnGenerateReport.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerateReport.ForeColor = SystemColors.ButtonHighlight;
+            btnGenerateReport.Image = (Image)resources.GetObject("btnGenerateReport.Image");
+            btnGenerateReport.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGenerateReport.Location = new Point(540, 363);
+            btnGenerateReport.Margin = new Padding(4);
             btnGenerateReport.Name = "btnGenerateReport";
-            btnGenerateReport.Size = new Size(294, 23);
+            btnGenerateReport.Size = new Size(320, 97);
             btnGenerateReport.TabIndex = 6;
             btnGenerateReport.Text = "Generate Report";
-            btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.UseVisualStyleBackColor = false;
             // 
             // RevenueForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(971, 662);
             Controls.Add(btnGenerateReport);
             Controls.Add(dateTimePickerEndDate);
             Controls.Add(label2);
@@ -155,8 +183,9 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox1);
             Controls.Add(dateTimePickerStartDate);
+            Margin = new Padding(4);
             Name = "RevenueForm";
-            Text = "Form1";
+            Text = "Revenue Report Form";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
