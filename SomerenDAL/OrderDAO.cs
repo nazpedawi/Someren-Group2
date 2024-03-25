@@ -63,7 +63,9 @@ namespace SomerenDAL
                 int drinkid = (int)reader["DrinkId"];
                 int numberofdrinks = (int)reader["NumberOfDrinks"];
 
-                return new Order(studentnumber, drinkid, numberofdrinks, DateTime.Now);
+                DateTime date = (DateTime)reader["OrderDate"];
+
+                return new Order(studentnumber, drinkid, numberofdrinks, date);
             }
             catch (Exception ex)
             {

@@ -29,7 +29,7 @@ namespace SomerenUI
             dbConnection = new SqlConnection(connString);
         }
 
-        private void btnGenerateReport_Click(object sender, EventArgs e)
+        private void btnGenerateReport_Click_1(object sender, EventArgs e)
         {
             // Get start and end dates from date time picker
             DateTime startDate = dateTimePickerStartDate.Value;
@@ -121,5 +121,7 @@ namespace SomerenUI
             DrinkService drinkService = new DrinkService();
             return drinkService.GetDrinkPrice(drinkId);
         }
+
+
     }
 }

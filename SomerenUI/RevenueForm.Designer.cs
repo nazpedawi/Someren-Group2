@@ -46,6 +46,7 @@
             // 
             // dateTimePickerStartDate
             // 
+            dateTimePickerStartDate.Format = DateTimePickerFormat.Short;
             dateTimePickerStartDate.Location = new Point(560, 46);
             dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             dateTimePickerStartDate.Size = new Size(200, 23);
@@ -64,7 +65,7 @@
             // lblTotalNumberOfDrinks
             // 
             lblTotalNumberOfDrinks.AutoSize = true;
-            lblTotalNumberOfDrinks.Location = new Point(6, 47);
+            lblTotalNumberOfDrinks.Location = new Point(6, 39);
             lblTotalNumberOfDrinks.Name = "lblTotalNumberOfDrinks";
             lblTotalNumberOfDrinks.Size = new Size(36, 17);
             lblTotalNumberOfDrinks.TabIndex = 0;
@@ -102,7 +103,7 @@
             // lblNumberOfCustomers
             // 
             lblNumberOfCustomers.AutoSize = true;
-            lblNumberOfCustomers.Location = new Point(6, 51);
+            lblNumberOfCustomers.Location = new Point(6, 50);
             lblNumberOfCustomers.Name = "lblNumberOfCustomers";
             lblNumberOfCustomers.Size = new Size(36, 17);
             lblNumberOfCustomers.TabIndex = 0;
@@ -128,6 +129,7 @@
             // 
             // dateTimePickerEndDate
             // 
+            dateTimePickerEndDate.Format = DateTimePickerFormat.Short;
             dateTimePickerEndDate.Location = new Point(560, 164);
             dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             dateTimePickerEndDate.Size = new Size(200, 23);
@@ -141,6 +143,7 @@
             btnGenerateReport.TabIndex = 6;
             btnGenerateReport.Text = "Generate Report";
             btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.Click += btnGenerateReport_Click_1;
             // 
             // RevenueForm
             // 
