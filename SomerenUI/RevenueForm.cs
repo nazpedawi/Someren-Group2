@@ -24,12 +24,17 @@ namespace SomerenUI
             InitializeComponent();
             orderService = new OrderService();
 
+            dateTimePickerStartDate.CustomFormat = "yyyy-MM-dd";
+            dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerEndDate.CustomFormat = "yyyy-MM-dd";
+            dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+
             // Initialize database connection
             string connString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             dbConnection = new SqlConnection(connString);
         }
 
-        private void btnGenerateReport_Click_1(object sender, EventArgs e)
+        private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             // Get start and end dates from date time picker
             DateTime startDate = dateTimePickerStartDate.Value;
@@ -53,7 +58,7 @@ namespace SomerenUI
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks FROM Orders WHERE OrderDate >= @StartDate AND OrderDate <= @EndDate", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks, OrderDate FROM Orders WHERE OrderDate >= @StartDate AND OrderDate <= @EndDate", dbConnection);
                 cmd.Parameters.AddWithValue("@StartDate", startDate);
                 cmd.Parameters.AddWithValue("@EndDate", endDate);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -108,6 +113,8 @@ namespace SomerenUI
             int drinkId = (int)reader["DrinkId"];
             int numberOfDrinks = (int)reader["NumberOfDrinks"];
             DateTime date = (DateTime)reader["OrderDate"];
+                
+
             return new Order(studentNumber, drinkId, numberOfDrinks, date);
         }
         private decimal GetDrinkPrice(int drinkId)
@@ -116,6 +123,9 @@ namespace SomerenUI
             return drinkService.GetDrinkPrice(drinkId);
         }
 
+        private void dateTimePickerStartDate_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks FROM orders", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks, OrderDate FROM orders", dbConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Order> orders = new List<Order>();
                 while (reader.Read())
@@ -62,7 +62,6 @@ namespace SomerenDAL
                 int studentnumber = (int)reader["StudentNumber"];
                 int drinkid = (int)reader["DrinkId"];
                 int numberofdrinks = (int)reader["NumberOfDrinks"];
-
                 DateTime date = (DateTime)reader["OrderDate"];
 
                 return new Order(studentnumber, drinkid, numberofdrinks, date);
