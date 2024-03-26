@@ -40,18 +40,37 @@ namespace SomerenUI
             DateTime startDate = dateTimePickerStartDate.Value;
             DateTime endDate = dateTimePickerEndDate.Value;
 
-            // Get orders within the specified date range
-            List<Order> orders = GetOrdersWithinDateRange(startDate, endDate);
+            // Check if start date and end date are the same (single day)
+            if (startDate.Date == endDate.Date)
+            {
+                // Get orders for the single day
+                List<Order> orders = GetOrdersForSingleDay(startDate);
 
-            // Calculate report
-            int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
-            decimal totalTurnover = GetTotalTurnover(orders);
-            int numberOfCustomers = GetNumberOfCustomers(orders);
+                // Calculate report for single day
+                int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
+                decimal totalTurnover = GetTotalTurnover(orders);
+                int numberOfCustomers = GetNumberOfCustomers(orders);
 
-            // Display report data
-            lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
-            lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
-            lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+                // Display report data for single day
+                lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
+                lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
+                lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+            }
+            else
+            {
+                // Get orders within the specified date range
+                List<Order> orders = GetOrdersWithinDateRange(startDate, endDate);
+
+                // Calculate report for date range
+                int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
+                decimal totalTurnover = GetTotalTurnover(orders);
+                int numberOfCustomers = GetNumberOfCustomers(orders);
+
+                // Display report data for date range
+                lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
+                lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
+                lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+            }
         }
         private List<Order> GetOrdersWithinDateRange(DateTime startDate, DateTime endDate)
         {
@@ -74,6 +93,32 @@ namespace SomerenUI
             catch (SqlException ex)
             {
                 throw new Exception("An Error Occurred While Retrieving Orders Within Date Range From The Database", ex);
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
+        private List<Order> GetOrdersForSingleDay(DateTime date)
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks, OrderDate FROM Orders WHERE CONVERT(date, OrderDate) = @Date", dbConnection);
+                cmd.Parameters.AddWithValue("@Date", date.Date);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Order> orders = new List<Order>();
+                while (reader.Read())
+                {
+                    Order order = ReadOrder(reader);
+                    orders.Add(order);
+                }
+                reader.Close();
+                return orders;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An Error Occurred While Retrieving Orders for Single Day From The Database", ex);
             }
             finally
             {
