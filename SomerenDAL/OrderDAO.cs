@@ -98,12 +98,11 @@ namespace SomerenDAL
                 
                     dbConnection.Open();
 
-                    SqlCommand cmd = new SqlCommand("UPDATE drinks SET StockAmount = @StockAmount - @NumberOfDrinks WHERE DrinkId = @DrinkId;", dbConnection);
+                    SqlCommand cmd = new SqlCommand("UPDATE drinks SET StockAmount = StockAmount - @NumberOfDrinks WHERE DrinkId = @DrinkId;", dbConnection);
                     cmd.Parameters.AddWithValue("@NumberOfDrinks", NumberOfDrinks);
                     cmd.Parameters.AddWithValue("@DrinkId", drink.DrinkID);
                     cmd.ExecuteNonQuery();
-                    dbConnection.Close();
-                
+                    dbConnection.Close();   
             }
             catch (SqlException ex)
             {

@@ -53,7 +53,7 @@ namespace SomerenUI
 
                 // Display report data for single day
                 lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
-                lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
+                lblTotalTurnover.Text = totalTurnover.ToString("C", new System.Globalization.CultureInfo("nl-NL")); // Format as currency as euro
                 lblNumberOfCustomers.Text = numberOfCustomers.ToString();
             }
             else
