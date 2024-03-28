@@ -44,6 +44,9 @@
             Age = new ColumnHeader();
             LecturerPhoneNumber = new ColumnHeader();
             StudentsPanel = new Panel();
+            DeleteStudentbtn = new Button();
+            UpdateStudentbtn = new Button();
+            AddStudentbtn = new Button();
             ListViewStudents = new ListView();
             StudentNumber = new ColumnHeader();
             FirstName = new ColumnHeader();
@@ -83,10 +86,10 @@
             ListViewRooms.BackColor = SystemColors.GradientActiveCaption;
             ListViewRooms.Columns.AddRange(new ColumnHeader[] { RoomNumber, BuildingName, RoomType, NumberOfBeds });
             ListViewRooms.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewRooms.Location = new Point(14, 35);
+            ListViewRooms.Location = new Point(11, 35);
             ListViewRooms.Margin = new Padding(1);
             ListViewRooms.Name = "ListViewRooms";
-            ListViewRooms.Size = new Size(593, 348);
+            ListViewRooms.Size = new Size(593, 683);
             ListViewRooms.TabIndex = 2;
             ListViewRooms.UseCompatibleStateImageBehavior = false;
             ListViewRooms.View = View.Details;
@@ -115,7 +118,7 @@
             // 
             labelRooms.AutoSize = true;
             labelRooms.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelRooms.Location = new Point(11, 1);
+            labelRooms.Location = new Point(11, 0);
             labelRooms.Margin = new Padding(4, 0, 4, 0);
             labelRooms.Name = "labelRooms";
             labelRooms.Size = new Size(79, 30);
@@ -126,27 +129,27 @@
             // 
             RoomsPanel.Controls.Add(labelRooms);
             RoomsPanel.Controls.Add(ListViewRooms);
-            RoomsPanel.Location = new Point(111, 151);
+            RoomsPanel.Location = new Point(190, 154);
             RoomsPanel.Margin = new Padding(1);
             RoomsPanel.Name = "RoomsPanel";
-            RoomsPanel.Size = new Size(624, 396);
+            RoomsPanel.Size = new Size(624, 789);
             RoomsPanel.TabIndex = 6;
             // 
             // LecturersPanel
             // 
             LecturersPanel.Controls.Add(label1);
             LecturersPanel.Controls.Add(ListViewLecturers);
-            LecturersPanel.Location = new Point(110, 154);
+            LecturersPanel.Location = new Point(200, 154);
             LecturersPanel.Margin = new Padding(1);
             LecturersPanel.Name = "LecturersPanel";
-            LecturersPanel.Size = new Size(619, 396);
+            LecturersPanel.Size = new Size(619, 538);
             LecturersPanel.TabIndex = 9;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(9, 0);
+            label1.Location = new Point(11, 0);
             label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
             label1.Size = new Size(101, 30);
@@ -161,7 +164,7 @@
             ListViewLecturers.Location = new Point(11, 35);
             ListViewLecturers.Margin = new Padding(1);
             ListViewLecturers.Name = "ListViewLecturers";
-            ListViewLecturers.Size = new Size(593, 333);
+            ListViewLecturers.Size = new Size(593, 475);
             ListViewLecturers.TabIndex = 8;
             ListViewLecturers.UseCompatibleStateImageBehavior = false;
             ListViewLecturers.View = View.Details;
@@ -188,23 +191,72 @@
             // 
             // StudentsPanel
             // 
+            StudentsPanel.Controls.Add(DeleteStudentbtn);
+            StudentsPanel.Controls.Add(UpdateStudentbtn);
+            StudentsPanel.Controls.Add(AddStudentbtn);
             StudentsPanel.Controls.Add(ListViewStudents);
             StudentsPanel.Controls.Add(labelStudents);
-            StudentsPanel.Location = new Point(51, 154);
+            StudentsPanel.Location = new Point(130, 154);
             StudentsPanel.Margin = new Padding(1);
             StudentsPanel.Name = "StudentsPanel";
-            StudentsPanel.Size = new Size(764, 400);
+            StudentsPanel.Size = new Size(803, 753);
             StudentsPanel.TabIndex = 7;
+            // 
+            // DeleteStudentbtn
+            // 
+            DeleteStudentbtn.BackColor = Color.Red;
+            DeleteStudentbtn.Cursor = Cursors.Hand;
+            DeleteStudentbtn.ForeColor = Color.Transparent;
+            DeleteStudentbtn.Location = new Point(620, 656);
+            DeleteStudentbtn.Margin = new Padding(1);
+            DeleteStudentbtn.Name = "DeleteStudentbtn";
+            DeleteStudentbtn.Size = new Size(164, 62);
+            DeleteStudentbtn.TabIndex = 12;
+            DeleteStudentbtn.Text = "Delete Student";
+            DeleteStudentbtn.UseVisualStyleBackColor = false;
+            DeleteStudentbtn.Click += DeleteStudentbtn_Click;
+            // 
+            // UpdateStudentbtn
+            // 
+            UpdateStudentbtn.BackColor = SystemColors.ControlDark;
+            UpdateStudentbtn.Cursor = Cursors.Hand;
+            UpdateStudentbtn.ForeColor = Color.Transparent;
+            UpdateStudentbtn.Location = new Point(281, 656);
+            UpdateStudentbtn.Margin = new Padding(1);
+            UpdateStudentbtn.Name = "UpdateStudentbtn";
+            UpdateStudentbtn.Size = new Size(226, 62);
+            UpdateStudentbtn.TabIndex = 11;
+            UpdateStudentbtn.Text = "Update Student";
+            UpdateStudentbtn.UseVisualStyleBackColor = false;
+            UpdateStudentbtn.Click += UpdateStudentbtn_Click;
+            // 
+            // AddStudentbtn
+            // 
+            AddStudentbtn.BackColor = Color.FromArgb(0, 192, 0);
+            AddStudentbtn.Cursor = Cursors.Hand;
+            AddStudentbtn.ForeColor = Color.Transparent;
+            AddStudentbtn.Location = new Point(11, 656);
+            AddStudentbtn.Margin = new Padding(1);
+            AddStudentbtn.Name = "AddStudentbtn";
+            AddStudentbtn.Size = new Size(181, 62);
+            AddStudentbtn.TabIndex = 10;
+            AddStudentbtn.Text = "Add New Student";
+            AddStudentbtn.UseVisualStyleBackColor = false;
+            AddStudentbtn.Click += AddStudentbtn_Click;
             // 
             // ListViewStudents
             // 
             ListViewStudents.BackColor = SystemColors.GradientActiveCaption;
             ListViewStudents.Columns.AddRange(new ColumnHeader[] { StudentNumber, FirstName, LastName, Class, PhoneNumber });
+            ListViewStudents.Cursor = Cursors.Hand;
+            ListViewStudents.FullRowSelect = true;
+            ListViewStudents.GridLines = true;
             ListViewStudents.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             ListViewStudents.Location = new Point(11, 35);
             ListViewStudents.Margin = new Padding(1);
+            ListViewStudents.MultiSelect = false;
             ListViewStudents.Name = "ListViewStudents";
-            ListViewStudents.Size = new Size(735, 348);
+            ListViewStudents.Size = new Size(765, 599);
             ListViewStudents.TabIndex = 0;
             ListViewStudents.UseCompatibleStateImageBehavior = false;
             ListViewStudents.View = View.Details;
@@ -310,7 +362,7 @@
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(200, 21, 10, 21);
-            toolStrip1.Size = new Size(1039, 115);
+            toolStrip1.Size = new Size(1059, 115);
             toolStrip1.TabIndex = 5;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -340,10 +392,10 @@
             DrinksPanel.Controls.Add(AddDrinkbtn);
             DrinksPanel.Controls.Add(ListViewDrinks);
             DrinksPanel.Controls.Add(Drinkslbl);
-            DrinksPanel.Location = new Point(56, 154);
+            DrinksPanel.Location = new Point(140, 154);
             DrinksPanel.Margin = new Padding(1);
             DrinksPanel.Name = "DrinksPanel";
-            DrinksPanel.Size = new Size(760, 504);
+            DrinksPanel.Size = new Size(755, 530);
             DrinksPanel.TabIndex = 10;
             // 
             // DeleteDrinkbtn
@@ -351,7 +403,7 @@
             DeleteDrinkbtn.BackColor = Color.Red;
             DeleteDrinkbtn.Cursor = Cursors.Hand;
             DeleteDrinkbtn.ForeColor = Color.Transparent;
-            DeleteDrinkbtn.Location = new Point(586, 421);
+            DeleteDrinkbtn.Location = new Point(586, 448);
             DeleteDrinkbtn.Margin = new Padding(1);
             DeleteDrinkbtn.Name = "DeleteDrinkbtn";
             DeleteDrinkbtn.Size = new Size(164, 62);
@@ -365,7 +417,7 @@
             UpdateDrinkbtn.BackColor = SystemColors.ControlDark;
             UpdateDrinkbtn.Cursor = Cursors.Hand;
             UpdateDrinkbtn.ForeColor = Color.Transparent;
-            UpdateDrinkbtn.Location = new Point(266, 421);
+            UpdateDrinkbtn.Location = new Point(266, 448);
             UpdateDrinkbtn.Margin = new Padding(1);
             UpdateDrinkbtn.Name = "UpdateDrinkbtn";
             UpdateDrinkbtn.Size = new Size(226, 62);
@@ -379,7 +431,7 @@
             AddDrinkbtn.BackColor = Color.FromArgb(0, 192, 0);
             AddDrinkbtn.Cursor = Cursors.Hand;
             AddDrinkbtn.ForeColor = Color.Transparent;
-            AddDrinkbtn.Location = new Point(11, 421);
+            AddDrinkbtn.Location = new Point(11, 448);
             AddDrinkbtn.Margin = new Padding(1);
             AddDrinkbtn.Name = "AddDrinkbtn";
             AddDrinkbtn.Size = new Size(181, 62);
@@ -400,7 +452,7 @@
             ListViewDrinks.Margin = new Padding(1);
             ListViewDrinks.MultiSelect = false;
             ListViewDrinks.Name = "ListViewDrinks";
-            ListViewDrinks.Size = new Size(730, 311);
+            ListViewDrinks.Size = new Size(730, 384);
             ListViewDrinks.TabIndex = 8;
             ListViewDrinks.UseCompatibleStateImageBehavior = false;
             ListViewDrinks.View = View.Details;
@@ -434,7 +486,7 @@
             // 
             Drinkslbl.AutoSize = true;
             Drinkslbl.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            Drinkslbl.Location = new Point(11, 1);
+            Drinkslbl.Location = new Point(11, 0);
             Drinkslbl.Margin = new Padding(1, 0, 1, 0);
             Drinkslbl.Name = "Drinkslbl";
             Drinkslbl.Size = new Size(73, 30);
@@ -445,7 +497,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1039, 843);
+            ClientSize = new Size(1059, 1050);
             Controls.Add(DrinksPanel);
             Controls.Add(LecturersPanel);
             Controls.Add(RoomsPanel);
@@ -511,5 +563,8 @@
         private Button AddDrinkbtn;
         private ToolStripLabel toolStripOrders;
         private ToolStripLabel toolStripRevenue;
+        private Button UpdateStudentbtn;
+        private Button AddStudentbtn;
+        private Button DeleteStudentbtn;
     }
 }

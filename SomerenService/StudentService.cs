@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using SomerenDAL;
@@ -14,9 +15,24 @@ public class StudentService
     {
         studentDAO = new StudentDAO();
     }
-
     public List<Student> GetAll()
     {
         return studentDAO.GetAll(); 
+    }
+    public void DeleteStudent(Student student)
+    {
+        studentDAO.DeleteStudent(student);
+    }
+    public void AddStudent(Student student)
+    {
+        studentDAO.AddStudent(student);
+    }
+    public bool StudentNumberExists(int studentNumber)
+    {
+        return studentDAO.StudentNumberExists(studentNumber);
+    }
+    public void UpdateStudent (Student student)
+    {
+        studentDAO.UpdateStudent(student);
     }
 }
