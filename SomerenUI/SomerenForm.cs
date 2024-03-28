@@ -20,6 +20,7 @@ namespace SomerenUI
             RoomsPanel.Hide();
             LecturersPanel.Hide();
             DrinksPanel.Hide();
+            ActivitiesPanel.Hide();
         }
 
         // Method to hide all panels except the provided one for when the user clicks on one of the tool strip items
@@ -93,6 +94,19 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
+        private void ShowActivitiesPanel()
+        {
+            try
+            {
+                ActivitiesPanel.Show();
+                List<Activity> activities = GetAllActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         // methods to get the data from the database from services
         public List<Lecturer> GetAllLecturers()
         {
@@ -117,6 +131,12 @@ namespace SomerenUI
             DrinkService drinkService = new DrinkService();
             List<Drink> drinks = drinkService.GetAll();
             return drinks;
+        }
+        public List<Activity> GetAllActivities()
+        {
+            ActivityService activityService = new ActivityService();
+            List<Activity> activities = activityService.GetAll();
+            return activities;
         }
         // method to display lecturers data in the listview of lecturers
         public void DisplayLecturers(List<Lecturer> lecturers)
@@ -172,7 +192,7 @@ namespace SomerenUI
         // Method to display drinks in the ListView
         public void DisplayDrinks(List<Drink> drinks)
         {
-            ListViewDrinks.Items.Clear(); 
+            ListViewDrinks.Items.Clear();
 
             foreach (Drink drink in drinks)
             {
@@ -185,6 +205,19 @@ namespace SomerenUI
                 item.SubItems.Add(stockStatus);
 
                 ListViewDrinks.Items.Add(item);
+            }
+        }
+        public void DisplayActivities(List<Activity> activities)
+        {
+            ListViewActivities.Items.Clear();
+
+            foreach (Activity activity in activities)
+            {
+                ListViewItem item = new ListViewItem(activity.ActivityName);
+                item.Tag = activity;
+                item.SubItems.Add(activity.StartDateTime.ToString("yyyy-MM-dd HH:mm"));
+                item.SubItems.Add(activity.EndDateTime.ToString("yyyy-MM-dd HH:mm"));
+                ListViewActivities.Items.Add(item);
             }
         }
 
@@ -302,6 +335,15 @@ namespace SomerenUI
             selectedItem.SubItems[1].Text = drink.Type; // update type (alcoholic or non-alcoholic)
             selectedItem.SubItems[2].Text = drink.Price.ToString(); // update price
             selectedItem.SubItems[3].Text = drink.StockAmount.ToString(); // update stock
+        }
+
+        
+
+        private void toolStripActivity_Click(object sender, EventArgs e)
+        {
+            
+            HidePanelsExcept(ActivitiesPanel);
+            ShowActivitiesPanel();
         }
     }
 }
