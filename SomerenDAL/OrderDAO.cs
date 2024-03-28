@@ -110,5 +110,6 @@ namespace SomerenDAL
                 throw new Exception("An error occurred while updating the drink stock", ex);
             }
         }
+
     }
 }
