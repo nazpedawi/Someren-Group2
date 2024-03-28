@@ -30,7 +30,7 @@ namespace SomerenDAL
         public List<Room> GetAll()
         {
             dbConnection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Rooms", dbConnection);
+            SqlCommand cmd = new SqlCommand("SELECT RoomNumber, BuildingName, RoomType, NumberOfBeds FROM Rooms", dbConnection);
             SqlDataReader reader = cmd.ExecuteReader();
             List<Room> Rooms = new List<Room>();
             while (reader.Read())

@@ -39,38 +39,28 @@ namespace SomerenUI
             // Get start and end dates from date time picker
             DateTime startDate = dateTimePickerStartDate.Value;
             DateTime endDate = dateTimePickerEndDate.Value;
-
+            List<Order> orders;
             // Check if start date and end date are the same (single day)
             if (startDate.Date == endDate.Date)
             {
                 // Get orders for the single day
-                List<Order> orders = GetOrdersForSingleDay(startDate);
-
-                // Calculate report for single day
-                int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
-                decimal totalTurnover = GetTotalTurnover(orders);
-                int numberOfCustomers = GetNumberOfCustomers(orders);
-
-                // Display report data for single day
-                lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
-                lblTotalTurnover.Text = totalTurnover.ToString("C", new System.Globalization.CultureInfo("nl-NL")); // Format as currency as euro
-                lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+                orders = GetOrdersForSingleDay(startDate);
             }
             else
             {
                 // Get orders within the specified date range
-                List<Order> orders = GetOrdersWithinDateRange(startDate, endDate);
-
-                // Calculate report for date range
-                int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
-                decimal totalTurnover = GetTotalTurnover(orders);
-                int numberOfCustomers = GetNumberOfCustomers(orders);
-
-                // Display report data for date range
-                lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
-                lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
-                lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+                orders = GetOrdersWithinDateRange(startDate, endDate);
             }
+                // Calculate report for date range
+            int totalNumberOfDrinks = GetTotalNumberOfDrinks(orders);
+            decimal totalTurnover = GetTotalTurnover(orders);
+            int numberOfCustomers = GetNumberOfCustomers(orders);
+
+            // Display report data for date range
+            lblTotalNumberOfDrinks.Text = totalNumberOfDrinks.ToString();
+            lblTotalTurnover.Text = totalTurnover.ToString("C"); // Format as currency
+            lblNumberOfCustomers.Text = numberOfCustomers.ToString();
+            
         }
         private List<Order> GetOrdersWithinDateRange(DateTime startDate, DateTime endDate)
         {
