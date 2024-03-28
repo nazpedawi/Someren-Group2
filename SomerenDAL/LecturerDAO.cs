@@ -12,6 +12,8 @@ namespace SomerenDAL
     public class LecturerDAO
     {
         private SqlConnection dbConnection;
+
+        // Constructor for initializing database connection
         public LecturerDAO()
         {
             try
@@ -28,6 +30,7 @@ namespace SomerenDAL
             }
         }
 
+        // Retrieve all lecturers from the database
         public List<Lecturer> GetAll()
         {
             try
@@ -56,6 +59,8 @@ namespace SomerenDAL
                 }
             }
         }
+
+        // Read lecturer data from SqlDataReader
         private Lecturer ReadLecturer(SqlDataReader reader)
         {
             try

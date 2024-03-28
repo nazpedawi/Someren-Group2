@@ -1,15 +1,17 @@
+using Microsoft.VisualBasic;
 using SomerenDAL;
 using SomerenModel;
 using SomerenService;
 namespace SomerenUI
 {
+    // the main form class
     public partial class SomerenForm : Form
     {
         private DrinkService drinkService;
         public SomerenForm()
         {
             InitializeComponent();
-            InitializePanels();
+            InitializePanels(); // Hide all panels initially
             drinkService = new DrinkService();
         }
         private void InitializePanels()
@@ -19,6 +21,8 @@ namespace SomerenUI
             LecturersPanel.Hide();
             DrinksPanel.Hide();
         }
+
+        // Method to hide all panels except the provided one for when the user clicks on one of the tool strip items
         private void HidePanelsExcept(Panel panelToShow)
         {
             foreach (Control control in Controls)
@@ -32,6 +36,7 @@ namespace SomerenUI
                 }
             }
         }
+        // Method to display the lecturers panel and the listview with lecturers data inside
         private void ShowLecturersPanel()
         {
             LecturersPanel.Show();
@@ -45,6 +50,8 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        // Method to display the rooms panel and the listview with rooms data inside
         private void ShowRoomsPanel()
         {
             RoomsPanel.Show();
@@ -58,6 +65,7 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
+        // Method to display the students panel and the listview with students data inside
         private void ShowStudentsPanel()
         {
             try
@@ -71,6 +79,7 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
+        // Method to display the drinks panel and the listview with drinks data inside
         private void ShowDrinksPanel()
         {
             try
@@ -84,32 +93,7 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
-        public void DisplayDrinks(List<Drink> drinks)
-        {
-            ListViewDrinks.Items.Clear();
-
-            foreach (Drink drink in drinks)
-            {
-                ListViewItem item = new ListViewItem(drink.Name);
-                item.Tag = drink;
-                item.SubItems.Add(drink.Type);
-                item.SubItems.Add(drink.Price.ToString());
-                item.SubItems.Add(drink.StockAmount.ToString());
-                string stockStatus = GetStockStatus(drink.StockAmount);
-                item.SubItems.Add(stockStatus);
-
-                ListViewDrinks.Items.Add(item);
-            }
-        }
-        private string GetStockStatus(int stockAmount)
-        {
-            if (stockAmount < 1)
-                return "Stock empty";
-            else if (stockAmount < 10)
-                return "Stock nearly depleted";
-            else
-                return "Stock sufficient";
-        }
+        // methods to get the data from the database from services
         public List<Lecturer> GetAllLecturers()
         {
             LecturerService lecturerService = new LecturerService();
@@ -134,9 +118,11 @@ namespace SomerenUI
             List<Drink> drinks = drinkService.GetAll();
             return drinks;
         }
+        // method to display lecturers data in the listview of lecturers
         public void DisplayLecturers(List<Lecturer> lecturers)
         {
-            ListViewLecturers.Items.Clear();
+            ListViewLecturers.Items.Clear(); // Clear existing items in ListView
+                                             // to not get duplicate data each time the lecturers menu item is clicked
 
             foreach (Lecturer lecturer in lecturers)
             {
@@ -146,12 +132,13 @@ namespace SomerenUI
                 item.SubItems.Add(lecturer.Age.ToString());
                 item.SubItems.Add(lecturer.PhoneNumber.ToString());
 
-                ListViewLecturers.Items.Add(item);
+                ListViewLecturers.Items.Add(item); // add all the data in columns to the listview
             }
         }
+        // method to display students data in the listview of students
         public void DisplayStudents(List<Student> students)
         {
-            ListViewStudents.Items.Clear();
+            ListViewStudents.Items.Clear(); // Clear existing items in ListView to not get duplicate data in the listview
 
             foreach (Student student in students)
             {
@@ -162,12 +149,13 @@ namespace SomerenUI
                 item.SubItems.Add(student.Class.ToString());
                 item.SubItems.Add(student.PhoneNumber.ToString());
 
-                ListViewStudents.Items.Add(item);
+                ListViewStudents.Items.Add(item); // add items to listview of students
             }
         }
+        // method to display rooms data in the listview of rooms
         public void DisplayRooms(List<Room> rooms)
         {
-            ListViewRooms.Items.Clear();
+            ListViewRooms.Items.Clear(); // clear existing data from the listview
 
             foreach (Room room in rooms)
             {
@@ -177,9 +165,41 @@ namespace SomerenUI
                 item.SubItems.Add(room.RoomType);
                 item.SubItems.Add(room.NumberOfBeds.ToString());
 
-                ListViewRooms.Items.Add(item);
+                ListViewRooms.Items.Add(item); // add data to the listview
             }
         }
+
+        // Method to display drinks in the ListView
+        public void DisplayDrinks(List<Drink> drinks)
+        {
+            ListViewDrinks.Items.Clear(); 
+
+            foreach (Drink drink in drinks)
+            {
+                ListViewItem item = new ListViewItem(drink.Name);
+                item.Tag = drink;
+                item.SubItems.Add(drink.Type);
+                item.SubItems.Add(drink.Price.ToString());
+                item.SubItems.Add(drink.StockAmount.ToString());
+                string stockStatus = GetStockStatus(drink.StockAmount); // calling the method to calculate the stock status based on the stock amount
+                item.SubItems.Add(stockStatus);
+
+                ListViewDrinks.Items.Add(item);
+            }
+        }
+
+        // method to calculate the stock status (empty, nearly depleted or sufficient) based on the stock amnount of the drink
+        private string GetStockStatus(int stockAmount)
+        {
+            if (stockAmount < 1)
+                return "Stock empty";
+            else if (stockAmount < 10)
+                return "Stock nearly depleted";
+            else
+                return "Stock sufficient";
+        }
+
+        // event handlers for each menu item in the toolstrip for when they are clicked
         private void toolStripStudents_Click(object sender, EventArgs e)
         {
             HidePanelsExcept(DrinksPanel);
@@ -200,25 +220,38 @@ namespace SomerenUI
             HidePanelsExcept(DrinksPanel);
             ShowDrinksPanel();
         }
+        private void toolStripOrders_Click(object sender, EventArgs e)
+        {
+            OrdersForm ordersForm = new OrdersForm();
+            ordersForm.ShowDialog();
+        }
+        private void toolStripRevenue_Click_1(object sender, EventArgs e)
+        {
+            RevenueForm revenueForm = new RevenueForm();
+            revenueForm.ShowDialog();
+        }
+
+        // event handlers for adding, updating and deleting drinks
+        // for when the buttons on the form are clicked
         private void AddDrinkbtn_Click(object sender, EventArgs e)
         {
             AddDrinksForm addDrinkForm = new AddDrinksForm();
-            addDrinkForm.ShowDialog();
+            addDrinkForm.ShowDialog(); // show the form for adding a drink
         }
         private void DeleteDrinkbtn_Click(object sender, EventArgs e)
         {
-            if (ListViewDrinks.SelectedItems.Count > 0)
+            if (ListViewDrinks.SelectedItems.Count > 0) // make sure a drink is selected by the user
             {
                 ListViewItem selectedItem = ListViewDrinks.SelectedItems[0];
                 Drink drink = selectedItem.Tag as Drink;
 
-                if (drink != null)
+                if (drink != null) // make sure the row selected has a drink in it
                 {
                     try
                     {
                         drinkService.DeleteDrink(drink);
-                        ListViewDrinks.Items.Remove(selectedItem);
-                        MessageBox.Show("Drink deleted successfully.");
+                        ListViewDrinks.Items.Remove(selectedItem); // remove the drink from the listview
+                        MessageBox.Show("Drink deleted successfully."); // let the user know the drink was deleted
                     }
                     catch (Exception ex)
                     {
@@ -242,10 +275,11 @@ namespace SomerenUI
                     {
                         UpdateDrinksForm updateForm = new UpdateDrinksForm(drink);
 
-                        if (updateForm.ShowDialog() == DialogResult.OK)
+                        if (updateForm.ShowDialog() == DialogResult.OK) // maken sure dialog result is OK
+                                                                        // and make sure the drink was updated successfully in the updateform
                         {
-                            UpdateDrinkInformation(selectedItem, drink);
-                            drinkService.UpdateDrink(drink);
+                            UpdateDrinkInformation(selectedItem, drink); // call method to change the selected drink details to the new details in the listview
+                            drinkService.UpdateDrink(drink); // evem the stock status is updated based on the new stock amount
                             MessageBox.Show("Drink updated successfully!");
                         }
                     }
@@ -260,22 +294,14 @@ namespace SomerenUI
                 MessageBox.Show("Please select a drink first.");
             }
         }
+
+        // Method to update the information of a drink in the ListView
         private void UpdateDrinkInformation(ListViewItem selectedItem, Drink drink)
         {
-            selectedItem.SubItems[0].Text = drink.Name;
-            selectedItem.SubItems[1].Text = drink.Type;
-            selectedItem.SubItems[2].Text = drink.Price.ToString();
-            selectedItem.SubItems[3].Text = drink.StockAmount.ToString();
-        }
-        private void toolStripOrders_Click(object sender, EventArgs e)
-        {
-            OrdersForm ordersForm = new OrdersForm();
-            ordersForm.ShowDialog();
-        }
-        private void toolStripRevenue_Click_1(object sender, EventArgs e)
-        {
-            RevenueForm revenueForm = new RevenueForm();
-            revenueForm.ShowDialog();
+            selectedItem.SubItems[0].Text = drink.Name; // update name
+            selectedItem.SubItems[1].Text = drink.Type; // update type (alcoholic or non-alcoholic)
+            selectedItem.SubItems[2].Text = drink.Price.ToString(); // update price
+            selectedItem.SubItems[3].Text = drink.StockAmount.ToString(); // update stock
         }
     }
 }

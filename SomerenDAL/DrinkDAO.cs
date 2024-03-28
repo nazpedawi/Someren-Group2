@@ -14,6 +14,8 @@ namespace SomerenDAL
     public class DrinkDAO
     {
         private SqlConnection dbConnection;
+
+        // Constructor for initializing database connection
         public DrinkDAO()
         {
             try
@@ -26,6 +28,8 @@ namespace SomerenDAL
                 throw new Exception("An Error occured while configuring database connection.", ex);
             }
         }
+
+        // Method to open database connection
         private void OpenConnection()
         {
             try
@@ -40,6 +44,8 @@ namespace SomerenDAL
                 throw new Exception("An error occurred while opening database connection.", ex);
             }
         }
+
+        // method to close database connection
         private void CloseConnection()
         {
             try
@@ -55,6 +61,7 @@ namespace SomerenDAL
             }
         }
 
+        // Retrieve all drinks from the database
         public List<Drink> GetAll()
         {
             try
@@ -81,6 +88,8 @@ namespace SomerenDAL
                 CloseConnection();
             }
         }
+
+        // Read drink data from SqlDataReader
         private Drink ReadDrink(SqlDataReader reader)
         {
             try
@@ -99,6 +108,8 @@ namespace SomerenDAL
                 throw new Exception("An Error Occured While Reading 'Drink' Data", ex);
             }
         }
+
+        // Method for Adding a new drink to the database
         public Drink AddDrink(Drink drink)
         {
             try
@@ -125,6 +136,8 @@ namespace SomerenDAL
                 CloseConnection();
             }
         }
+
+        // Method to Delete a drink from the database
         public void DeleteDrink(Drink drink)
         {
             try
@@ -144,6 +157,8 @@ namespace SomerenDAL
                 CloseConnection();
             }
         }
+
+        // Update a drink in the database
         public void UpdateDrink(Drink drink)
         {
             try
