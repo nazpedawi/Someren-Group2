@@ -415,5 +415,11 @@ namespace SomerenUI
             selectedItem.SubItems[3].Text = student.Class;
             selectedItem.SubItems[4].Text = student.PhoneNumber.ToString();
         }
+
+        private void toolStripActivity_Click(object sender, EventArgs e)
+        {
+            HidePanelsExcept(ActivitiesPanel);
+            ShowActivitiesPanel();
+        }
     }
 }
