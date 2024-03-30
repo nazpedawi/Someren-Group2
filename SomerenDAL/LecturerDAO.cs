@@ -32,36 +32,7 @@ namespace SomerenDAL
             }
         }
 
-        private void OpenConnection()
-        {
-            try
-            {
-                if (dbConnection.State != ConnectionState.Open)
-                {
-                    dbConnection.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while opening database connection.", ex);
-            }
-        }
-
-        // method to close database connection
-        private void CloseConnection()
-        {
-            try
-            {
-                if (dbConnection.State != ConnectionState.Closed)
-                {
-                    dbConnection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while closing database connection.", ex);
-            }
-        }
+       
 
         // Retrieve all lecturers from the database
         public List<Lecturer> GetAll()
@@ -69,7 +40,7 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT FirstName, LastName, Age, PhoneNumber FROM Lecturers", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT LecturerNumber, FirstName, LastName, Age, PhoneNumber FROM Lecturers", dbConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Lecturer> lecturers = new List<Lecturer>();
                 while (reader.Read())
@@ -98,12 +69,13 @@ namespace SomerenDAL
         {
             try
             {
+                int lecturernumber = (int)reader["LecturerNumber"];
                 string firstname = (string)reader["FirstName"];
                 string lastname = (string)reader["LastName"];
                 int age = (int)reader["Age"];
                 int phonenumber = (int)reader["PhoneNumber"];
 
-                return new Lecturer(firstname, lastname, age, phonenumber);
+                return new Lecturer(lecturernumber, firstname, lastname, age, phonenumber);
             }
             catch (Exception ex)
             {
@@ -172,13 +144,13 @@ namespace SomerenDAL
         {
             try
             {
-                OpenConnection();
+                dbConnection.Open();
 
                 SqlCommand cmd = new SqlCommand("INSERT INTO supervisation VALUES (@LecturerNumber, @ActivityID);" , dbConnection);
                 cmd.Parameters.AddWithValue("@LecturerNumber", lecturer.LecturerNumber);
                 cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
                 cmd.ExecuteNonQuery();
-                return new Lecturer(lecturer.FirstName, lecturer.LastName, lecturer.Age, lecturer.PhoneNumber);
+                return new Lecturer(lecturer.LecturerNumber, lecturer.FirstName, lecturer.LastName, lecturer.Age, lecturer.PhoneNumber);
             }
             catch (SqlException ex)
             {
@@ -186,7 +158,34 @@ namespace SomerenDAL
             }
             finally
             {
-                CloseConnection();
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
+
+        public void DeleteSupervisor(Lecturer lecturer, Activity activity)
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM supervisation WHERE LecturerNumber = @LecturerNumber AND ActivityID = @ActivityID;", dbConnection);
+                cmd.Parameters.AddWithValue("@LecturerNumber", lecturer.LecturerNumber);
+                cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An error occurred while deleting the supervisor", ex);
+            }
+            finally
+            {
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
             }
         }
     }

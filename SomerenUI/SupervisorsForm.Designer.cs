@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             SupervisationPanel = new Panel();
+            AddSupervisorbtn = new Button();
             label2 = new Label();
             label1 = new Label();
             ListViewNonSupervisors = new ListView();
@@ -41,12 +42,13 @@
             LastName = new ColumnHeader();
             Age = new ColumnHeader();
             PhoneNumber = new ColumnHeader();
-            AddSupervisorbtn = new Button();
+            DeleteSupervisorbtn = new Button();
             SupervisationPanel.SuspendLayout();
             SuspendLayout();
             // 
             // SupervisationPanel
             // 
+            SupervisationPanel.Controls.Add(DeleteSupervisorbtn);
             SupervisationPanel.Controls.Add(AddSupervisorbtn);
             SupervisationPanel.Controls.Add(label2);
             SupervisationPanel.Controls.Add(label1);
@@ -56,6 +58,19 @@
             SupervisationPanel.Name = "SupervisationPanel";
             SupervisationPanel.Size = new Size(953, 388);
             SupervisationPanel.TabIndex = 0;
+            // 
+            // AddSupervisorbtn
+            // 
+            AddSupervisorbtn.BackColor = Color.FromArgb(0, 192, 0);
+            AddSupervisorbtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            AddSupervisorbtn.ForeColor = SystemColors.Control;
+            AddSupervisorbtn.Location = new Point(100, 263);
+            AddSupervisorbtn.Name = "AddSupervisorbtn";
+            AddSupervisorbtn.Size = new Size(245, 92);
+            AddSupervisorbtn.TabIndex = 7;
+            AddSupervisorbtn.Text = "Add Supervisor";
+            AddSupervisorbtn.UseVisualStyleBackColor = false;
+            AddSupervisorbtn.Click += AddSupervisorbtn_Click;
             // 
             // label2
             // 
@@ -145,15 +160,18 @@
             PhoneNumber.Text = "Phone No.";
             PhoneNumber.Width = 100;
             // 
-            // AddSupervisorbtn
+            // DeleteSupervisorbtn
             // 
-            AddSupervisorbtn.Location = new Point(93, 263);
-            AddSupervisorbtn.Name = "AddSupervisorbtn";
-            AddSupervisorbtn.Size = new Size(245, 92);
-            AddSupervisorbtn.TabIndex = 7;
-            AddSupervisorbtn.Text = "Add Supervisor";
-            AddSupervisorbtn.UseVisualStyleBackColor = true;
-            AddSupervisorbtn.Click += AddSupervisorbtn_Click;
+            DeleteSupervisorbtn.BackColor = Color.Red;
+            DeleteSupervisorbtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            DeleteSupervisorbtn.ForeColor = SystemColors.Control;
+            DeleteSupervisorbtn.Location = new Point(530, 263);
+            DeleteSupervisorbtn.Name = "DeleteSupervisorbtn";
+            DeleteSupervisorbtn.Size = new Size(245, 92);
+            DeleteSupervisorbtn.TabIndex = 8;
+            DeleteSupervisorbtn.Text = "Delete supervisor";
+            DeleteSupervisorbtn.UseVisualStyleBackColor = false;
+            DeleteSupervisorbtn.Click += DeleteSupervisorbtn_Click;
             // 
             // SupervisorsForm
             // 
@@ -184,5 +202,6 @@
         private Label label2;
         private Label label1;
         private Button AddSupervisorbtn;
+        private Button DeleteSupervisorbtn;
     }
 }

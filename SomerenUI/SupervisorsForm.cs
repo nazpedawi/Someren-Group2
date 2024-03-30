@@ -94,13 +94,46 @@ namespace SomerenUI
                 if (ListViewNonSupervisors.SelectedItems.Count == 0)
                 {
                     MessageBox.Show("Please select a non supervisor first.");
+                    return;
                 }
                 ListViewItem selectedItem = ListViewNonSupervisors.SelectedItems[0];
-                Lecturer  selectedLecturer = selectedItem.Tag as Lecturer;  
-                
+                Lecturer selectedLecturer = selectedItem.Tag as Lecturer;
+
                 lecturerService.AddSupervisor(selectedLecturer, activity);
+                MessageBox.Show("Supervisor added successfully!");
+                Close();
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteSupervisorbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ListViewSupervisors.SelectedItems.Count == 0) 
+                {
+                    MessageBox.Show("Please select a supervisor first.");
+                    return;
+                }
+                ListViewItem selectedItem = ListViewSupervisors.SelectedItems[0];
+                Lecturer selectedSupervisor = selectedItem.Tag as Lecturer;
+
+                DialogResult result = MessageBox.Show("Are you sure you wish to remove this supervisor?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    lecturerService.DeleteSupervisor(selectedSupervisor, activity);
+
+                    MessageBox.Show("Supervisor deleted successfully!");
+                    Close();
+                }
+                
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
