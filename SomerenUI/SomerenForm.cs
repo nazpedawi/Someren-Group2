@@ -337,13 +337,34 @@ namespace SomerenUI
             selectedItem.SubItems[3].Text = drink.StockAmount.ToString(); // update stock
         }
 
-        
+
 
         private void toolStripActivity_Click(object sender, EventArgs e)
         {
-            
+
             HidePanelsExcept(ActivitiesPanel);
             ShowActivitiesPanel();
+        }
+
+        private void Supervisorsbtn_Click(object sender, EventArgs e)
+        {
+            if (ListViewActivities.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    ListViewItem selectedItem = ListViewActivities.SelectedItems[0];
+                    if (selectedItem.Tag is Activity activity)
+                    {
+                        SupervisorsForm supervisorsForm = new SupervisorsForm(activity);
+                        supervisorsForm.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else { MessageBox.Show("Please select an activity first."); }
         }
     }
 }

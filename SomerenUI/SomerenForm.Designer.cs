@@ -72,12 +72,12 @@
             Status = new ColumnHeader();
             Drinkslbl = new Label();
             ActivitiesPanel = new Panel();
+            Supervisorsbtn = new Button();
             ListViewActivities = new ListView();
             ActivityName = new ColumnHeader();
             StartDateTime = new ColumnHeader();
             EndDateTime = new ColumnHeader();
             label2 = new Label();
-            Supervisorsbtn = new Button();
             RoomsPanel.SuspendLayout();
             LecturersPanel.SuspendLayout();
             StudentsPanel.SuspendLayout();
@@ -468,6 +468,18 @@
             ActivitiesPanel.Size = new Size(510, 373);
             ActivitiesPanel.TabIndex = 11;
             // 
+            // Supervisorsbtn
+            // 
+            Supervisorsbtn.BackColor = Color.FromArgb(0, 192, 0);
+            Supervisorsbtn.ForeColor = SystemColors.Control;
+            Supervisorsbtn.Location = new Point(43, 267);
+            Supervisorsbtn.Name = "Supervisorsbtn";
+            Supervisorsbtn.Size = new Size(158, 67);
+            Supervisorsbtn.TabIndex = 3;
+            Supervisorsbtn.Text = "Check supervisors";
+            Supervisorsbtn.UseVisualStyleBackColor = false;
+            Supervisorsbtn.Click += Supervisorsbtn_Click;
+            // 
             // ListViewActivities
             // 
             ListViewActivities.Activation = ItemActivation.OneClick;
@@ -507,15 +519,6 @@
             label2.Size = new Size(152, 25);
             label2.TabIndex = 0;
             label2.Text = "Select an activity";
-            // 
-            // Supervisorsbtn
-            // 
-            Supervisorsbtn.Location = new Point(43, 267);
-            Supervisorsbtn.Name = "Supervisorsbtn";
-            Supervisorsbtn.Size = new Size(158, 67);
-            Supervisorsbtn.TabIndex = 3;
-            Supervisorsbtn.Text = "Check supervisors";
-            Supervisorsbtn.UseVisualStyleBackColor = true;
             // 
             // SomerenForm
             // 

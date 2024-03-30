@@ -55,17 +55,19 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(18, 23);
+            panel1.Location = new Point(14, 18);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(720, 281);
+            panel1.Size = new Size(576, 225);
             panel1.TabIndex = 0;
             // 
             // NonAlcoholicbtn
             // 
             NonAlcoholicbtn.AutoSize = true;
-            NonAlcoholicbtn.Location = new Point(426, 94);
+            NonAlcoholicbtn.Location = new Point(341, 75);
+            NonAlcoholicbtn.Margin = new Padding(2, 2, 2, 2);
             NonAlcoholicbtn.Name = "NonAlcoholicbtn";
-            NonAlcoholicbtn.Size = new Size(150, 29);
+            NonAlcoholicbtn.Size = new Size(126, 24);
             NonAlcoholicbtn.TabIndex = 9;
             NonAlcoholicbtn.TabStop = true;
             NonAlcoholicbtn.Text = "Non-Alcoholic";
@@ -74,9 +76,10 @@
             // Alcoholicbtn
             // 
             Alcoholicbtn.AutoSize = true;
-            Alcoholicbtn.Location = new Point(230, 94);
+            Alcoholicbtn.Location = new Point(184, 75);
+            Alcoholicbtn.Margin = new Padding(2, 2, 2, 2);
             Alcoholicbtn.Name = "Alcoholicbtn";
-            Alcoholicbtn.Size = new Size(109, 29);
+            Alcoholicbtn.Size = new Size(92, 24);
             Alcoholicbtn.TabIndex = 8;
             Alcoholicbtn.TabStop = true;
             Alcoholicbtn.Text = "Alcoholic";
@@ -89,9 +92,10 @@
             AddDrinkbtn.ForeColor = Color.White;
             AddDrinkbtn.Image = (Image)resources.GetObject("AddDrinkbtn.Image");
             AddDrinkbtn.ImageAlign = ContentAlignment.MiddleLeft;
-            AddDrinkbtn.Location = new Point(517, 161);
+            AddDrinkbtn.Location = new Point(414, 129);
+            AddDrinkbtn.Margin = new Padding(2, 2, 2, 2);
             AddDrinkbtn.Name = "AddDrinkbtn";
-            AddDrinkbtn.Size = new Size(156, 82);
+            AddDrinkbtn.Size = new Size(125, 66);
             AddDrinkbtn.TabIndex = 7;
             AddDrinkbtn.Text = "Add Drink";
             AddDrinkbtn.TextAlign = ContentAlignment.MiddleRight;
@@ -102,34 +106,38 @@
             // DrinkStockAmounttxtbox
             // 
             DrinkStockAmounttxtbox.BackColor = Color.FromArgb(255, 192, 255);
-            DrinkStockAmounttxtbox.Location = new Point(230, 210);
+            DrinkStockAmounttxtbox.Location = new Point(184, 168);
+            DrinkStockAmounttxtbox.Margin = new Padding(2, 2, 2, 2);
             DrinkStockAmounttxtbox.Name = "DrinkStockAmounttxtbox";
-            DrinkStockAmounttxtbox.Size = new Size(109, 31);
+            DrinkStockAmounttxtbox.Size = new Size(88, 27);
             DrinkStockAmounttxtbox.TabIndex = 6;
             // 
             // DrinkPricetxtbox
             // 
             DrinkPricetxtbox.BackColor = Color.FromArgb(255, 192, 255);
-            DrinkPricetxtbox.Location = new Point(230, 151);
+            DrinkPricetxtbox.Location = new Point(184, 121);
+            DrinkPricetxtbox.Margin = new Padding(2, 2, 2, 2);
             DrinkPricetxtbox.Name = "DrinkPricetxtbox";
-            DrinkPricetxtbox.Size = new Size(91, 31);
+            DrinkPricetxtbox.Size = new Size(74, 27);
             DrinkPricetxtbox.TabIndex = 5;
             // 
             // DrinkNametxtbox
             // 
             DrinkNametxtbox.BackColor = Color.FromArgb(255, 192, 255);
-            DrinkNametxtbox.Location = new Point(230, 37);
+            DrinkNametxtbox.Location = new Point(184, 30);
+            DrinkNametxtbox.Margin = new Padding(2, 2, 2, 2);
             DrinkNametxtbox.Name = "DrinkNametxtbox";
-            DrinkNametxtbox.Size = new Size(178, 31);
+            DrinkNametxtbox.Size = new Size(143, 27);
             DrinkNametxtbox.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(50, 210);
+            label4.Location = new Point(40, 168);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(148, 30);
+            label4.Size = new Size(128, 25);
             label4.TabIndex = 3;
             label4.Text = "Stock Amount";
             // 
@@ -137,9 +145,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(50, 149);
+            label3.Location = new Point(40, 119);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(60, 30);
+            label3.Size = new Size(54, 25);
             label3.TabIndex = 2;
             label3.Text = "Price";
             // 
@@ -147,9 +156,10 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(50, 90);
+            label2.Location = new Point(40, 72);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(60, 30);
+            label2.Size = new Size(51, 25);
             label2.TabIndex = 1;
             label2.Text = "Type";
             // 
@@ -157,20 +167,23 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(50, 36);
+            label1.Location = new Point(40, 29);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(71, 30);
+            label1.Size = new Size(62, 25);
             label1.TabIndex = 0;
             label1.Text = "Name";
             // 
             // AddDrinksForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(743, 314);
+            ClientSize = new Size(594, 251);
             Controls.Add(panel1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "AddDrinksForm";
             Text = "AddDrinksForm";
+            Load += AddDrinksForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
