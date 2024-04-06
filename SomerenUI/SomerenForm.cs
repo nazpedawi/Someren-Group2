@@ -8,13 +8,11 @@ namespace SomerenUI
     public partial class SomerenForm : Form
     {
         private DrinkService drinkService;
-        private StudentService studentService;
         public SomerenForm()
         {
             InitializeComponent();
             InitializePanels(); // Hide all panels initially
             drinkService = new DrinkService();
-            studentService = new StudentService();
         }
         private void InitializePanels()
         {
@@ -237,7 +235,7 @@ namespace SomerenUI
         // event handlers for each menu item in the toolstrip for when they are clicked
         private void toolStripStudents_Click(object sender, EventArgs e)
         {
-            HidePanelsExcept(StudentsPanel);
+            HidePanelsExcept(DrinksPanel);
             ShowStudentsPanel();
         }
         private void toolStripLecturers_Click(object sender, EventArgs e)
@@ -339,60 +337,26 @@ namespace SomerenUI
             selectedItem.SubItems[3].Text = drink.StockAmount.ToString(); // update stock
         }
 
-        private void DeleteStudentbtn_Click(object sender, EventArgs e)
-        {
-            if (ListViewStudents.SelectedItems.Count > 0) // make sure a student is selected by the user
-            {
-                ListViewItem selectedItem = ListViewStudents.SelectedItems[0];
-                Student student = selectedItem.Tag as Student;
 
-                if (student != null) // make sure the row selected has a student in it
-                {
-                    // warn the user if they actually want to delete the selected student
-                    DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete student '{student.FirstName} {student.LastName}' ?", "Confirmation", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes) // if the user clicks 'yes' on the message box then delete the student
-                    {
-                        try
-                        {
-                            studentService.DeleteStudent(student);
-                            ListViewStudents.Items.Remove(selectedItem); // remove the student from the listview
-                            MessageBox.Show("Student deleted successfully."); // let the user know the student was deleted
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a student first");
-            }
-        }
-        private void AddStudentbtn_Click(object sender, EventArgs e)
+
+        private void toolStripActivity_Click(object sender, EventArgs e)
         {
-            AddStudentForm addStudentForm = new AddStudentForm();
-            addStudentForm.ShowDialog();
+
+            HidePanelsExcept(ActivitiesPanel);
+            ShowActivitiesPanel();
         }
-        private void UpdateStudentbtn_Click(object sender, EventArgs e)
+
+        private void Supervisorsbtn_Click(object sender, EventArgs e)
         {
-            if (ListViewStudents.SelectedItems.Count > 0) // make usre a student has been selected
+            if (ListViewActivities.SelectedItems.Count > 0)
             {
                 try
                 {
-                    ListViewItem selectedItem = ListViewStudents.SelectedItems[0];
-                    if (selectedItem.Tag is Student student)
+                    ListViewItem selectedItem = ListViewActivities.SelectedItems[0];
+                    if (selectedItem.Tag is Activity activity)
                     {
-                        UpdateStudentForm updateForm = new UpdateStudentForm(student);
-
-                        if (updateForm.ShowDialog() == DialogResult.OK) // maken sure dialog result is OK
-                                                                        // and make sure the student was updated successfully in the updateform
-                        {
-                            UpdateStudentInformation(selectedItem, student); // call method to change the selected student details to the new details in the listview
-                            studentService.UpdateStudent(student); // update student details in the database
-                            MessageBox.Show("Student updated successfully!");
-                        }
+                        SupervisorsForm supervisorsForm = new SupervisorsForm(activity);
+                        supervisorsForm.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -400,26 +364,28 @@ namespace SomerenUI
                     MessageBox.Show(ex.Message);
                 }
             }
-            else
+            else { MessageBox.Show("Please select an activity first."); }
+        }
+
+        private void Participantbtn_Click(object sender, EventArgs e)
+        {
+            if (ListViewActivities.SelectedItems.Count > 0)
             {
-                MessageBox.Show("Please select a student first.");
+                try
+                {
+                    ListViewItem selectedItem = ListViewActivities.SelectedItems[0];
+                    if (selectedItem.Tag is Activity activity)
+                    {
+                        ParticipantsForm participantsForm = new ParticipantsForm(activity);
+                        participantsForm.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-        }
-
-        // Method to update the information of a student in the ListView
-        private void UpdateStudentInformation(ListViewItem selectedItem, Student student)
-        {
-            selectedItem.SubItems[0].Text = student.StudentNumber.ToString(); // update name
-            selectedItem.SubItems[1].Text = student.FirstName; // update name
-            selectedItem.SubItems[2].Text = student.LastName;
-            selectedItem.SubItems[3].Text = student.Class;
-            selectedItem.SubItems[4].Text = student.PhoneNumber.ToString();
-        }
-
-        private void toolStripActivity_Click(object sender, EventArgs e)
-        {
-            HidePanelsExcept(ActivitiesPanel);
-            ShowActivitiesPanel();
+            else { MessageBox.Show("Please select an activity first."); }
         }
     }
 }

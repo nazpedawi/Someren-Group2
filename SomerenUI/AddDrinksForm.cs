@@ -88,5 +88,10 @@ namespace SomerenUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void AddDrinksForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

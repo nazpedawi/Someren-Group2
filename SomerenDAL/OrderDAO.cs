@@ -109,6 +109,58 @@ namespace SomerenDAL
                 throw new Exception("An error occurred while updating the drink stock", ex);
             }
         }
-
+        public List<Order> GetOrdersWithinDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks, OrderDate FROM Orders WHERE OrderDate >= @StartDate AND OrderDate <= @EndDate", dbConnection);
+                cmd.Parameters.AddWithValue("@StartDate", startDate);
+                cmd.Parameters.AddWithValue("@EndDate", endDate);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Order> orders = new List<Order>();
+                while (reader.Read())
+                {
+                    Order order = ReadOrder(reader);
+                    orders.Add(order);
+                }
+                reader.Close();
+                return orders;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An Error Occurred While Retrieving Orders Within Date Range From The Database", ex);
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
+        public List<Order> GetOrdersForSingleDay(DateTime date)
+        {
+            try
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, DrinkId, NumberOfDrinks, OrderDate FROM Orders WHERE CONVERT(date, OrderDate) = @Date", dbConnection);
+                cmd.Parameters.AddWithValue("@Date", date.Date);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<Order> orders = new List<Order>();
+                while (reader.Read())
+                {
+                    Order order = ReadOrder(reader);
+                    orders.Add(order);
+                }
+                reader.Close();
+                return orders;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("An Error Occurred While Retrieving Orders for Single Day From The Database", ex);
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
     }
 }
