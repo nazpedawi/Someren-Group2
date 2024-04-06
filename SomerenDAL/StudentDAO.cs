@@ -58,7 +58,7 @@ namespace SomerenDAL
             }
             catch (SqlException ex)
             {
-                throw new Exception("An error occurred while deleting the student", ex);
+                throw new Exception("An error occured while deleting student" + ex.Message);
             }
             finally
             {
@@ -71,19 +71,20 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Students VALUES (@StudentNumber, @FirstName, @LastName, @Class, @PhoneNumber)", dbConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Students VALUES (@StudentNumber, @FirstName, @LastName, @Class, @PhoneNumber, @RoomNumber)", dbConnection);
                 cmd.Parameters.AddWithValue("@StudentNumber", student.StudentNumber);
                 cmd.Parameters.AddWithValue("@FirstName", student.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Class", student.Class);
                 cmd.Parameters.AddWithValue("@PhoneNumber", student.PhoneNumber);
+                cmd.Parameters.AddWithValue("@RoomNumber", student.RoomNumber);
 
                 cmd.ExecuteNonQuery();
                 return new Student(student.StudentNumber, student.FirstName, student.LastName, student.Class, student.PhoneNumber, student.RoomNumber);
             }
             catch (SqlException ex)
             {
-                throw new Exception("An error occurred while adding the student", ex);
+                throw new Exception("An error occurred while adding the student" + ex.Message);
             }
             finally
             {
@@ -103,7 +104,7 @@ namespace SomerenDAL
             }
             catch (SqlException ex)
             {
-                throw new Exception("An error occurred while checking if the student number already exists", ex);
+                throw new Exception("An error occurred while checking if the student number already exists" + ex.Message);
             }
         }
         public void UpdateStudent(Student student)
@@ -118,11 +119,12 @@ namespace SomerenDAL
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Class", student.Class);
                 cmd.Parameters.AddWithValue("@PhoneNumber", student.PhoneNumber);
+                cmd.Parameters.AddWithValue("@RoomNumber", student.RoomNumber);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
-                throw new Exception("An error occurred while updating the student", ex);
+                throw new Exception("An error occured while updating student" + ex.Message);
             }
             finally
             {
