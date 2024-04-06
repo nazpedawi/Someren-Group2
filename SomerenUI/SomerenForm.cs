@@ -385,7 +385,7 @@ namespace SomerenUI
             else { MessageBox.Show("Please select an activity first."); }
         }
 
-        // event handlers for when the differwent buttons on the student panel is clcicked
+        // event handlers for when the differwent buttons on the student panel are clcicked
         private void AddStudentbtn_Click(object sender, EventArgs e)
         {
             AddStudentForm addStudentForm = new AddStudentForm();
