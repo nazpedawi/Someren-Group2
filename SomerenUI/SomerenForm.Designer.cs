@@ -265,7 +265,7 @@
             ListViewStudents.Margin = new Padding(1);
             ListViewStudents.MultiSelect = false;
             ListViewStudents.Name = "ListViewStudents";
-            ListViewStudents.Size = new Size(704, 602);
+            ListViewStudents.Size = new Size(685, 602);
             ListViewStudents.TabIndex = 0;
             ListViewStudents.UseCompatibleStateImageBehavior = false;
             ListViewStudents.View = View.Details;
