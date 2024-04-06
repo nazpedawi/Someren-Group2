@@ -366,5 +366,26 @@ namespace SomerenUI
             }
             else { MessageBox.Show("Please select an activity first."); }
         }
+
+        private void Participantbtn_Click(object sender, EventArgs e)
+        {
+            if (ListViewActivities.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    ListViewItem selectedItem = ListViewActivities.SelectedItems[0];
+                    if (selectedItem.Tag is Activity activity)
+                    {
+                        ParticipantsForm participantsForm = new ParticipantsForm(activity);
+                        participantsForm.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else { MessageBox.Show("Please select an activity first."); }
+        }
     }
 }

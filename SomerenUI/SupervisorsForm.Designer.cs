@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             SupervisationPanel = new Panel();
+            DeleteSupervisorbtn = new Button();
             AddSupervisorbtn = new Button();
             label2 = new Label();
             label1 = new Label();
@@ -42,7 +43,6 @@
             LastName = new ColumnHeader();
             Age = new ColumnHeader();
             PhoneNumber = new ColumnHeader();
-            DeleteSupervisorbtn = new Button();
             SupervisationPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,19 +54,32 @@
             SupervisationPanel.Controls.Add(label1);
             SupervisationPanel.Controls.Add(ListViewNonSupervisors);
             SupervisationPanel.Controls.Add(ListViewSupervisors);
-            SupervisationPanel.Location = new Point(74, 32);
+            SupervisationPanel.Location = new Point(65, 27);
             SupervisationPanel.Name = "SupervisationPanel";
-            SupervisationPanel.Size = new Size(953, 388);
+            SupervisationPanel.Size = new Size(834, 330);
             SupervisationPanel.TabIndex = 0;
+            // 
+            // DeleteSupervisorbtn
+            // 
+            DeleteSupervisorbtn.BackColor = Color.Red;
+            DeleteSupervisorbtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            DeleteSupervisorbtn.ForeColor = SystemColors.Control;
+            DeleteSupervisorbtn.Location = new Point(464, 224);
+            DeleteSupervisorbtn.Name = "DeleteSupervisorbtn";
+            DeleteSupervisorbtn.Size = new Size(214, 78);
+            DeleteSupervisorbtn.TabIndex = 8;
+            DeleteSupervisorbtn.Text = "Delete supervisor";
+            DeleteSupervisorbtn.UseVisualStyleBackColor = false;
+            DeleteSupervisorbtn.Click += DeleteSupervisorbtn_Click;
             // 
             // AddSupervisorbtn
             // 
             AddSupervisorbtn.BackColor = Color.FromArgb(0, 192, 0);
             AddSupervisorbtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             AddSupervisorbtn.ForeColor = SystemColors.Control;
-            AddSupervisorbtn.Location = new Point(100, 263);
+            AddSupervisorbtn.Location = new Point(88, 224);
             AddSupervisorbtn.Name = "AddSupervisorbtn";
-            AddSupervisorbtn.Size = new Size(245, 92);
+            AddSupervisorbtn.Size = new Size(214, 78);
             AddSupervisorbtn.TabIndex = 7;
             AddSupervisorbtn.Text = "Add Supervisor";
             AddSupervisorbtn.UseVisualStyleBackColor = false;
@@ -76,9 +89,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(483, 9);
+            label2.Location = new Point(423, 8);
             label2.Name = "label2";
-            label2.Size = new Size(148, 25);
+            label2.Size = new Size(114, 20);
             label2.TabIndex = 6;
             label2.Text = "Non supervisors";
             // 
@@ -86,9 +99,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(18, 9);
+            label1.Location = new Point(16, 8);
             label1.Name = "label1";
-            label1.Size = new Size(109, 25);
+            label1.Size = new Size(84, 20);
             label1.TabIndex = 5;
             label1.Text = "Supervisors";
             // 
@@ -100,9 +113,9 @@
             ListViewNonSupervisors.FullRowSelect = true;
             ListViewNonSupervisors.GridLines = true;
             ListViewNonSupervisors.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewNonSupervisors.Location = new Point(483, 37);
+            ListViewNonSupervisors.Location = new Point(423, 31);
             ListViewNonSupervisors.Name = "ListViewNonSupervisors";
-            ListViewNonSupervisors.Size = new Size(384, 200);
+            ListViewNonSupervisors.Size = new Size(336, 171);
             ListViewNonSupervisors.TabIndex = 4;
             ListViewNonSupervisors.UseCompatibleStateImageBehavior = false;
             ListViewNonSupervisors.View = View.Details;
@@ -134,9 +147,9 @@
             ListViewSupervisors.FullRowSelect = true;
             ListViewSupervisors.GridLines = true;
             ListViewSupervisors.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            ListViewSupervisors.Location = new Point(18, 37);
+            ListViewSupervisors.Location = new Point(16, 31);
             ListViewSupervisors.Name = "ListViewSupervisors";
-            ListViewSupervisors.Size = new Size(384, 200);
+            ListViewSupervisors.Size = new Size(336, 171);
             ListViewSupervisors.TabIndex = 3;
             ListViewSupervisors.UseCompatibleStateImageBehavior = false;
             ListViewSupervisors.View = View.Details;
@@ -160,24 +173,11 @@
             PhoneNumber.Text = "Phone No.";
             PhoneNumber.Width = 100;
             // 
-            // DeleteSupervisorbtn
-            // 
-            DeleteSupervisorbtn.BackColor = Color.Red;
-            DeleteSupervisorbtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            DeleteSupervisorbtn.ForeColor = SystemColors.Control;
-            DeleteSupervisorbtn.Location = new Point(530, 263);
-            DeleteSupervisorbtn.Name = "DeleteSupervisorbtn";
-            DeleteSupervisorbtn.Size = new Size(245, 92);
-            DeleteSupervisorbtn.TabIndex = 8;
-            DeleteSupervisorbtn.Text = "Delete supervisor";
-            DeleteSupervisorbtn.UseVisualStyleBackColor = false;
-            DeleteSupervisorbtn.Click += DeleteSupervisorbtn_Click;
-            // 
             // SupervisorsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1060, 524);
+            ClientSize = new Size(928, 445);
             Controls.Add(SupervisationPanel);
             Name = "SupervisorsForm";
             Text = "SupervisorsForm";

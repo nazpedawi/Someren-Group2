@@ -35,4 +35,23 @@ public class StudentService
     {
         studentDAO.UpdateStudent(student);
     }
+    public List<Student> GetAllParticipants(Activity activity)
+    {
+        return studentDAO.GetAllParticipants(activity);
+    }
+
+    public List<Student> GetAllNotParticipants(Activity activity)
+    {
+        return studentDAO.GetAllNotParticipants(activity);
+    }
+
+    public void AddParticipant(Student student, Activity activity)
+    {
+        studentDAO.AddParticipant(student, activity);
+    }
+
+    public void DeleteParticipant(Student student, Activity activity)
+    {
+        studentDAO.DeleteParticipant(student, activity);
+    }
 }

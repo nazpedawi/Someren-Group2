@@ -71,13 +71,12 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Students VALUES (@StudentNumber, @FirstName, @LastName, @Class, @PhoneNumber, @RoomNumber)", dbConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Students VALUES (@StudentNumber, @FirstName, @LastName, @Class, @PhoneNumber)", dbConnection);
                 cmd.Parameters.AddWithValue("@StudentNumber", student.StudentNumber);
                 cmd.Parameters.AddWithValue("@FirstName", student.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Class", student.Class);
                 cmd.Parameters.AddWithValue("@PhoneNumber", student.PhoneNumber);
-                cmd.Parameters.AddWithValue("@RoomNumber", student.RoomNumber);
 
                 cmd.ExecuteNonQuery();
                 return new Student(student.StudentNumber, student.FirstName, student.LastName, student.Class, student.PhoneNumber, student.RoomNumber);
@@ -119,7 +118,6 @@ namespace SomerenDAL
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Class", student.Class);
                 cmd.Parameters.AddWithValue("@PhoneNumber", student.PhoneNumber);
-                cmd.Parameters.AddWithValue("@RoomNumber", student.RoomNumber);
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -136,7 +134,7 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT l.StudentsNumber, FirstName, LastName, Age, PhoneNumber FROM supervisation as s join  Studentss as l on l.StudentsNumber = s.StudentsNumber join activities as a on s.ActivityID = a.ActivityID WHERE a.ActivityID = @ActivityID", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT s.StudentNumber, FirstName, LastName, Class, PhoneNumber, RoomNumber FROM participation as p JOIN students as s ON s.StudentNumber = p.StudentNumber JOIN activities as a ON p.ActivityID = a.ActivityID WHERE a.ActivityID = @ActivityID", dbConnection);
                 cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Student> participants = new List<Student>();
@@ -165,7 +163,7 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT StudentsNumber, FirstName, LastName, Age, PhoneNumber FROM Studentss WHERE StudentsNumber NOT IN (SELECT StudentsNumber FROM supervisation WHERE ActivityID = @ActivityID)", dbConnection);
+                SqlCommand cmd = new SqlCommand("SELECT StudentNumber, FirstName, LastName, Class, PhoneNumber, RoomNumber FROM students WHERE StudentNumber NOT IN (SELECT StudentNumber FROM participation WHERE ActivityID = @ActivityID)", dbConnection);
                 cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<Student> Notparticipants = new List<Student>();
@@ -195,8 +193,8 @@ namespace SomerenDAL
             {
                 dbConnection.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO supervisation VALUES (@StudentsNumber, @ActivityID);", dbConnection);
-                cmd.Parameters.AddWithValue("@StudentsNumber", Students.StudentNumber);
+                SqlCommand cmd = new SqlCommand("INSERT INTO participation VALUES (@StudentNumber, @ActivityID);", dbConnection);
+                cmd.Parameters.AddWithValue("@StudentNumber", Students.StudentNumber);
                 cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
                 cmd.ExecuteNonQuery();
                 return new Student(Students.StudentNumber, Students.FirstName, Students.LastName, Students.Class, Students.PhoneNumber, Students.RoomNumber);
@@ -219,8 +217,8 @@ namespace SomerenDAL
             try
             {
                 dbConnection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM supervisation WHERE StudentsNumber = @StudentsNumber AND ActivityID = @ActivityID;", dbConnection);
-                cmd.Parameters.AddWithValue("@StudentsNumber", Students.StudentNumber);
+                SqlCommand cmd = new SqlCommand("DELETE FROM participation WHERE StudentNumber = @StudentNumber AND ActivityID = @ActivityID;", dbConnection);
+                cmd.Parameters.AddWithValue("@StudentNumber", Students.StudentNumber);
                 cmd.Parameters.AddWithValue("@ActivityID", activity.ActivityId);
                 cmd.ExecuteNonQuery();
 
